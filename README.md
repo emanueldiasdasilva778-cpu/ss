@@ -139,7 +139,7 @@ Cada item tem uma revisão. Se uma venda ou outra edição ocorrer enquanto um m
 
 ## Persistência, backup e recuperação
 
-- A escrita usa arquivo temporário, `fsync` e substituição atômica. Transações são processadas uma por vez.
+- A escrita usa arquivo temporário, `fsync` do arquivo e substituição atômica. Em sistemas POSIX, também executa `fsync` do diretório; essa operação não é suportada pelo Node.js no Windows e não é executada nessa plataforma. A resistência a perda de energia depende das garantias do sistema de arquivos. Transações são processadas uma por vez.
 - `data/instance.lock` impede duas instâncias sobre o mesmo banco. **Não use múltiplas réplicas, shards com o mesmo diretório ou armazenamento de rede**. O desenho é para um processo em um host, com volume local persistente.
 - Falhas de escrita no banco bloqueiam novas transações até revisão e reinício. Corrija espaço, permissões ou falha do volume antes de retomar. O log identifica a classe e o código de erro, sem imprimir tokens ou objetos de interação.
 - Um arquivo de banco inválido interrompe a inicialização; o bot não o substitui por estoque novo.

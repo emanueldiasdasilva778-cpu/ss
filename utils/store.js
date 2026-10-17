@@ -3,18 +3,20 @@ import { dirname, join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 
 // Uma única instância por diretório: impede dois processos de venderem o mesmo estoque.
-// Escrita atômica + fsync preserva a última transação completa em caso de interrupção.
+// Escrita atômica + fsync do arquivo; em POSIX também sincroniza o diretório.
 export class Store {
-  constructor(directory) {
+  constructor(directory, { platform = process.platform, openFile = open } = {}) {
     this.directory = directory;
     this.file = join(directory, 'store.json');
     this.lockFile = join(directory, 'instance.lock');
     this.tail = Promise.resolve();
+    this.platform = platform;
+    this.openFile = openFile;
   }
 
   async init(products) {
     await mkdir(this.directory, { recursive: true, mode: 0o700 });
-    this.lock = await open(this.lockFile, 'wx', 0o600).catch(error => {
+    this.lock = await this.openFile(this.lockFile, 'wx', 0o600).catch(error => {
       if (error.code === 'EEXIST') throw new Error('INSTANCE_LOCKED');
       throw error;
     });
@@ -58,15 +60,19 @@ export class Store {
       if (result && typeof result.then === 'function') throw new Error('ASYNC_TRANSACTION_NOT_ALLOWED');
       const temporary = `${this.file}.${randomUUID()}.tmp`;
       try {
-        const handle = await open(temporary, 'wx', 0o600);
+        const handle = await this.openFile(temporary, 'wx', 0o600);
         try {
           await handle.writeFile(`${JSON.stringify(next, null, 2)}\n`);
           await handle.sync();
         } finally { await handle.close(); }
         await rename(temporary, this.file);
         this.data = next;
-        const folder = await open(dirname(this.file), 'r');
-        try { await folder.sync(); } finally { await folder.close(); }
+        // Windows não permite abrir diretórios com fs.open para executar fsync (EPERM).
+        // O fsync do arquivo e a substituição por rename continuam obrigatórios em todos os SOs.
+        if (this.platform !== 'win32') {
+          const folder = await this.openFile(dirname(this.file), 'r');
+          try { await folder.sync(); } finally { await folder.close(); }
+        }
         return structuredClone(result);
       } catch (error) {
         // Falha de disco tem resultado incerto: bloqueie novas vendas até revisão/reinício.

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, open, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Store } from '../utils/store.js';
@@ -177,4 +177,61 @@ test('falha de escrita bloqueia novas transações e preserva o último estoque 
   await assert.rejects(store.transact(data => { data.items['sku-a'].stock = 1; }), /STORE_WRITE_DISABLED/);
   assert.equal(JSON.parse(await readFile(actualFile, 'utf8')).items['sku-a'].stock, 2);
   assert.equal(store.read().items['sku-a'].stock, 2);
+});
+
+test('Windows grava, confirma e reabre pedidos sem abrir diretório para fsync', async t => {
+  const directory = await mkdtemp(join(tmpdir(), 'zeroms-windows-'));
+  let fileSyncs = 0;
+  let directoryOpens = 0;
+  const openFile = async (file, ...args) => {
+    if (file === directory) {
+      directoryOpens++;
+      throw Object.assign(new Error('Operação de diretório não suportada no Windows'), { code: 'EPERM' });
+    }
+    const handle = await open(file, ...args);
+    return {
+      writeFile: (...values) => handle.writeFile(...values),
+      async sync() { fileSyncs++; await handle.sync(); },
+      close: () => handle.close(),
+    };
+  };
+  let store;
+  t.after(async () => { await store?.close(); await rm(directory, { recursive: true, force: true }); });
+  store = await new Store(directory, { platform: 'win32', openFile }).init(products);
+  const shop = new Shop(store, {});
+  const c = await cartFor(shop);
+  await shop.checkout(c.id, c.buyerId, c.channelId);
+  await shop.confirm(c.id, 'staff', c.channelId);
+  await store.close();
+  store = await new Store(directory, { platform: 'win32', openFile }).init(products);
+  assert.equal(store.read().items['sku-a'].stock, 1);
+  assert.equal(store.read().carts[c.id].status, 'paid');
+  assert.equal(directoryOpens, 0);
+  assert.ok(fileSyncs >= 6, 'Todas as gravações continuam sincronizando o arquivo');
+});
+
+test('Windows continua rejeitando EPERM em arquivos, sem ignorar erros de permissão', async t => {
+  const directory = await mkdtemp(join(tmpdir(), 'zeroms-windows-permission-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const store = new Store(directory, { platform: 'win32', openFile: (file, ...args) => {
+    if (file.endsWith('.tmp')) return Promise.reject(Object.assign(new Error('Acesso negado ao arquivo'), { code: 'EPERM' }));
+    return open(file, ...args);
+  } });
+  await assert.rejects(store.init(products), { code: 'EPERM' });
+  await assert.rejects(readFile(store.file), { code: 'ENOENT' });
+});
+
+test('POSIX mantém a sincronização do diretório e não oculta erros nela', async t => {
+  const directory = await mkdtemp(join(tmpdir(), 'zeroms-posix-sync-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  let directoryOpens = 0;
+  const store = new Store(directory, { platform: 'linux', openFile: (file, ...args) => {
+    if (file === directory) {
+      directoryOpens++;
+      return Promise.reject(Object.assign(new Error('Acesso negado ao diretório'), { code: 'EPERM' }));
+    }
+    return open(file, ...args);
+  } });
+  await assert.rejects(store.init(products), { code: 'EPERM' });
+  assert.equal(directoryOpens, 1);
 });
