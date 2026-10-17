@@ -1,0 +1,86 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import { validateConfig } from '../config/load.js';
+import { catalogPayload, cartPayload, receiptPayload, modal, productSelect, variantSelect, editPanel, quantitySelect } from '../utils/ui.js';
+
+const config = JSON.parse(await readFile(new URL('../config.example.json', import.meta.url)));
+const items = Object.fromEntries(config.products.flatMap(p => p.variants.map(v => [v.id, { ...v, productId: p.id }])));
+const cart = { id: 'pedido-1', buyerId: 'comprador', username: 'Cliente', status: 'open', coupon: null,
+  lines: [{ itemId: 'external-3dias', name: 'ZeroM$ External 3 Dias', priceCents: 875, quantity: 2 }] };
+
+function serialize(payload) {
+  return { ...payload, embeds: payload.embeds?.map(e => e.toJSON()), components: payload.components?.map(c => c.toJSON()) };
+}
+
+test('configuração contém exatamente os preços, canais e estoques solicitados', () => {
+  validateConfig(config, { requireCredentials: false });
+  assert.equal(config.editRoleId, '1561137818342920333');
+  assert.equal(config.logChannelId, '1559063532321120386');
+  assert.deepEqual(config.products.map(p => p.channelId), [
+    '1559212215431856179', '1559213117718798336', '1559214412446044252', '1559214459824898099',
+    '1559214972549202091', '1559215094989197444', '1559215025615274004', '1561129676124983306',
+  ]);
+  assert.deepEqual(config.products.map(p => p.variants.map(v => [v.priceCents, v.stock])), [
+    [[12490, 39], [2990, 18], [1990, 68], [875, 49]],
+    [[9990, 9], [3890, 8], [1990, 14], [790, 25], [575, 11]],
+    [[749, 15], [1499, 3], [2999, 7], [14999, 92]],
+    [[36990, 10], [17499, 9]], [[60, 0]], [[499, 0]], [[150, 0]], [[150, 0]],
+  ]);
+  assert.throws(() => validateConfig(config), /token/);
+});
+
+test('catálogos usam select; produtos únicos usam somente botão e estoque zero desabilita compra', () => {
+  for (const product of config.products) {
+    const payload = serialize(catalogPayload(config, product, { items }));
+    assert.equal(payload.components[0].components[0].type, product.variants.length === 1 ? 2 : 3);
+    assert.ok(payload.embeds[0].description.length <= 4096);
+    if (product.image) assert.equal(payload.embeds[0].image.url, product.image);
+    if (product.variants.length === 1) {
+      assert.equal(payload.components[0].components[0].label, 'Adicionar ao Carrinho');
+      assert.equal(payload.components[0].components[0].disabled, true);
+    }
+  }
+});
+
+test('preço, descrição e estoque atuais aparecem no embed e produto esgotado sai do select', () => {
+  const changed = structuredClone(items);
+  changed['external-3dias'].priceCents = 1000;
+  changed['external-3dias'].description = 'Descrição nova';
+  changed['external-3dias'].stock = 0;
+  const payload = serialize(catalogPayload(config, config.products[0], { items: changed }));
+  assert.match(payload.embeds[0].description, /Descrição nova/);
+  assert.match(payload.embeds[0].description, /0 un/);
+  assert.equal(payload.components[0].components[0].options.some(o => o.value === 'external-3dias'), false);
+});
+
+test('carrinho tem texto, rodapé e botões obrigatórios; confirmação só habilita após Pix', () => {
+  const payload = serialize(cartPayload(config, cart));
+  assert.equal(payload.embeds[0].title, '🛒 Carrinho de compras de Cliente');
+  assert.match(payload.embeds[0].description, /Olá Cliente, seja bem-vindo ao seu carrinho de compras!/);
+  assert.match(payload.embeds[0].description, /Sem cupom aplicado/);
+  assert.equal(payload.embeds[0].footer.text, 'ZeroM$ © Todos os direitos reservados');
+  assert.deepEqual(payload.components[0].components.map(c => c.label), ['🟢 Pagar com Pix', '🎟️ Cupom', '📦 Quantidade', '⬛ Cancelar']);
+  assert.equal(payload.components[1].components[0].disabled, true);
+  const waiting = serialize(cartPayload(config, { ...cart, status: 'awaiting_payment' }));
+  assert.equal(waiting.components[1].components[0].disabled, false);
+  assert.equal(waiting.components[0].components[1].disabled, true);
+});
+
+test('log contém os dados financeiros, equipe, usuário e horário brasileiro', () => {
+  const paid = { ...cart, paidAt: '2026-10-17T18:00:00Z', staffId: 'equipe',
+    receipt: { lines: cart.lines, subtotal: 1750, total: 1312, discount: 438, coupon: 'ZEROMS25' } };
+  const payload = serialize(receiptPayload(config, paid));
+  const description = payload.embeds[0].description;
+  for (const text of ['comprador', 'equipe', 'ZeroM', 'ZEROMS25', '17/10/2026', '15:00:00', 'Valor original', 'Valor final pago', 'America/Sao_Paulo']) assert.ok(description.includes(text), text);
+  assert.ok(payload.embeds[0].footer.text.endsWith('Pedido pedido-1'));
+});
+
+test('painel e modals serializam dentro dos limites de componentes do Discord', () => {
+  serialize(productSelect(config));
+  serialize(variantSelect(config.products[0], { items }));
+  serialize(editPanel(config, items['external-3dias']));
+  serialize(quantitySelect(cart));
+  const data = modal('teste', 'Editar', [{ id: 'price', label: 'Preço', value: '8,75' }]).toJSON();
+  assert.equal(data.components[0].components[0].value, '8,75');
+});

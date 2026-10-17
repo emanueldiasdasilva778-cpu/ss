@@ -1,0 +1,235 @@
+{
+  "token": "COLOQUE_O_TOKEN_DO_BOT_AQUI",
+  "guildId": "COLOQUE_O_ID_DO_SERVIDOR_AQUI",
+  "staffRoleIds": [
+    "1561137818342920333"
+  ],
+  "editRoleId": "1561137818342920333",
+  "logChannelId": "1559063532321120386",
+  "cartCategoryId": null,
+  "color": "#22C55E",
+  "footer": "ZeroM$ © Todos os direitos reservados",
+  "timezone": "America/Sao_Paulo",
+  "cartIdleMinutes": 60,
+  "reconcileIntervalSeconds": 30,
+  "pix": {
+    "key": "",
+    "beneficiary": "",
+    "instructions": "Solicite os dados de pagamento à equipe neste carrinho. Após pagar, aguarde a confirmação manual. Não envie senhas ou dados bancários."
+  },
+  "products": [
+    {
+      "id": "external",
+      "name": "ZeroM$ External",
+      "channelId": "1559212215431856179",
+      "image": "https://cdn.zennify.app/media/5324126a8a9fd181ae06d3bde9f8da0e0a1f58101dda4bb902982bcb4271c0a1.webp",
+      "startingPriceCents": 875,
+      "description": "Escolha uma opção abaixo para comprar.",
+      "variants": [
+        {
+          "id": "external-lifetime",
+          "name": "ZeroM$ External Lifetime",
+          "priceCents": 12490,
+          "stock": 39,
+          "description": ""
+        },
+        {
+          "id": "external-mensal",
+          "name": "ZeroM$ External Mensal",
+          "priceCents": 2990,
+          "stock": 18,
+          "description": ""
+        },
+        {
+          "id": "external-semanal",
+          "name": "ZeroM$ External Semanal",
+          "priceCents": 1990,
+          "stock": 68,
+          "description": ""
+        },
+        {
+          "id": "external-3dias",
+          "name": "ZeroM$ External 3 Dias",
+          "priceCents": 875,
+          "stock": 49,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "snow",
+      "name": "Snow Spoofer",
+      "channelId": "1559213117718798336",
+      "image": "https://cdn.zennify.app/media/4cf1f83d39a696527564b7e4e464293ad81412da44ebaa8431c114392f82033f.webp",
+      "startingPriceCents": 575,
+      "description": "Escolha uma opção abaixo para comprar.",
+      "variants": [
+        {
+          "id": "snow-lifetime",
+          "name": "Lifetime",
+          "priceCents": 9990,
+          "stock": 9,
+          "description": ""
+        },
+        {
+          "id": "snow-mensal",
+          "name": "Mensal",
+          "priceCents": 3890,
+          "stock": 8,
+          "description": ""
+        },
+        {
+          "id": "snow-semanal",
+          "name": "Semanal",
+          "priceCents": 1990,
+          "stock": 14,
+          "description": ""
+        },
+        {
+          "id": "snow-3dias",
+          "name": "3 Dias",
+          "priceCents": 790,
+          "stock": 25,
+          "description": ""
+        },
+        {
+          "id": "snow-diario",
+          "name": "Diario",
+          "priceCents": 575,
+          "stock": 11,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "internal",
+      "name": "ZeroM$ Internal FF",
+      "channelId": "1559214412446044252",
+      "image": "https://cdn.zennify.app/media/f220e5deea4a35d3392873ce0604d275cfbb6e92fc3fb00882b39d555cd92d46.webp",
+      "startingPriceCents": 749,
+      "description": "Escolha uma opção abaixo para comprar.",
+      "variants": [
+        {
+          "id": "internal-diario",
+          "name": "Diario",
+          "priceCents": 749,
+          "stock": 15,
+          "description": ""
+        },
+        {
+          "id": "internal-semanal",
+          "name": "Semanal",
+          "priceCents": 1499,
+          "stock": 3,
+          "description": ""
+        },
+        {
+          "id": "internal-mensal",
+          "name": "Mensal",
+          "priceCents": 2999,
+          "stock": 7,
+          "description": ""
+        },
+        {
+          "id": "internal-lifetime",
+          "name": "Lifetime",
+          "priceCents": 14999,
+          "stock": 92,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "advanced",
+      "name": "Advanced Bypass",
+      "channelId": "1559214459824898099",
+      "image": "https://cdn.zennify.app/media/ff4bd3c169bc2bbe5fea9c53546fa52eb1aa87a97ec0fb09cdaee3879d3d0b36.webp",
+      "startingPriceCents": 17499,
+      "description": "Escolha uma opção abaixo para comprar.",
+      "variants": [
+        {
+          "id": "advanced-lifetime",
+          "name": "Advanced Bypass Lifetime",
+          "priceCents": 36990,
+          "stock": 10,
+          "description": ""
+        },
+        {
+          "id": "advanced-mensal",
+          "name": "Advanced Bypass Mensal",
+          "priceCents": 17499,
+          "stock": 9,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "unico-1",
+      "name": "Produto do canal 1559214972549202091",
+      "channelId": "1559214972549202091",
+      "image": null,
+      "startingPriceCents": 60,
+      "description": "Configure o nome e o estoque antes de disponibilizar este produto.",
+      "variants": [
+        {
+          "id": "unico-1-item",
+          "name": "Produto do canal 1559214972549202091",
+          "priceCents": 60,
+          "stock": 0,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "unico-2",
+      "name": "Produto do canal 1559215094989197444",
+      "channelId": "1559215094989197444",
+      "image": null,
+      "startingPriceCents": 499,
+      "description": "Configure o nome e o estoque antes de disponibilizar este produto.",
+      "variants": [
+        {
+          "id": "unico-2-item",
+          "name": "Produto do canal 1559215094989197444",
+          "priceCents": 499,
+          "stock": 0,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "unico-3",
+      "name": "Produto do canal 1559215025615274004",
+      "channelId": "1559215025615274004",
+      "image": null,
+      "startingPriceCents": 150,
+      "description": "Configure o nome e o estoque antes de disponibilizar este produto.",
+      "variants": [
+        {
+          "id": "unico-3-item",
+          "name": "Produto do canal 1559215025615274004",
+          "priceCents": 150,
+          "stock": 0,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "unico-4",
+      "name": "Produto do canal 1561129676124983306",
+      "channelId": "1561129676124983306",
+      "image": null,
+      "startingPriceCents": 150,
+      "description": "Configure o nome e o estoque antes de disponibilizar este produto.",
+      "variants": [
+        {
+          "id": "unico-4-item",
+          "name": "Produto do canal 1561129676124983306",
+          "priceCents": 150,
+          "stock": 0,
+          "description": ""
+        }
+      ]
+    }
+  ]
+}
