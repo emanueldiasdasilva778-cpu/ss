@@ -1,10 +1,13 @@
 import {
   ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder,
   StringSelectMenuBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, escapeMarkdown,
+  AttachmentBuilder,
 } from 'discord.js';
+import { fileURLToPath } from 'node:url';
 import { money, totals } from './money.js';
 import { formatText, safeText } from './format.js';
 import { UserError } from './errors.js';
+import { catalogDetails } from './catalog.js';
 
 const row = (...components) => new ActionRowBuilder().addComponents(...components);
 const button = (id, label, style, disabled = false) => new ButtonBuilder().setCustomId(id).setLabel(label).setStyle(style).setDisabled(disabled);
@@ -13,6 +16,7 @@ export const noMentions = { parse: [], repliedUser: false };
 export const baseEmbed = config => new EmbedBuilder().setColor(config.color).setFooter({ text: config.footer });
 
 export function catalogPayload(config, product, data) {
+  product = catalogDetails(product, data);
   const items = product.variants.map(v => data.items[v.id]);
   const cheapest = Math.min(...items.map(v => v.priceCents));
   const description = `${formatText(product.description, config)}\n\n**💰 A partir de ${money(cheapest)}**\n\n**📦 Catálogo completo**\n${items.map(item =>
@@ -34,7 +38,13 @@ export function catalogPayload(config, product, data) {
     .setFooter({ text: `${config.footer} | Catálogo ${product.id}` }));
   const totalLength = embeds.reduce((sum, e) => sum + e.data.title.length + e.data.description.length + e.data.footer.text.length, 0);
   if (totalLength > 6000) throw new UserError(`O catálogo ${product.id} ultrapassa o limite de 6000 caracteres do Discord após resolver os emojis. Reduza a descrição.`);
-  if (product.image) embeds[0].setImage(product.image.trim());
+  const image = product.image || config.defaultImage;
+  const files = [];
+  if (image) embeds[0].setImage(image.trim());
+  else {
+    files.push(new AttachmentBuilder(fileURLToPath(new URL('../assets/loja.png', import.meta.url)), { name: 'zeroms-loja.png' }));
+    embeds[0].setImage('attachment://zeroms-loja.png');
+  }
   let component;
   if (items.length === 1) {
     component = button(`add:${items[0].id}`, 'Adicionar ao Carrinho', ButtonStyle.Success, items[0].stock === 0);
@@ -46,7 +56,7 @@ export function catalogPayload(config, product, data) {
         label: item.name, value: item.id, description: `${money(item.priceCents)} • ${item.stock} unidades`,
       })));
   }
-  return { embeds, components: [row(component)], allowedMentions: noMentions };
+  return { embeds, files, attachments: [], components: [row(component)], allowedMentions: noMentions };
 }
 
 export function cartPayload(config, cart) {
@@ -93,8 +103,20 @@ export function receiptPayload(config, cart) {
 }
 
 export function productSelect(config) {
-  return { content: 'Selecione o catálogo que deseja editar.', components: [row(new StringSelectMenuBuilder()
+  return { embeds: [baseEmbed(config).setTitle('🛠️ Editar os embeds da loja')
+    .setDescription('Selecione o canal abaixo. Você poderá editar a **descrição completa do embed**, a **imagem**, o **valor** e a **quantidade em estoque**.')], components: [row(new StringSelectMenuBuilder()
     .setCustomId('edit-product').setPlaceholder('Catálogo').addOptions(config.products.map(p => ({ label: p.name, value: p.id }))))] };
+}
+
+export function catalogEditPanel(config, product, data) {
+  const preview = catalogPayload(config, product, data);
+  return { ...preview, content: null, components: [
+    row(button(`edit-embed-open:${product.id}`, '📝 Descrição completa e imagem do embed', ButtonStyle.Primary)),
+    row(new StringSelectMenuBuilder().setCustomId(`edit-variant:${product.id}`).setPlaceholder('💰 Selecione uma opção para editar valor e quantidade')
+      .addOptions(product.variants.map(v => ({ label: data.items[v.id].name, value: v.id })))),
+    row(new StringSelectMenuBuilder().setCustomId('edit-product').setPlaceholder('Trocar canal')
+      .addOptions(config.products.map(p => ({ label: p.name, value: p.id })))),
+  ] };
 }
 
 export function variantSelect(product, data) {
@@ -104,10 +126,15 @@ export function variantSelect(product, data) {
     }))))] };
 }
 
-export function editPanel(config, item) {
+export function editPanel(config, item, data = {}) {
+  const product = config.products.find(p => p.variants.some(v => v.id === item.id));
+  const details = product ? catalogDetails(product, data) : null;
   return { content: null, embeds: [baseEmbed(config).setTitle(`Editar: ${item.name}`)
-    .setDescription(`**Preço:** ${money(item.priceCents)}\n**Estoque:** ${item.stock}\n**Descrição:** ${formatText(item.description || 'Sem descrição', config)}`)],
-  components: [row(button(`edit-open:${item.id}`, '✏️ Editar preço, estoque e descrição', ButtonStyle.Primary)),
+    .setDescription(`**💰 Valor:** ${money(item.priceCents)}\n**📦 Quantidade em estoque:** ${item.stock}\n\n` +
+      `O formulário edita a **descrição completa do embed do canal** e sua **imagem**, além do valor e estoque desta opção.\n` +
+      `**Descrição atual:** ${details?.description.length ?? 0} caracteres.\n` +
+      `**Imagem:** ${details?.image ? 'Imagem personalizada do canal' : 'Imagem padrão da loja'}`)],
+  components: [row(button(`edit-open:${item.id}`, '📝 Editar embed, valor e quantidade', ButtonStyle.Primary)),
     row(new StringSelectMenuBuilder().setCustomId('edit-product').setPlaceholder('Trocar catálogo')
       .addOptions(config.products.map(p => ({ label: p.name, value: p.id }))))] };
 }

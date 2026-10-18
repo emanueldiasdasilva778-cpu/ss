@@ -67,6 +67,9 @@ export class DiscordShop {
     for (const id of [this.config.logChannelId, ...this.config.products.map(p => p.channelId)]) {
       const channel = await this.channel(id);
       if (!channel.permissionsFor(me)?.has(requiredText)) throw new UserError(`Permissões insuficientes no canal ${id}: ver, enviar, inserir links e ler histórico.`);
+      if (id !== this.config.logChannelId && !channel.permissionsFor(me)?.has(P.AttachFiles)) {
+        throw new UserError(`O bot precisa de Anexar arquivos no canal ${id} para enviar a imagem padrão dos embeds.`);
+      }
     }
     this.guild = guild;
     await refreshGuildEmojis(guild, this.config);

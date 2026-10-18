@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { UserError } from '../utils/errors.js';
+import { imageUrl } from '../utils/catalog.js';
 
 export const root = fileURLToPath(new URL('../', import.meta.url));
 const snowflake = value => typeof value === 'string' && /^\d{17,20}$/.test(value);
@@ -8,6 +9,7 @@ function requireSetting(condition, message) { if (!condition) throw new UserErro
 
 export function validateConfig(config, { requireCredentials = true } = {}) {
   requireSetting(config && typeof config === 'object', 'arquivo JSON inválido.');
+  requireSetting(imageUrl(config.defaultImage) !== undefined, 'defaultImage deve ser uma URL HTTPS ou null para usar o banner incluído.');
   if (config.emojis !== undefined) {
     requireSetting(config.emojis && typeof config.emojis === 'object' && !Array.isArray(config.emojis) &&
       Object.entries(config.emojis).every(([name, value]) => /^[A-Za-z0-9_]+(?:~\d+)?$/.test(name) &&
@@ -37,8 +39,8 @@ export function validateConfig(config, { requireCredentials = true } = {}) {
     requireSetting(snowflake(product.channelId) && !channels.has(product.channelId) && product.channelId !== config.logChannelId, 'cada produto precisa de canal exclusivo, diferente do canal de logs.');
     channels.add(product.channelId);
     requireSetting(typeof product.name === 'string' && product.name.length > 0 && product.name.length <= 80, 'nome do produto.');
-    requireSetting(typeof product.description === 'string' && product.description.length <= 3500, 'descrição do catálogo deve ter até 3500 caracteres.');
-    requireSetting(!product.image || /^https:\/\//.test(product.image), 'imagem deve usar HTTPS.');
+    requireSetting(typeof product.description === 'string' && product.description.length <= 4000, 'descrição do embed deve ter até 4000 caracteres.');
+    requireSetting(imageUrl(product.image) !== undefined, 'imagem deve ser uma URL HTTPS válida.');
     requireSetting(Array.isArray(product.variants) && product.variants.length > 0 && product.variants.length <= 10, 'cada catálogo deve ter entre 1 e 10 opções.');
     for (const item of product.variants) {
       requireSetting(/^[a-z0-9-]{1,40}$/.test(item.id) && !ids.has(item.id), 'ID de opção duplicado/inválido.');

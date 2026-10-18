@@ -15,6 +15,7 @@ export async function reloadCatalog(context, next) {
     await context.store.syncCatalog(next.products);
     context.config.products = next.products;
     context.config.emojis = next.emojis;
+    context.config.defaultImage = next.defaultImage;
     await refreshGuildEmojis(context.discord.guild, context.config);
     await context.discord.catalogs();
   });

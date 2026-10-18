@@ -12,7 +12,7 @@ O TXT repetiu `1561129676124983306` para Rockstar e Guest. Conforme a escolha do
 
 Os nomes `:Zennify_box:`, `:9504_purple_flame:`, `:44250purplecheck:`, `:shoppingcart:`, `:ant5:`, `:fogue:`, `:144:` e `:star~1:` são resolvidos pelos emojis disponíveis no servidor. O alias numérico `:1298339916803215483:` é procurado como ID. Emojis animados também são suportados. Se não houver um emoji correspondente ou não for possível consultar a lista, são usados equivalentes Unicode; o bot não inventa IDs. O campo `emojis` fica vazio por padrão para permitir a descoberta automática. Códigos reais podem ser definidos nele para substituir a descoberta.
 
-As descrições dos catálogos aceitam até 3500 caracteres de origem. Se a renderização passar de 4096 caracteres, o painel usa um embed de continuação na mesma mensagem, preservando o conteúdo e a imagem. O limite total de 6000 caracteres do Discord continua sendo respeitado; o bot informa quando um texto excede esse limite, sem truncá-lo silenciosamente.
+As descrições dos catálogos aceitam até 4000 caracteres de origem. Se a renderização passar de 4096 caracteres, o painel usa um embed de continuação na mesma mensagem, preservando o conteúdo e a imagem. O limite total de 6000 caracteres do Discord continua sendo respeitado; o bot informa quando um texto excede esse limite, sem truncá-lo silenciosamente.
 
 **Entrega:** o TXT menciona entrega automática de contas por DM. Essas frases foram mantidas como conteúdo fornecido pelo operador. Este projeto não possui estoque de credenciais nem rotina de entrega automática. A confirmação do Pix é manual; a entrega precisa ser feita pela equipe ou por uma integração separada antes de anunciar esse serviço como automatizado. Não confunda o estoque numérico com contas/licenças cadastradas para entrega.
 
@@ -46,7 +46,7 @@ npm.cmd start
 
 O comando importa nomes, descrições, imagens e o mapa de emojis para `config.json`, preservando token, servidor, canais, preços e estoque. Também aceita outro JSON: `npm.cmd run importar-catalogo -- "C:\caminho\catalogo.json"`. Confira o arquivo de origem antes de importar. O banco não é apagado. Não execute a importação enquanto estiver editando o mesmo arquivo em outro programa.
 
-Você pode editar esses campos diretamente no **config.json**. Com o bot ligado, ele detecta o arquivo a cada 2 segundos e atualiza imagens, nomes, descrições e emojis automaticamente. Token, cargos, servidor e mudanças na lista de produtos exigem reinício. O bot atualiza os painéis existentes, incluindo a imagem; não é necessário apagar mensagens nem o banco. A descrição das opções é sincronizada quando o texto do config muda; se o config continua igual, uma descrição salva por `/edit` é preservada. As imagens devem ser links HTTPS diretos e acessíveis ao Discord. Os quatro banners informados estão no exemplo; os produtos únicos continuam sem imagem porque nenhuma foi fornecida para eles.
+Você pode editar esses campos diretamente no **config.json**. Com o bot ligado, ele detecta o arquivo a cada 2 segundos e atualiza imagens, nomes, descrições e emojis automaticamente. Token, cargos, servidor e mudanças na lista de produtos exigem reinício. O bot atualiza os painéis existentes, incluindo a imagem; não é necessário apagar mensagens nem o banco. A descrição das opções é sincronizada quando o texto do config muda; se o config continua igual, uma descrição salva por `/edit` é preservada. As imagens devem ser links HTTPS diretos e acessíveis ao Discord. Os quatro banners informados foram preservados. Os canais sem imagem própria recebem o banner PNG incluído em `assets/loja.png`, enviado como anexo pelo bot; não é preciso hospedar a imagem nem tornar o repositório público. Use `defaultImage` para definir outra imagem padrão por URL HTTPS, ou `/edit` para escolher uma imagem específica para cada canal.
 
 Descrições aceitam quebras de linha `\n`, **Markdown**, emojis Unicode e códigos reais do Discord, como `<:nome:123456789012345678>` ou `<a:nome:123456789012345678>`. Esse ID é ilustrativo: substitua pelo ID real. O bot busca emojis do próprio servidor pelo nome. Para escolher um emoji específico, no mapa `emojis` associe `nome` ao código real; então use `:nome:` na descrição. Nomes comuns como `:shopping_cart:` têm alternativa Unicode. Se o nome não existir no servidor e não houver mapeamento, será usado um equivalente Unicode conhecido ou será mantido o alias para correção pelo operador.
 
@@ -103,6 +103,7 @@ O arquivo `config.example.json` contém o catálogo completo, as quatro imagens 
 | `editRoleId` | Cargo exclusivo para `/edit`: `1561137818342920333`. Deve também constar em `staffRoleIds`. |
 | `logChannelId` | Canal de vendas: `1559063532321120386`. |
 | `cartCategoryId` | Categoria opcional dos carrinhos; `null` cria fora de categoria. |
+| `defaultImage` | Imagem HTTPS padrão para os canais sem imagem própria. `null` usa o banner PNG incluído, enviado como anexo. |
 | `color`, `footer` | Aparência dos embeds. Rodapé padrão: `ZeroM$ © Todos os direitos reservados`. |
 | `timezone` | Horário dos registros, inicialmente `America/Sao_Paulo`. O banco conserva ISO/UTC. |
 | `cartIdleMinutes` | Expiração de carrinhos abertos sem alteração, inicialmente 60 minutos. |
@@ -114,7 +115,7 @@ O arquivo `config.example.json` contém o catálogo completo, as quatro imagens 
 
 IDs Discord são **strings**, para preservar todos os dígitos. Valores `priceCents` e `startingPriceCents` estão em **centavos inteiros**: `875` representa R$ 8,75. `startingPriceCents` registra o preço inicial solicitado; o painel calcula o menor preço corrente das opções para se manter atualizado.
 
-Os quatro canais de produto único têm os preços exatos pedidos: R$ 0,60; R$ 4,99; R$ 1,50; R$ 1,50. Como não foram fornecidos nomes nem quantidades, começam com nome `Produto do canal ID` e **estoque zero**. Defina os nomes no `config.json` e os estoques iniciais antes da primeira execução, ou reponha pelo `/edit`. Eles usam exclusivamente o botão **Adicionar ao Carrinho**, sem menu de seleção.
+Os quatro canais de produto único têm os preços exatos pedidos: R$ 0,60; R$ 4,99; R$ 1,50; R$ 1,50. Os nomes e descrições foram preenchidos conforme o TXT: Steam WL, GTA5 Instalável, Contas Rockstar 2FA + Garantia e Conta Guest LV 20–29. Como não foram fornecidas quantidades, começam com **estoque zero**. Defina os nomes no `config.json` e os estoques iniciais antes da primeira execução, ou reponha pelo `/edit`. Eles usam exclusivamente o botão **Adicionar ao Carrinho**, sem menu de seleção.
 
 ### Configuração inicial e dados de operação
 
@@ -171,19 +172,24 @@ O envio de mensagens ao Discord e a gravação local não compartilham uma trans
 
 O projeto controla vendas e estoque numérico. **Não envia licenças, arquivos ou credenciais de produtos automaticamente.** Combine a entrega com o comprador antes da confirmação que fecha o canal, ou implemente um processo de entrega separado.
 
-## Painel `/edit`
+## Painel `/edit` — descrição completa do embed, imagem, valor e estoque
 
-Somente o cargo **`1561137818342920333`** pode usar o comando, seus botões e seus modals. O comando pode aparecer na lista de outros membros; a execução é bloqueada pelo código. Se desejar ocultá-lo também na interface, restrinja o comando em **Configurações do servidor → Integrações**.
+Somente o cargo **`1561137818342920333`** pode usar o comando, seus botões e seus modals. O cargo é consultado novamente em cada ação. Para ocultar o comando dos demais membros na interface, configure a permissão também em **Configurações do servidor → Integrações**.
 
-1. Execute `/edit`.
-2. Escolha o catálogo.
-3. Escolha a opção.
-4. Abra **Editar preço, estoque e descrição**.
-5. Informe o preço em reais (`8,75`), o estoque **absoluto** (`49`, não um incremento) e a descrição.
+Execute **`/edit`** e selecione o canal no menu, ou use **`/edit canal:#canal-do-produto`** para abrir diretamente o painel correspondente. O painel mostra uma prévia do embed publicado e dois caminhos:
 
-As entradas são validadas. A descrição aceita até 180 caracteres. O salvamento atualiza o embed do catálogo imediatamente e mantém nova tentativa automática em caso de falha do Discord. Se o preço mudar, carrinhos ainda abertos precisam revisá-lo antes do Pix; cotações já geradas são preservadas.
+1. **Descrição completa e imagem do embed:** edita o texto principal inteiro do anúncio e a imagem do canal. Não exige selecionar uma modalidade. O campo de descrição é uma caixa de texto grande, com até **4000 caracteres**, quebras de linha, Markdown e emojis do Discord.
+2. **Selecione uma opção para editar valor e quantidade:** abre um painel para a modalidade escolhida. Clique em **Editar embed, valor e quantidade**. Um único modal contém **descrição COMPLETA do embed do canal**, **URL da imagem**, **valor em reais** e **quantidade em estoque**. O texto editado é o anúncio principal compartilhado pelo canal; não é a descrição curta da opção.
 
-Cada item tem uma revisão. Se uma venda ou outra edição ocorrer enquanto um modal estiver aberto, o formulário antigo é recusado. Reabra `/edit` para não sobrescrever o estoque atual. A retirada de cargo entre abrir e enviar um formulário também impede o salvamento.
+A imagem deve ser uma URL HTTPS direta e acessível ao Discord. Deixe o campo vazio para usar a imagem padrão. Todos os oito canais continuam como embeds e recebem imagem. O valor deve ser escrito como `8,75`; o estoque é absoluto (`49`, não um incremento).
+
+Ao salvar, o bot atualiza a mensagem existente no canal. O bloco automático de catálogo, preços e estoque continua sendo gerado a partir dos valores atuais. Se o Discord estiver indisponível ou negar permissão, as alterações ficam salvas e a atualização será tentada novamente. Descrições que excedam o limite total de 6000 caracteres do Discord após resolver os emojis são recusadas antes da gravação; não há truncamento silencioso.
+
+A descrição e a imagem editadas ficam persistidas em `data/store.json`, em `embeds`, e sobrevivem a reinícios. O `config.json` mantém os valores de origem. Sincronizar a mesma configuração não apaga alterações feitas pelo painel; uma mudança explícita na descrição ou imagem do config passa a valer para esse campo. Uma instalação antiga migra esses registros automaticamente sem repor estoque nem apagar pedidos.
+
+Cada embed e cada opção têm revisões. Se outra pessoa mudar o anúncio ou uma venda alterar o estoque enquanto um formulário estiver aberto, o formulário antigo é recusado. Reabra `/edit` para carregar os dados atuais. A alteração combinada é atômica: uma imagem ou descrição inválida não salva parcialmente um novo valor ou estoque.
+
+Depois de atualizar esta versão, execute **`npm.cmd run deploy`** para registrar a opção `canal` do comando. Feche os painéis antigos e abra `/edit` novamente.
 
 ## Persistência, backup e recuperação
 
@@ -204,6 +210,7 @@ Para operação contínua, use um supervisor de processos com **uma instância**
 
 ```text
 discord-sales/
+├── assets/loja.png             # Banner padrão anexado aos embeds sem imagem própria
 ├── config.json                 # Configuração local e token; ignorado pelo Git
 ├── config.example.json         # Exemplo completo sem credenciais reais
 ├── config/load.js              # Leitura e validação da configuração

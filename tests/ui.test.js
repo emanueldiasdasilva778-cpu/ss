@@ -166,3 +166,27 @@ test('catálogo completo inclui as oito descrições do TXT nos canais correspon
     assert.ok(payload.embeds.reduce((sum, e) => sum + e.description.length + e.title.length + e.footer.text.length, 0) <= 6000);
   }
 });
+
+test('todos os oito painéis têm imagem e os canais sem URL recebem PNG anexado', async () => {
+  for (const product of config.products) {
+    const payload = catalogPayload(config, product, { items });
+    const embed = payload.embeds[0].toJSON();
+    assert.ok(embed.image?.url);
+    if (!product.image) {
+      assert.equal(embed.image.url, 'attachment://zeroms-loja.png');
+      assert.equal(payload.files.length, 1);
+      const bytes = await readFile(payload.files[0].attachment);
+      assert.equal(bytes.subarray(1, 4).toString(), 'PNG');
+      assert.equal(payload.files[0].name, 'zeroms-loja.png');
+    }
+  }
+});
+
+test('imagem padrão configurada substitui o anexo nos canais sem imagem própria', () => {
+  const current = { ...config, defaultImage: 'https://example.com/loja.png' };
+  const product = current.products.find(p => !p.image);
+  const payload = catalogPayload(current, product, { items });
+  assert.equal(payload.embeds[0].data.image.url, current.defaultImage);
+  assert.deepEqual(payload.files, []);
+  assert.deepEqual(payload.attachments, []);
+});

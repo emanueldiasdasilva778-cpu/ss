@@ -13,7 +13,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 test('importador funciona em pasta nova e preserva credenciais nas importações seguintes', async t => {
   const directory = await mkdtemp(join(tmpdir(), 'zeroms-import-'));
   t.after(() => rm(directory, { recursive: true, force: true }));
-  for (const name of ['package.json', 'config.example.json', 'importar-catalogo.js', 'config/load.js', 'utils/catalog-config.js', 'utils/errors.js']) {
+  for (const name of ['package.json', 'config.example.json', 'importar-catalogo.js', 'config/load.js', 'utils/catalog.js', 'utils/catalog-config.js', 'utils/errors.js']) {
     await mkdir(dirname(join(directory, name)), { recursive: true });
     await copyFile(join(root, name), join(directory, name));
   }

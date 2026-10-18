@@ -2,7 +2,8 @@ import { MessageFlags } from 'discord.js';
 import * as editCommand from '../commands/edit.js';
 import { UserError, report } from '../utils/errors.js';
 import { parsePrice, parseQuantity } from '../utils/money.js';
-import { editPanel, modal, pixPayload, productSelect, quantitySelect, variantSelect } from '../utils/ui.js';
+import { catalogDetails } from '../utils/catalog.js';
+import { catalogEditPanel, editPanel, modal, pixPayload, quantitySelect } from '../utils/ui.js';
 
 async function replyError(interaction, error) {
   const content = error instanceof UserError ? error.message : 'Não foi possível concluir agora. A equipe deve verificar as permissões e o registro do bot. Tente novamente em alguns instantes.';
@@ -25,42 +26,69 @@ export async function handleInteraction(interaction, context) {
       throw new UserError('Comando desconhecido.');
     }
 
-    const [action, id, itemId] = interaction.customId.split(':');
+    const [action, id, itemId, embedRevision] = interaction.customId.split(':');
     // Abertura de modal deve ser a primeira resposta. A checagem de cargo usa consulta atual.
     if (action.startsWith('edit-')) {
-      if (action !== 'edit-open') await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+      if (!['edit-open', 'edit-embed-open'].includes(action)) await interaction.deferReply({ flags: MessageFlags.Ephemeral });
       await discord.staff(interaction, true);
       const snapshot = store.read();
       if (action === 'edit-product' && interaction.isStringSelectMenu()) {
         const product = config.products.find(p => p.id === interaction.values[0]);
         if (!product) throw new UserError('Catálogo inválido.');
-        return await interaction.editReply(variantSelect(product, snapshot));
+        return await interaction.editReply(catalogEditPanel(config, product, snapshot));
       }
       if (action === 'edit-variant' && interaction.isStringSelectMenu()) {
         const product = config.products.find(p => p.id === id);
         const item = snapshot.items[interaction.values[0]];
         if (!item || !product?.variants.some(v => v.id === item.id)) throw new UserError('Produto inválido.');
-        return await interaction.editReply(editPanel(config, item));
+        return await interaction.editReply(editPanel(config, item, snapshot));
+      }
+      if (action === 'edit-embed-open' || action === 'edit-embed-save') {
+        const product = config.products.find(p => p.id === id);
+        if (!product) throw new UserError('Canal de catálogo inválido.');
+        const embed = catalogDetails(product, snapshot);
+        if (action === 'edit-embed-open' && interaction.isButton()) {
+          return await interaction.showModal(modal(`edit-embed-save:${id}:${embed.revision}`, 'Editar embed do canal', [
+            { id: 'description', label: 'Descrição COMPLETA do embed do canal', value: embed.description, max: 4000, required: false, paragraph: true },
+            { id: 'image', label: 'Imagem HTTPS (vazio = imagem padrão)', value: embed.image ?? '', max: 1800, required: false },
+          ]));
+        }
+        if (action === 'edit-embed-save' && interaction.isModalSubmit()) {
+          if (!/^\d+$/.test(itemId ?? '')) throw new UserError('Formulário antigo. Reabra /edit.');
+          await shop.editEmbed(id, { description: interaction.fields.getTextInputValue('description'),
+            image: interaction.fields.getTextInputValue('image') }, Number(itemId));
+          try { await discord.exclusive(() => discord.catalogs()); }
+          catch {
+            return await interaction.editReply({ content: 'Descrição completa e imagem salvas. A atualização do Discord está pendente e será tentada novamente automaticamente.', components: [] });
+          }
+          return await interaction.editReply({ ...catalogEditPanel(config, product, store.read()), content: 'Descrição completa e imagem do embed salvas e atualizadas no canal.' });
+        }
+        throw new UserError('Ação inválida para o embed.');
       }
       const item = snapshot.items[id];
       if (!item) throw new UserError('Produto inválido.');
+      const product = config.products.find(p => p.id === item.productId);
+      if (!product) throw new UserError('Catálogo inválido.');
+      const embed = catalogDetails(product, snapshot);
       if (action === 'edit-open' && interaction.isButton()) {
-        return await interaction.showModal(modal(`edit-save:${id}:${item.revision}`, 'Editar produto', [
-          { id: 'price', label: 'Preço em reais (ex.: 8,75)', value: (item.priceCents / 100).toFixed(2).replace('.', ','), max: 12 },
-          { id: 'stock', label: 'Quantidade em estoque', value: String(item.stock), max: 6 },
-          { id: 'description', label: 'Descrição do produto', value: item.description, max: 180, required: false, paragraph: true },
+        return await interaction.showModal(modal(`edit-save:${id}:${item.revision}:${embed.revision}`, 'Editar embed e valores', [
+          { id: 'description', label: 'Descrição COMPLETA do embed do canal', value: embed.description, max: 4000, required: false, paragraph: true },
+          { id: 'image', label: 'Imagem HTTPS (vazio = imagem padrão)', value: embed.image ?? '', max: 1800, required: false },
+          { id: 'price', label: 'Valor em reais (ex.: 8,75)', value: (item.priceCents / 100).toFixed(2).replace('.', ','), max: 12 },
+          { id: 'stock', label: 'Quantidade em estoque desta opção', value: String(item.stock), max: 6 },
         ]));
       }
       if (action === 'edit-save' && interaction.isModalSubmit()) {
-        if (!/^\d+$/.test(itemId ?? '')) throw new UserError('Formulário antigo. Reabra /edit para continuar.');
-        await shop.edit(id, { priceCents: parsePrice(interaction.fields.getTextInputValue('price')),
+        if (!/^\d+$/.test(itemId ?? '') || !/^\d+$/.test(embedRevision ?? '')) throw new UserError('Formulário antigo. Reabra /edit para editar a descrição completa do embed.');
+        await shop.editPublicPanel(id, { priceCents: parsePrice(interaction.fields.getTextInputValue('price')),
           stock: parseQuantity(interaction.fields.getTextInputValue('stock'), { allowZero: true }),
-          description: interaction.fields.getTextInputValue('description').trim() }, Number(itemId));
+          description: interaction.fields.getTextInputValue('description'),
+          image: interaction.fields.getTextInputValue('image') }, Number(itemId), Number(embedRevision));
         try { await discord.exclusive(() => discord.catalogs()); }
         catch {
-          return await interaction.editReply({ content: 'Alteração salva. O Discord recusou a atualização do painel; o bot tentará novamente automaticamente. Confira as permissões e os registros.', components: [] });
+          return await interaction.editReply({ content: 'Embed, valor e quantidade salvos. A atualização do canal está pendente e será tentada novamente automaticamente.', components: [] });
         }
-        return await interaction.editReply({ ...editPanel(config, store.read().items[id]), content: 'Produto salvo e catálogo atualizado.' });
+        return await interaction.editReply({ ...editPanel(config, store.read().items[id], store.read()), content: 'Embed, valor e quantidade salvos e catálogo atualizado.' });
       }
       throw new UserError('Ação de edição inválida.');
     }

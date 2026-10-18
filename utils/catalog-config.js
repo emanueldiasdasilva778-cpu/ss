@@ -2,6 +2,7 @@
 export function mergeCatalog(current, incoming) {
   if (!Array.isArray(incoming?.products)) throw new Error('CATALOG_PRODUCTS_REQUIRED');
   const result = structuredClone(current);
+  if (Object.hasOwn(incoming, 'defaultImage')) result.defaultImage = incoming.defaultImage;
   if (incoming.emojis) result.emojis = { ...result.emojis, ...incoming.emojis };
   for (const product of result.products) {
     const source = incoming.products.find(p => p.id === product.id);

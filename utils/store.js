@@ -42,7 +42,25 @@ export class Store {
   async syncCatalog(products) {
     return this.transact(data => {
       data.catalogSources ??= {};
+      data.embeds ??= {};
       for (const product of products) {
+        const sourceImage = product.image?.trim() || null;
+        const saved = data.embeds[product.id];
+        if (!saved) {
+          data.embeds[product.id] = { description: product.description, image: sourceImage, revision: 0,
+            sourceDescription: product.description, sourceImage };
+        } else {
+          let changed = false;
+          if (saved.sourceDescription !== product.description) {
+            saved.description = product.description; changed = true;
+          }
+          if (saved.sourceImage !== sourceImage) {
+            saved.image = sourceImage; changed = true;
+          }
+          if (changed) saved.revision++;
+          saved.sourceDescription = product.description;
+          saved.sourceImage = sourceImage;
+        }
         for (const item of product.variants) {
           const existing = data.items[item.id];
           const previous = data.catalogSources[item.id];

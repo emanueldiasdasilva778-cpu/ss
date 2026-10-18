@@ -144,10 +144,10 @@ test('cargo removido entre abertura e envio do modal impede edição', async t =
   const ctx = await setup(t);
   const button = interaction(ctx.context, 'edit-open:external-3dias', { user: 'staff' });
   await handleInteraction(button, ctx.context);
-  assert.equal(button.responses[0].toJSON().custom_id, 'edit-save:external-3dias:0');
+  assert.equal(button.responses[0].toJSON().custom_id, 'edit-save:external-3dias:0:0');
   ctx.staffUsers.delete('staff');
-  const save = interaction(ctx.context, 'edit-save:external-3dias:0', {
-    user: 'staff', type: 'modal', fields: { price: '1,00', stock: '1', description: 'Inválido' },
+  const save = interaction(ctx.context, 'edit-save:external-3dias:0:0', {
+    user: 'staff', type: 'modal', fields: { price: '1,00', stock: '1', description: 'Inválido', image: '' },
   });
   await handleInteraction(save, ctx.context);
   assert.match(save.responses.at(-1).content, /Somente/);
@@ -156,14 +156,79 @@ test('cargo removido entre abertura e envio do modal impede edição', async t =
 
 test('edição autorizada persiste e atualiza automaticamente o catálogo', async t => {
   const ctx = await setup(t);
-  const save = interaction(ctx.context, 'edit-save:external-3dias:0', { user: 'staff', type: 'modal',
-    fields: { price: '9,75', stock: '3', description: 'Descrição alterada pela equipe' } });
+  const save = interaction(ctx.context, 'edit-save:external-3dias:0:0', { user: 'staff', type: 'modal',
+    fields: { price: '9,75', stock: '3', description: 'Descrição alterada pela equipe', image: '' } });
   await handleInteraction(save, ctx.context);
   assert.equal(ctx.store.read().items['external-3dias'].priceCents, 975);
+  assert.equal(ctx.store.read().embeds.external.description, 'Descrição alterada pela equipe');
+  assert.equal(ctx.store.read().items['external-3dias'].description, sample.products[0].variants[3].description);
   const panel = [...ctx.channels.get(ctx.config.products[0].channelId).storedMessages.values()][0];
   assert.match(panel.embeds[0].description, /Descrição alterada pela equipe/);
   assert.match(panel.embeds[0].description, /3 un/);
-  assert.match(save.responses.at(-1).content, /salvo e catálogo atualizado/);
+  assert.match(save.responses.at(-1).content, /salvos e catálogo atualizado/);
+});
+
+test('/edit abre a descrição completa do embed sem exigir selecionar uma opção', async t => {
+  const ctx = await setup(t);
+  const select = interaction(ctx.context, 'edit-product', { user: 'staff', type: 'select', values: ['external'] });
+  await handleInteraction(select, ctx.context);
+  const panel = select.responses.at(-1);
+  assert.ok(panel.components[0].toJSON().components[0].label.includes('Descrição completa'));
+  const open = interaction(ctx.context, 'edit-embed-open:external', { user: 'staff' });
+  await handleInteraction(open, ctx.context);
+  const modal = open.responses[0].toJSON();
+  assert.equal(modal.custom_id, 'edit-embed-save:external:0');
+  const fields = modal.components.flatMap(c => c.components);
+  assert.equal(fields.find(f => f.custom_id === 'description').value, ctx.config.products[0].description);
+  assert.equal(fields.find(f => f.custom_id === 'description').max_length, 4000);
+  assert.ok(fields.some(f => f.custom_id === 'image'));
+});
+
+test('salvar descrição longa e imagem pelo /edit atualiza o embed público original', async t => {
+  const ctx = await setup(t);
+  await ctx.discord.catalogs();
+  const channel = ctx.channels.get(ctx.config.products[0].channelId);
+  const messageId = [...channel.storedMessages.keys()][0];
+  const text = '🛒 **Descrição completa do canal**\n' + 'Informações do anúncio. '.repeat(100);
+  const save = interaction(ctx.context, 'edit-embed-save:external:0', { user: 'staff', type: 'modal', fields: {
+    description: text, image: 'https://example.com/novo-banner.webp',
+  } });
+  await handleInteraction(save, ctx.context);
+  const state = ctx.store.read();
+  assert.equal(state.embeds.external.description, text);
+  assert.equal(state.items['external-3dias'].stock, 49);
+  assert.equal(channel.storedMessages.size, 1);
+  const message = channel.storedMessages.get(messageId);
+  assert.equal(message.embeds[0].image.url, 'https://example.com/novo-banner.webp');
+  assert.ok(message.embeds.map(e => e.description).join('').includes(text));
+});
+
+test('modal combinado tem descrição do embed, imagem, valor e quantidade', async t => {
+  const ctx = await setup(t);
+  const open = interaction(ctx.context, 'edit-open:external-3dias', { user: 'staff' });
+  await handleInteraction(open, ctx.context);
+  const data = open.responses[0].toJSON();
+  const fields = data.components.flatMap(c => c.components);
+  assert.equal(fields.length, 4);
+  assert.deepEqual(fields.map(f => f.custom_id), ['description', 'image', 'price', 'stock']);
+  assert.equal(fields[0].value, ctx.config.products[0].description);
+  assert.notEqual(fields[0].value, ctx.store.read().items['external-3dias'].description);
+});
+
+test('modal de embed não autoriza usuários sem o cargo de edição', async t => {
+  const ctx = await setup(t);
+  const save = interaction(ctx.context, 'edit-embed-save:external:0', { type: 'modal', fields: { description: 'Intruso', image: '' } });
+  await handleInteraction(save, ctx.context);
+  assert.match(save.responses.at(-1).content, /Somente/);
+  assert.equal(ctx.store.read().embeds.external.revision, 0);
+});
+
+test('/edit com canal abre diretamente o painel correspondente', async t => {
+  const ctx = await setup(t);
+  const command = interaction(ctx.context, 'edit', { user: 'staff', type: 'command' });
+  command.options = { getChannel: () => ({ id: ctx.config.products[0].channelId }) };
+  await handleInteraction(command, ctx.context);
+  assert.ok(command.responses.at(-1).components[0].toJSON().components[0].custom_id.startsWith('edit-embed-open:'));
 });
 
 test('falha de log preserva canal e reprocessamento não reduz estoque novamente', async t => {
@@ -241,6 +306,7 @@ test('painel já publicado recebe nova imagem e descrição, sem criar outro pai
   const id = [...channel.storedMessages.keys()][0];
   ctx.config.products[0].description = ':shopping_cart: **Descrição atualizada**';
   ctx.config.products[0].image = 'https://example.com/banner-atualizado.webp';
+  await ctx.store.syncCatalog(ctx.config.products);
   await ctx.discord.catalogs();
   assert.equal(channel.storedMessages.size, 1);
   assert.equal(channel.storedMessages.get(id).embeds[0].image.url, 'https://example.com/banner-atualizado.webp');

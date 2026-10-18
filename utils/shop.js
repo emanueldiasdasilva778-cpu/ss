@@ -1,6 +1,8 @@
 import { randomUUID } from 'node:crypto';
 import { UserError } from './errors.js';
 import { totals } from './money.js';
+import { imageUrl } from './catalog.js';
+import { catalogPayload } from './ui.js';
 
 export class Shop {
   constructor(store, config) { this.store = store; this.config = config; }
@@ -155,6 +157,50 @@ export class Shop {
           typeof changes.description !== 'string' || changes.description.length > 180) throw new UserError('Dados de produto inválidos.');
       Object.assign(item, changes);
       item.revision++;
+      return item;
+    });
+  }
+
+  changeEmbed(data, productId, changes, expectedRevision) {
+    const product = this.config.products.find(p => p.id === productId);
+    const embed = data.embeds?.[productId];
+    if (!product || !embed) throw new UserError('Embed do canal não encontrado. Reabra /edit.');
+    if (!Number.isSafeInteger(expectedRevision) || embed.revision !== expectedRevision) {
+      throw new UserError('O embed mudou desde a abertura do formulário. Reabra /edit para carregar a descrição atual.');
+    }
+    const image = imageUrl(changes.image);
+    if (typeof changes.description !== 'string' || changes.description.length > 4000 || image === undefined) {
+      throw new UserError('Use uma descrição de até 4000 caracteres e uma imagem HTTPS válida, ou deixe a imagem vazia para usar o padrão.');
+    }
+    embed.description = changes.description;
+    embed.image = image;
+    embed.revision++;
+    return product;
+  }
+
+  async editEmbed(productId, changes, expectedRevision) {
+    return this.store.transact(data => {
+      const product = this.changeEmbed(data, productId, changes, expectedRevision);
+      catalogPayload(this.config, product, data); // Valida limites antes de gravar.
+      return data.embeds[productId];
+    });
+  }
+
+  async editPublicPanel(itemId, changes, expectedItemRevision, expectedEmbedRevision) {
+    return this.store.transact(data => {
+      const item = data.items[itemId];
+      if (!item || item.revision !== expectedItemRevision) {
+        throw new UserError('Valor ou estoque mudou desde a abertura do formulário. Reabra /edit para evitar sobrescrever uma venda.');
+      }
+      if (!Number.isSafeInteger(changes.priceCents) || changes.priceCents < 1 || changes.priceCents > 100_000_000 ||
+          !Number.isInteger(changes.stock) || changes.stock < 0 || changes.stock > 999_999) {
+        throw new UserError('Valor ou quantidade em estoque inválidos.');
+      }
+      const product = this.changeEmbed(data, item.productId, changes, expectedEmbedRevision);
+      item.priceCents = changes.priceCents;
+      item.stock = changes.stock;
+      item.revision++;
+      catalogPayload(this.config, product, data);
       return item;
     });
   }
