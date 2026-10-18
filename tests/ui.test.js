@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { validateConfig } from '../config/load.js';
+import { formatText, safeText } from '../utils/format.js';
+import { mergeCatalog } from '../utils/catalog-config.js';
 import { catalogPayload, cartPayload, receiptPayload, modal, productSelect, variantSelect, editPanel, quantitySelect } from '../utils/ui.js';
 
 const config = JSON.parse(await readFile(new URL('../config.example.json', import.meta.url)));
@@ -83,4 +85,41 @@ test('painel e modals serializam dentro dos limites de componentes do Discord', 
   serialize(quantitySelect(cart));
   const data = modal('teste', 'Editar', [{ id: 'price', label: 'Preço', value: '8,75' }]).toJSON();
   assert.equal(data.components[0].components[0].value, '8,75');
+});
+
+test('descrição mantém Markdown, quebras de linha e emojis personalizados sem escapar IDs', () => {
+  const edited = structuredClone(config);
+  edited.emojis = { logo_loja: '<:logo_loja:123456789012345678>' };
+  const product = { ...edited.products[0], description: ':logo_loja: **Minha descrição**\n:shopping_cart: Escolha abaixo.' };
+  const changed = structuredClone(items);
+  changed['external-3dias'].description = '<a:oferta_loja:123456789012345679> **Detalhes**';
+  const payload = serialize(catalogPayload(edited, product, { items: changed }));
+  assert.ok(payload.embeds[0].description.includes('<:logo_loja:123456789012345678> **Minha descrição**\n🛒'));
+  assert.ok(payload.embeds[0].description.includes('<a:oferta_loja:123456789012345679> **Detalhes**'));
+  assert.equal(safeText('<:logo_loja:123456789012345678> *nome*'), '<:logo_loja:123456789012345678> \\*nome\\*');
+  assert.equal(formatText(':emoji_sem_id:'), ':emoji_sem_id:');
+});
+
+test('alteração da imagem do catálogo chega ao embed sem reaproveitar a imagem anterior', () => {
+  const product = { ...config.products[0], image: 'https://example.com/nova-imagem.webp' };
+  assert.equal(serialize(catalogPayload(config, product, { items })).embeds[0].image.url, product.image);
+});
+
+test('importar apresentação do exemplo preserva token, IDs, preços e estoque do arquivo ativo', () => {
+  const current = structuredClone(config);
+  current.token = 'credencial-de-teste-sem-validade';
+  current.products[0].variants[0].stock = 2;
+  const incoming = structuredClone(config);
+  incoming.token = 'não-importar';
+  incoming.guildId = 'não-importar';
+  incoming.products[0].image = 'https://example.com/novo.webp';
+  incoming.products[0].description = '**Nova descrição**';
+  incoming.products[0].variants[0].description = '💎 Minha opção';
+  const merged = mergeCatalog(current, incoming);
+  assert.equal(merged.token, current.token);
+  assert.equal(merged.guildId, current.guildId);
+  assert.equal(merged.products[0].variants[0].stock, 2);
+  assert.equal(merged.products[0].image, incoming.products[0].image);
+  assert.equal(merged.products[0].variants[0].description, '💎 Minha opção');
+  assert.notEqual(current.products[0].description, merged.products[0].description);
 });

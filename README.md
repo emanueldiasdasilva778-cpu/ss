@@ -4,6 +4,25 @@ Bot modular em **Node.js 24 LTS** e **discord.js 14.27.0**, versão estável con
 
 O token e as opções da aplicação ficam em **`config.json`**. O bot não lê variáveis de ambiente para obter configuração ou credenciais. Este projeto fica separado do bot Python já existente no repositório.
 
+## Atualizar imagens, descrições e emojis
+
+O bot lê **config.json**. Alterar apenas `config.example.json` não altera a configuração ativa.
+
+Se você editou o exemplo, pare o bot com Ctrl+C e execute na pasta do projeto:
+
+```powershell
+npm.cmd run importar-catalogo
+npm.cmd start
+```
+
+O comando importa nomes, descrições, imagens e o mapa de emojis para `config.json`, preservando token, servidor, canais, preços e estoque. Também aceita outro JSON: `npm.cmd run importar-catalogo -- "C:\caminho\catalogo.json"`. Confira o arquivo de origem antes de importar. O banco não é apagado. Não execute a importação enquanto estiver editando o mesmo arquivo em outro programa.
+
+Você pode editar esses campos diretamente no **config.json**. Com o bot ligado, ele detecta o arquivo a cada 2 segundos e atualiza imagens, nomes, descrições e emojis automaticamente. Token, cargos, servidor e mudanças na lista de produtos exigem reinício. O bot atualiza os painéis existentes, incluindo a imagem; não é necessário apagar mensagens nem o banco. A descrição das opções é sincronizada quando o texto do config muda; se o config continua igual, uma descrição salva por `/edit` é preservada. As imagens devem ser links HTTPS diretos e acessíveis ao Discord. Os quatro banners informados estão no exemplo; os produtos únicos continuam sem imagem porque nenhuma foi fornecida para eles.
+
+Descrições aceitam quebras de linha `\n`, **Markdown**, emojis Unicode e códigos reais do Discord, como `<:nome:123456789012345678>` ou `<a:nome:123456789012345678>`. Esse ID é ilustrativo: substitua pelo ID real. No mapa `emojis`, associe `nome` ao código real; então use `:nome:` na descrição. Nomes comuns como `:shopping_cart:` têm alternativa Unicode. Um nome de emoji sem o ID real ou um mapeamento não identifica um emoji personalizado.
+
+No Windows, abra **iniciar.bat** dentro da pasta do projeto. Ele usa a pasta correta, instala dependências ausentes e cria `config.json` somente se ainda não existir. Preserve seu `config.json` e `data/` ao atualizar o código. Nenhum token real acompanha o download.
+
 ## Instalação
 
 1. Instale Node.js 24 LTS ou posterior compatível.
@@ -70,7 +89,7 @@ Os quatro canais de produto único têm os preços exatos pedidos: R$ 0,60; R$ 4
 
 ### Configuração inicial e dados de operação
 
-Na primeira execução o bot cria `data/store.json`, usando os preços, estoques e descrições das opções do `config.json`. Em execuções posteriores, esses três campos vêm do banco persistido, incluindo alterações feitas por `/edit` e baixas de vendas. Mudar os números iniciais no JSON de configuração não repõe nem zera o estoque existente. Use `/edit` para operar a loja.
+Na primeira execução o bot cria `data/store.json`, usando os preços, estoques e descrições das opções do `config.json`. Em execuções posteriores, preços e estoques vêm do banco persistido, incluindo alterações feitas por `/edit` e baixas de vendas. Descrições alteradas explicitamente no config são importadas no reinício, sem repor estoque; quando o config não mudou, preserva-se a descrição salva pelo painel. Mudar os números iniciais no JSON de configuração não repõe nem zera o estoque existente. Use `/edit` para operar a loja.
 
 Nomes, imagens, canais, textos gerais, cargos e opções de Pix vêm de `config.json` a cada início. Os nomes das opções também são atualizados a partir da configuração; pedidos já pagos mantêm seu recibo histórico. Não altere IDs de opções já vendidas. Não remova nem mova produtos com pedidos ativos sem antes resolver esses pedidos.
 

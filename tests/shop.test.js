@@ -235,3 +235,31 @@ test('POSIX mantém a sincronização do diretório e não oculta erros nela', a
   await assert.rejects(store.init(products), { code: 'EPERM' });
   assert.equal(directoryOpens, 1);
 });
+
+test('descrição alterada no config entra após reinício sem restaurar estoque ou preço', async t => {
+  const directory = await mkdtemp(join(tmpdir(), 'zeroms-catalog-update-'));
+  let store;
+  t.after(async () => { await store?.close(); await rm(directory, { recursive: true, force: true }); });
+  store = await new Store(directory).init(products);
+  const shop = new Shop(store, {});
+  const c = await cartFor(shop);
+  await shop.checkout(c.id, c.buyerId, c.channelId);
+  await shop.confirm(c.id, 'staff', c.channelId);
+  await shop.edit('sku-a', { priceCents: 975, stock: 1, description: 'Descrição do painel' });
+  await store.close();
+  store = await new Store(directory).init(products);
+  assert.equal(store.read().items['sku-a'].description, 'Descrição do painel');
+  await store.close();
+  const updated = structuredClone(products);
+  updated[0].variants[0].name = 'Nome novo';
+  updated[0].variants[0].description = '💎 **Descrição nova no config**';
+  store = await new Store(directory).init(updated);
+  assert.equal(store.read().items['sku-a'].description, '💎 **Descrição nova no config**');
+  assert.equal(store.read().items['sku-a'].name, 'Nome novo');
+  assert.equal(store.read().items['sku-a'].stock, 1);
+  assert.equal(store.read().items['sku-a'].priceCents, 975);
+  await store.close();
+  updated[0].variants[0].description = '';
+  store = await new Store(directory).init(updated);
+  assert.equal(store.read().items['sku-a'].description, '');
+});

@@ -3,6 +3,7 @@ import {
   StringSelectMenuBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, escapeMarkdown,
 } from 'discord.js';
 import { money, totals } from './money.js';
+import { formatText, safeText } from './format.js';
 
 const row = (...components) => new ActionRowBuilder().addComponents(...components);
 const button = (id, label, style, disabled = false) => new ButtonBuilder().setCustomId(id).setLabel(label).setStyle(style).setDisabled(disabled);
@@ -13,10 +14,10 @@ export const baseEmbed = config => new EmbedBuilder().setColor(config.color).set
 export function catalogPayload(config, product, data) {
   const items = product.variants.map(v => data.items[v.id]);
   const cheapest = Math.min(...items.map(v => v.priceCents));
-  const embed = baseEmbed(config).setTitle(product.name)
-    .setDescription(`${product.description}\n\n**A partir de ${money(cheapest)}**\n\n**Catálogo completo**\n${items.map(item =>
-      `• ${text(item.name)} – ${money(item.priceCents)} (${item.stock} un)${item.description ? `\n  ${text(item.description)}` : ''}`).join('\n')}`);
-  if (product.image) embed.setImage(product.image);
+  const embed = baseEmbed(config).setTitle(formatText(product.name, config))
+    .setDescription(`${formatText(product.description, config)}\n\n**💰 A partir de ${money(cheapest)}**\n\n**📦 Catálogo completo**\n${items.map(item =>
+      `• ${safeText(item.name, config)} – ${money(item.priceCents)} (${item.stock} un)${item.description ? `\n  ${formatText(item.description, config)}` : ''}`).join('\n')}`);
+  if (product.image) embed.setImage(product.image.trim());
   // Marcador persistente permite reencontrar o painel após reinicialização.
   embed.setFooter({ text: `${config.footer} | Catálogo ${product.id}` });
   let component;
@@ -90,7 +91,7 @@ export function variantSelect(product, data) {
 
 export function editPanel(config, item) {
   return { content: null, embeds: [baseEmbed(config).setTitle(`Editar: ${item.name}`)
-    .setDescription(`**Preço:** ${money(item.priceCents)}\n**Estoque:** ${item.stock}\n**Descrição:** ${text(item.description || 'Sem descrição')}`)],
+    .setDescription(`**Preço:** ${money(item.priceCents)}\n**Estoque:** ${item.stock}\n**Descrição:** ${formatText(item.description || 'Sem descrição', config)}`)],
   components: [row(button(`edit-open:${item.id}`, '✏️ Editar preço, estoque e descrição', ButtonStyle.Primary)),
     row(new StringSelectMenuBuilder().setCustomId('edit-product').setPlaceholder('Trocar catálogo')
       .addOptions(config.products.map(p => ({ label: p.name, value: p.id }))))] };

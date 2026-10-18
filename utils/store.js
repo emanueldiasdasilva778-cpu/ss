@@ -31,23 +31,36 @@ export class Store {
         if (error.code !== 'ENOENT') throw error; // Banco corrompido nunca vira estoque novo.
         this.data = { schema: 1, items: {}, carts: {}, panels: {} };
       }
-      await this.transact(data => {
-        for (const product of products) {
-          for (const item of product.variants) {
-            data.items[item.id] ??= { ...item, productId: product.id };
-            data.items[item.id].revision ??= 0;
-            // Nomes vêm do config.json; preço/estoque/descrição persistidos vêm do painel.
-            if (data.items[item.id].name !== item.name) data.items[item.id].revision++;
-            data.items[item.id].name = item.name;
-            data.items[item.id].productId = product.id;
-          }
-        }
-      });
+      await this.syncCatalog(products);
     } catch (error) {
       await this.close();
       throw error;
     }
     return this;
+  }
+
+  async syncCatalog(products) {
+    return this.transact(data => {
+      data.catalogSources ??= {};
+      for (const product of products) {
+        for (const item of product.variants) {
+          const existing = data.items[item.id];
+          const previous = data.catalogSources[item.id];
+          data.items[item.id] ??= { ...item, productId: product.id };
+          data.items[item.id].revision ??= 0;
+          // Alterações explícitas da descrição no config entram sem repor estoque.
+          // Sem mudança no config, preserve o que a equipe salvou pelo /edit.
+          const importDescription = previous ? previous.description !== item.description : Boolean(item.description);
+          if (existing && (existing.name !== item.name || (importDescription && existing.description !== item.description))) {
+            existing.revision++;
+          }
+          if (importDescription) data.items[item.id].description = item.description;
+          data.items[item.id].name = item.name;
+          data.items[item.id].productId = product.id;
+          data.catalogSources[item.id] = { description: item.description };
+        }
+      }
+    });
   }
 
   read() { return structuredClone(this.data); }

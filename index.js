@@ -17,6 +17,7 @@ async function shutdown(code = 0) {
   if (!context) return;
   context.stopping = true;
   context.ready = false;
+  context.stopWatching?.();
   clearInterval(context.timer);
   // Não libere o bloqueio enquanto ainda houver efeitos Discord em andamento.
   await context.startup?.catch(() => {});

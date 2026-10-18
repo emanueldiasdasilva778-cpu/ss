@@ -8,6 +8,7 @@ import { Store } from '../utils/store.js';
 import { Shop } from '../utils/shop.js';
 import { DiscordShop } from '../utils/discord-shop.js';
 import { handleInteraction } from '../events/interactionCreate.js';
+import { reloadCatalog } from '../events/catalogChanged.js';
 
 const sample = JSON.parse(await readFile(new URL('../config.example.json', import.meta.url)));
 
@@ -230,4 +231,45 @@ test('expiração remove apenas carrinho aberto inativo, sem dar baixa no estoqu
   assert.ok(ctx.shop.cart(c.id).channelDeletedAt);
   assert.equal(ctx.channels.has(c.channelId), false);
   assert.equal(ctx.store.read().items['external-3dias'].stock, 49);
+});
+
+test('painel já publicado recebe nova imagem e descrição, sem criar outro painel', async t => {
+  const ctx = await setup(t);
+  await ctx.discord.catalogs();
+  const channel = ctx.channels.get(ctx.config.products[0].channelId);
+  const id = [...channel.storedMessages.keys()][0];
+  ctx.config.products[0].description = ':shopping_cart: **Descrição atualizada**';
+  ctx.config.products[0].image = 'https://example.com/banner-atualizado.webp';
+  await ctx.discord.catalogs();
+  assert.equal(channel.storedMessages.size, 1);
+  assert.equal(channel.storedMessages.get(id).embeds[0].image.url, 'https://example.com/banner-atualizado.webp');
+  assert.ok(channel.storedMessages.get(id).embeds[0].description.includes('🛒 **Descrição atualizada**'));
+});
+
+test('recarregar config atualiza imagem e descrições sem repor estoque vendido', async t => {
+  const ctx = await setup(t);
+  await ctx.shop.edit('external-3dias', { priceCents: 975, stock: 2, description: 'Descrição do painel' });
+  await ctx.discord.catalogs();
+  const next = structuredClone(ctx.config);
+  next.products[0].image = 'https://example.com/imagem-recarregada.webp';
+  next.products[0].description = '🛒 **Descrição salva no config**';
+  next.products[0].variants.find(v => v.id === 'external-3dias').description = '💎 Detalhes atualizados';
+  await reloadCatalog(ctx.context, next);
+  assert.equal(ctx.store.read().items['external-3dias'].stock, 2);
+  assert.equal(ctx.store.read().items['external-3dias'].priceCents, 975);
+  assert.equal(ctx.store.read().items['external-3dias'].description, '💎 Detalhes atualizados');
+  const channel = ctx.channels.get(ctx.config.products[0].channelId);
+  assert.equal(channel.storedMessages.size, 1);
+  const message = [...channel.storedMessages.values()][0];
+  assert.equal(message.embeds[0].image.url, next.products[0].image);
+  assert.ok(message.embeds[0].description.includes('💎 Detalhes atualizados'));
+});
+
+test('recarregamento recusa trocar servidor ou remover produtos sem alterar dados', async t => {
+  const ctx = await setup(t);
+  const before = ctx.store.read();
+  const next = structuredClone(ctx.config);
+  next.products = [];
+  await assert.rejects(reloadCatalog(ctx.context, next), /reinicie/);
+  assert.deepEqual(ctx.store.read(), before);
 });

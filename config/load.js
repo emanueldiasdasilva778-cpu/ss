@@ -8,6 +8,11 @@ function requireSetting(condition, message) { if (!condition) throw new UserErro
 
 export function validateConfig(config, { requireCredentials = true } = {}) {
   requireSetting(config && typeof config === 'object', 'arquivo JSON inválido.');
+  if (config.emojis !== undefined) {
+    requireSetting(config.emojis && typeof config.emojis === 'object' && !Array.isArray(config.emojis) &&
+      Object.entries(config.emojis).every(([name, value]) => /^[A-Za-z0-9_]+$/.test(name) &&
+        typeof value === 'string' && value.length > 0 && value.length <= 100), 'emojis deve mapear nomes para emojis Unicode ou códigos reais do Discord.');
+  }
   if (requireCredentials) {
     requireSetting(typeof config.token === 'string' && config.token.length > 30 && !config.token.includes('COLOQUE_'), 'preencha token no config.json.');
     requireSetting(snowflake(config.guildId), 'preencha guildId no config.json.');
