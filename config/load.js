@@ -10,7 +10,7 @@ export function validateConfig(config, { requireCredentials = true } = {}) {
   requireSetting(config && typeof config === 'object', 'arquivo JSON inválido.');
   if (config.emojis !== undefined) {
     requireSetting(config.emojis && typeof config.emojis === 'object' && !Array.isArray(config.emojis) &&
-      Object.entries(config.emojis).every(([name, value]) => /^[A-Za-z0-9_]+$/.test(name) &&
+      Object.entries(config.emojis).every(([name, value]) => /^[A-Za-z0-9_]+(?:~\d+)?$/.test(name) &&
         typeof value === 'string' && value.length > 0 && value.length <= 100), 'emojis deve mapear nomes para emojis Unicode ou códigos reais do Discord.');
   }
   if (requireCredentials) {
@@ -37,7 +37,7 @@ export function validateConfig(config, { requireCredentials = true } = {}) {
     requireSetting(snowflake(product.channelId) && !channels.has(product.channelId) && product.channelId !== config.logChannelId, 'cada produto precisa de canal exclusivo, diferente do canal de logs.');
     channels.add(product.channelId);
     requireSetting(typeof product.name === 'string' && product.name.length > 0 && product.name.length <= 80, 'nome do produto.');
-    requireSetting(typeof product.description === 'string' && product.description.length <= 500, 'descrição do catálogo.');
+    requireSetting(typeof product.description === 'string' && product.description.length <= 3500, 'descrição do catálogo deve ter até 3500 caracteres.');
     requireSetting(!product.image || /^https:\/\//.test(product.image), 'imagem deve usar HTTPS.');
     requireSetting(Array.isArray(product.variants) && product.variants.length > 0 && product.variants.length <= 10, 'cada catálogo deve ter entre 1 e 10 opções.');
     for (const item of product.variants) {

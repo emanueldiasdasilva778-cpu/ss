@@ -2,6 +2,7 @@ import { ChannelType, PermissionFlagsBits } from 'discord.js';
 import { createHash } from 'node:crypto';
 import { UserError, report } from './errors.js';
 import { cartPayload, catalogPayload, receiptPayload } from './ui.js';
+import { refreshGuildEmojis } from './emojis.js';
 
 const P = PermissionFlagsBits;
 const requiredText = [P.ViewChannel, P.SendMessages, P.EmbedLinks, P.ReadMessageHistory];
@@ -68,6 +69,7 @@ export class DiscordShop {
       if (!channel.permissionsFor(me)?.has(requiredText)) throw new UserError(`Permissões insuficientes no canal ${id}: ver, enviar, inserir links e ler histórico.`);
     }
     this.guild = guild;
+    await refreshGuildEmojis(guild, this.config);
     await guild.channels.fetch();
   }
 

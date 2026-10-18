@@ -4,6 +4,35 @@ Bot modular em **Node.js 24 LTS** e **discord.js 14.27.0**, versão estável con
 
 O token e as opções da aplicação ficam em **`config.json`**. O bot não lê variáveis de ambiente para obter configuração ou credenciais. Este projeto fica separado do bot Python já existente no repositório.
 
+## Catálogo completo do TXT
+
+O `config.example.json` desta versão contém as oito descrições enviadas pelo operador, com ajustes de acentuação e formatação. A apresentação dos produtos e as afirmações comerciais são conteúdo do operador; não representam testes de compatibilidade, segurança ou garantia feitos pelo bot.
+
+O TXT repetiu `1561129676124983306` para Rockstar e Guest. Conforme a escolha do operador, Guest fica em `1561129676124983306` e Rockstar em `1559215025615274004`. Steam WL fica em `1559214972549202091` e GTA5 Instalável em `1559215094989197444`. Preços e estoques iniciais foram preservados; os quatro produtos únicos continuam com estoque zero até reposição pelo operador.
+
+Os nomes `:Zennify_box:`, `:9504_purple_flame:`, `:44250purplecheck:`, `:shoppingcart:`, `:ant5:`, `:fogue:`, `:144:` e `:star~1:` são resolvidos pelos emojis disponíveis no servidor. O alias numérico `:1298339916803215483:` é procurado como ID. Emojis animados também são suportados. Se não houver um emoji correspondente ou não for possível consultar a lista, são usados equivalentes Unicode; o bot não inventa IDs. O campo `emojis` fica vazio por padrão para permitir a descoberta automática. Códigos reais podem ser definidos nele para substituir a descoberta.
+
+As descrições dos catálogos aceitam até 3500 caracteres de origem. Se a renderização passar de 4096 caracteres, o painel usa um embed de continuação na mesma mensagem, preservando o conteúdo e a imagem. O limite total de 6000 caracteres do Discord continua sendo respeitado; o bot informa quando um texto excede esse limite, sem truncá-lo silenciosamente.
+
+**Entrega:** o TXT menciona entrega automática de contas por DM. Essas frases foram mantidas como conteúdo fornecido pelo operador. Este projeto não possui estoque de credenciais nem rotina de entrega automática. A confirmação do Pix é manual; a entrega precisa ser feita pela equipe ou por uma integração separada antes de anunciar esse serviço como automatizado. Não confunda o estoque numérico com contas/licenças cadastradas para entrega.
+
+Para uma pasta nova no Windows:
+
+```powershell
+npm.cmd ci
+npm.cmd run importar-catalogo
+notepad config.json
+```
+
+O importador cria `config.json` a partir do exemplo quando ele ainda não existe. Preencha token e confira guildId, salve e feche o editor. Então execute:
+
+```powershell
+npm.cmd run deploy
+npm.cmd start
+```
+
+Para atualizar uma instalação existente, pare o bot, preserve `config.json` e a pasta `data`, copie o código novo e execute `npm.cmd run importar-catalogo`. A importação atualiza a apresentação, preservando credenciais, IDs e os valores financeiros da configuração ativa; o banco de estoque e pedidos permanece intacto. Na primeira inicialização, configure o estoque real antes de vender.
+
 ## Atualizar imagens, descrições e emojis
 
 O bot lê **config.json**. Alterar apenas `config.example.json` não altera a configuração ativa.
@@ -19,7 +48,7 @@ O comando importa nomes, descrições, imagens e o mapa de emojis para `config.j
 
 Você pode editar esses campos diretamente no **config.json**. Com o bot ligado, ele detecta o arquivo a cada 2 segundos e atualiza imagens, nomes, descrições e emojis automaticamente. Token, cargos, servidor e mudanças na lista de produtos exigem reinício. O bot atualiza os painéis existentes, incluindo a imagem; não é necessário apagar mensagens nem o banco. A descrição das opções é sincronizada quando o texto do config muda; se o config continua igual, uma descrição salva por `/edit` é preservada. As imagens devem ser links HTTPS diretos e acessíveis ao Discord. Os quatro banners informados estão no exemplo; os produtos únicos continuam sem imagem porque nenhuma foi fornecida para eles.
 
-Descrições aceitam quebras de linha `\n`, **Markdown**, emojis Unicode e códigos reais do Discord, como `<:nome:123456789012345678>` ou `<a:nome:123456789012345678>`. Esse ID é ilustrativo: substitua pelo ID real. No mapa `emojis`, associe `nome` ao código real; então use `:nome:` na descrição. Nomes comuns como `:shopping_cart:` têm alternativa Unicode. Um nome de emoji sem o ID real ou um mapeamento não identifica um emoji personalizado.
+Descrições aceitam quebras de linha `\n`, **Markdown**, emojis Unicode e códigos reais do Discord, como `<:nome:123456789012345678>` ou `<a:nome:123456789012345678>`. Esse ID é ilustrativo: substitua pelo ID real. O bot busca emojis do próprio servidor pelo nome. Para escolher um emoji específico, no mapa `emojis` associe `nome` ao código real; então use `:nome:` na descrição. Nomes comuns como `:shopping_cart:` têm alternativa Unicode. Se o nome não existir no servidor e não houver mapeamento, será usado um equivalente Unicode conhecido ou será mantido o alias para correção pelo operador.
 
 No Windows, abra **iniciar.bat** dentro da pasta do projeto. Ele usa a pasta correta, instala dependências ausentes e cria `config.json` somente se ainda não existir. Preserve seu `config.json` e `data/` ao atualizar o código. Nenhum token real acompanha o download.
 

@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { validateConfig } from '../config/load.js';
 import { formatText, safeText } from '../utils/format.js';
 import { mergeCatalog } from '../utils/catalog-config.js';
+import { refreshGuildEmojis } from '../utils/emojis.js';
 import { catalogPayload, cartPayload, receiptPayload, modal, productSelect, variantSelect, editPanel, quantitySelect } from '../utils/ui.js';
 
 const config = JSON.parse(await readFile(new URL('../config.example.json', import.meta.url)));
@@ -122,4 +123,46 @@ test('importar apresentação do exemplo preserva token, IDs, preços e estoque 
   assert.equal(merged.products[0].image, incoming.products[0].image);
   assert.equal(merged.products[0].variants[0].description, '💎 Minha opção');
   assert.notEqual(current.products[0].description, merged.products[0].description);
+});
+
+test('aliases do TXT usam emojis reais do servidor, inclusive animados e IDs numéricos', async () => {
+  const current = { emojis: {} };
+  const guild = { emojis: { async fetch() { return new Map([
+    ['1', { id: '123456789012345678', name: 'Zennify_box', animated: false, available: true }],
+    ['2', { id: '1298339916803215483', name: 'pagamento', animated: true, available: true }],
+    ['3', { id: '123456789012345679', name: 'star', animated: false, available: true }],
+  ]); } } };
+  await refreshGuildEmojis(guild, current);
+  assert.equal(formatText(':Zennify_box:', current), '<:Zennify_box:123456789012345678>');
+  assert.equal(formatText(':1298339916803215483:', current), '<a:pagamento:1298339916803215483>');
+  assert.equal(formatText(':star~1:', current), '<:star:123456789012345679>');
+  assert.equal(formatText(':9504_purple_flame: :44250purplecheck: :shoppingcart: :ant5: :fogue: :144:', current), '🔥 ✅ 🛒 ⚡ 🔥 ℹ️');
+});
+
+test('descrições longas usam continuação sem truncar texto, imagem ou opções', () => {
+  const product = { ...config.products[0], description: 'Descrição completa. '.repeat(180).slice(0, 3400) };
+  const changed = structuredClone(items);
+  for (const item of product.variants) changed[item.id].description = 'Detalhes completos. '.repeat(9).slice(0, 180);
+  const payload = serialize(catalogPayload(config, product, { items: changed }));
+  assert.ok(payload.embeds.length > 1);
+  assert.ok(payload.embeds.every(e => e.description.length <= 4096));
+  const all = payload.embeds.map(e => e.description).join('');
+  assert.ok(all.startsWith(product.description));
+  for (const item of product.variants) assert.ok(all.includes(changed[item.id].description));
+  assert.equal(payload.embeds[0].image.url, product.image);
+  assert.ok(payload.components.length > 0);
+});
+
+test('catálogo completo inclui as oito descrições do TXT nos canais correspondentes', () => {
+  validateConfig(config, { requireCredentials: false });
+  const singles = config.products.filter(p => p.id.startsWith('unico-'));
+  assert.equal(singles.find(p => p.name.startsWith('Contas Rockstar')).channelId, '1559215025615274004');
+  assert.equal(singles.find(p => p.name.startsWith('Conta Guest')).channelId, '1561129676124983306');
+  assert.ok(config.products.find(p => p.id === 'external').description.includes('TriggerBot'));
+  assert.ok(config.products.find(p => p.id === 'internal').description.includes('Silent Aim'));
+  assert.ok(config.products.find(p => p.id === 'snow').description.includes('FiveGuard'));
+  for (const product of config.products) {
+    const payload = serialize(catalogPayload(config, product, { items }));
+    assert.ok(payload.embeds.reduce((sum, e) => sum + e.description.length + e.title.length + e.footer.text.length, 0) <= 6000);
+  }
 });

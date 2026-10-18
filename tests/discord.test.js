@@ -60,6 +60,7 @@ async function setup(t) {
   }
 
   const guild = { id: config.guildId,
+    emojis: { async fetch() { return new Collection(); } },
     members: {
       async fetch({ user }) { return { roles: { cache: new Collection(staffUsers.has(user) ? [[config.editRoleId, {}]] : []) } }; },
       async fetchMe() { return { permissions: { has: () => true } }; },

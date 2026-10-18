@@ -4,6 +4,7 @@ import {
 } from 'discord.js';
 import { money, totals } from './money.js';
 import { formatText, safeText } from './format.js';
+import { UserError } from './errors.js';
 
 const row = (...components) => new ActionRowBuilder().addComponents(...components);
 const button = (id, label, style, disabled = false) => new ButtonBuilder().setCustomId(id).setLabel(label).setStyle(style).setDisabled(disabled);
@@ -14,12 +15,26 @@ export const baseEmbed = config => new EmbedBuilder().setColor(config.color).set
 export function catalogPayload(config, product, data) {
   const items = product.variants.map(v => data.items[v.id]);
   const cheapest = Math.min(...items.map(v => v.priceCents));
-  const embed = baseEmbed(config).setTitle(formatText(product.name, config))
-    .setDescription(`${formatText(product.description, config)}\n\n**💰 A partir de ${money(cheapest)}**\n\n**📦 Catálogo completo**\n${items.map(item =>
-      `• ${safeText(item.name, config)} – ${money(item.priceCents)} (${item.stock} un)${item.description ? `\n  ${formatText(item.description, config)}` : ''}`).join('\n')}`);
-  if (product.image) embed.setImage(product.image.trim());
-  // Marcador persistente permite reencontrar o painel após reinicialização.
-  embed.setFooter({ text: `${config.footer} | Catálogo ${product.id}` });
+  const description = `${formatText(product.description, config)}\n\n**💰 A partir de ${money(cheapest)}**\n\n**📦 Catálogo completo**\n${items.map(item =>
+    `• ${safeText(item.name, config)} – ${money(item.priceCents)} (${item.stock} un)${item.description ? `\n  ${formatText(item.description, config)}` : ''}`).join('\n')}`;
+  const parts = [];
+  let remaining = description;
+  while (remaining.length > 4096) {
+    let boundary = remaining.lastIndexOf('\n', 4096);
+    if (boundary < 2000) boundary = remaining.lastIndexOf(' ', 4096);
+    if (boundary < 1) boundary = 4096;
+    if (/[\uD800-\uDBFF]/.test(remaining[boundary - 1])) boundary--;
+    parts.push(remaining.slice(0, boundary));
+    remaining = remaining.slice(boundary);
+  }
+  parts.push(remaining);
+  const embeds = parts.map((part, index) => baseEmbed(config)
+    .setTitle(`${formatText(product.name, config)}${index ? ' — Continuação' : ''}`).setDescription(part)
+    // Marcador persistente permite reencontrar o painel após reinicialização.
+    .setFooter({ text: `${config.footer} | Catálogo ${product.id}` }));
+  const totalLength = embeds.reduce((sum, e) => sum + e.data.title.length + e.data.description.length + e.data.footer.text.length, 0);
+  if (totalLength > 6000) throw new UserError(`O catálogo ${product.id} ultrapassa o limite de 6000 caracteres do Discord após resolver os emojis. Reduza a descrição.`);
+  if (product.image) embeds[0].setImage(product.image.trim());
   let component;
   if (items.length === 1) {
     component = button(`add:${items[0].id}`, 'Adicionar ao Carrinho', ButtonStyle.Success, items[0].stock === 0);
@@ -31,7 +46,7 @@ export function catalogPayload(config, product, data) {
         label: item.name, value: item.id, description: `${money(item.priceCents)} • ${item.stock} unidades`,
       })));
   }
-  return { embeds: [embed], components: [row(component)], allowedMentions: noMentions };
+  return { embeds, components: [row(component)], allowedMentions: noMentions };
 }
 
 export function cartPayload(config, cart) {

@@ -8,9 +8,15 @@ import { report, UserError } from './utils/errors.js';
 const target = join(root, 'config.json');
 const temporary = `${target}.${randomUUID()}.tmp`;
 try {
-  const current = JSON.parse(await readFile(target, 'utf8'));
   const source = resolve(root, process.argv[2] ?? 'config.example.json');
   const incoming = JSON.parse(await readFile(source, 'utf8'));
+  let current;
+  try { current = JSON.parse(await readFile(target, 'utf8')); }
+  catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    current = JSON.parse(await readFile(join(root, 'config.example.json'), 'utf8'));
+    console.info('Criando config.json a partir do exemplo. Preencha seu token antes de iniciar.');
+  }
   const merged = validateConfig(mergeCatalog(current, incoming), { requireCredentials: false });
   const handle = await open(temporary, 'wx', 0o600);
   try {
