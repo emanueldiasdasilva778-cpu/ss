@@ -19,6 +19,11 @@
 #include <cmath>
 #include <cstring>
 #include <memory>
+#include <map>
+#include <mutex>
+#include <optional>
+#include <cwchar>
+#include <vector>
 #include <string>
 #include <thread>
 #include <utility>
@@ -106,10 +111,20 @@ struct ActionResult {
     ActionResult(bool ok, DWORD error, std::wstring text, std::wstring report = {})
         : success(ok), code(error), message(std::move(text)), details(std::move(report)) {}
 };
-struct Module {
-    HMODULE handle = nullptr;
-    ~Module() { if (handle) FreeLibrary(handle); }
-};
+// A DLL pode registrar destruidores thread_local no runtime. FreeLibrary antes
+// da saida da thread deixa esses callbacks apontando para memoria descarregada.
+// Os handles permanecem validos ate o encerramento do processo auxiliar.
+HMODULE RetainedLibrary(const std::wstring& file) {
+    static std::mutex lock;
+    static std::map<std::wstring, HMODULE> modules;
+    const std::lock_guard<std::mutex> guard(lock);
+    auto found = modules.find(file);
+    if (found != modules.end()) return found->second;
+    HMODULE loaded = LoadLibraryExW(file.c_str(), nullptr,
+        LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR | LOAD_LIBRARY_SEARCH_SYSTEM32);
+    if (loaded) modules.emplace(file, loaded);
+    return loaded;
+}
 template<class T> T Export(HMODULE module, const char* name) {
     FARPROC pointer = GetProcAddress(module, name);
     T result{};
@@ -117,11 +132,15 @@ template<class T> T Export(HMODULE module, const char* name) {
     std::memcpy(&result, &pointer, sizeof(result));
     return result;
 }
-std::wstring ExecutableDirectory() {
+std::wstring ExecutablePath() {
     std::wstring path(32768, L'\0');
     DWORD n = GetModuleFileNameW(nullptr, path.data(), static_cast<DWORD>(path.size()));
     if (!n || n >= path.size()) return {};
     path.resize(n);
+    return path;
+}
+std::wstring ExecutableDirectory() {
+    std::wstring path = ExecutablePath();
     auto separator = path.find_last_of(L"\\/");
     if (separator == std::wstring::npos) return {};
     path.resize(separator + 1);
@@ -132,10 +151,8 @@ ActionResult Invoke(int action, const std::wstring& directory) {
         return {false, ERROR_INVALID_PARAMETER, L"Ação ou pasta inválida."};
     const std::wstring file = directory +
         ((directory.back() == L'\\' || directory.back() == L'/') ? L"" : L"\\") + Libraries[action];
-    Module module;
-    module.handle = LoadLibraryExW(file.c_str(), nullptr,
-        LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR | LOAD_LIBRARY_SEARCH_SYSTEM32);
-    if (!module.handle) {
+    const HMODULE module = RetainedLibrary(file);
+    if (!module) {
         const DWORD code = GetLastError();
         return {false, code, L"Não foi possível carregar " + std::wstring(Libraries[action]) +
             L" (erro " + std::to_wstring(code) + L").", L"Biblioteca: " + file + L"\r\n" + diagnostics::Explain(code)};
@@ -144,14 +161,14 @@ ActionResult Invoke(int action, const std::wstring& directory) {
         using GetReport = const wchar_t* (*)();
         constexpr std::array<const char*, 3> exports{
             "CleanerGetLastReport", "RegistryGetLastReport", "FilesGetLastReport"};
-        auto function = Export<GetReport>(module.handle, exports[action]);
+        auto function = Export<GetReport>(module, exports[action]);
         if (!function) return std::wstring(L"Esta DLL antiga nao oferece relatorio detalhado. Atualize as tres DLLs junto com FSC.exe.");
         const wchar_t* text = function();
         return std::wstring(text ? text : L"Relatorio indisponivel.");
     };
     if (action < 2) {
         using Run = int (*)();
-        Run function = Export<Run>(module.handle,
+        Run function = Export<Run>(module,
             action == 0 ? "LimparPc" : "LimparRegistroSilencioso");
         if (!function) return {false, ERROR_PROC_NOT_FOUND,
             L"DLL incompatível: " + std::wstring(Libraries[action])};
@@ -163,14 +180,157 @@ ActionResult Invoke(int action, const std::wstring& directory) {
     }
     using Run = void (*)();
     using Status = DWORD (*)();
-    Run copy = Export<Run>(module.handle, "PerformFilesCopy");
-    Status status = Export<Status>(module.handle, "FilesGetLastStatus");
+    Run copy = Export<Run>(module, "PerformFilesCopy");
+    Status status = Export<Status>(module, "FilesGetLastStatus");
     if (!copy || !status) return {false, ERROR_PROC_NOT_FOUND, L"DLL incompatível: arquivos.dll"};
     copy();
     const DWORD code = status(); // A DLL usa status local à thread: consultar nesta mesma thread.
     const auto details = report();
     if (code) return {false, code, L"Cópia incompleta (erro " + std::to_wstring(code) + L") — F1: detalhes", details};
     return {true, ERROR_SUCCESS, L"Arquivos aplicados", details};
+}
+
+struct Handle {
+    HANDLE value = nullptr;
+    explicit Handle(HANDLE h = nullptr) : value(h) {}
+    ~Handle() { Reset(); }
+    Handle(const Handle&) = delete;
+    Handle& operator=(const Handle&) = delete;
+    void Reset(HANDLE h = nullptr) {
+        if (value && value != INVALID_HANDLE_VALUE) CloseHandle(value);
+        value = h;
+    }
+};
+constexpr DWORD PacketMagic = 0x46534333;
+constexpr DWORD MaxMessage = 512, MaxDetails = 65536;
+struct Packet {
+    DWORD magic = PacketMagic, version = 1, success = 0, code = ERROR_GEN_FAILURE;
+    DWORD messageLength = 0, detailsLength = 0;
+};
+bool Transfer(HANDLE pipe, void* buffer, DWORD bytes, bool writing) {
+    auto data = static_cast<BYTE*>(buffer);
+    while (bytes) {
+        DWORD transferred = 0;
+        const BOOL ok = writing ? WriteFile(pipe, data, bytes, &transferred, nullptr)
+            : ReadFile(pipe, data, bytes, &transferred, nullptr);
+        if (!ok || !transferred) return false;
+        data += transferred; bytes -= transferred;
+    }
+    return true;
+}
+bool WriteResult(HANDLE pipe, const ActionResult& result) {
+    Packet packet;
+    packet.success = result.success ? 1 : 0; packet.code = result.code;
+    packet.messageLength = static_cast<DWORD>(std::min<size_t>(result.message.size(), MaxMessage));
+    packet.detailsLength = static_cast<DWORD>(std::min<size_t>(result.details.size(), MaxDetails));
+    return Transfer(pipe, &packet, sizeof(packet), true) &&
+        Transfer(pipe, const_cast<wchar_t*>(result.message.data()), packet.messageLength * sizeof(wchar_t), true) &&
+        Transfer(pipe, const_cast<wchar_t*>(result.details.data()), packet.detailsLength * sizeof(wchar_t), true);
+}
+bool ReadResult(HANDLE pipe, ActionResult& result) {
+    Packet packet;
+    if (!Transfer(pipe, &packet, sizeof(packet), false) || packet.magic != PacketMagic ||
+        packet.version != 1 || packet.success > 1 || packet.messageLength > MaxMessage ||
+        packet.detailsLength > MaxDetails || (packet.success && packet.code != ERROR_SUCCESS)) return false;
+    ActionResult read;
+    read.success = packet.success != 0; read.code = packet.code;
+    read.message.resize(packet.messageLength); read.details.resize(packet.detailsLength);
+    if (!Transfer(pipe, read.message.data(), packet.messageLength * sizeof(wchar_t), false) ||
+        !Transfer(pipe, read.details.data(), packet.detailsLength * sizeof(wchar_t), false)) return false;
+    result = std::move(read); return true;
+}
+LONG WINAPI WorkerException(EXCEPTION_POINTERS*) {
+    // A falha encerra somente o auxiliar. Nunca continuar apos uma violacao de acesso.
+    return EXCEPTION_EXECUTE_HANDLER;
+}
+// Retorna -1 para inicializacao normal, ou o codigo de saida do auxiliar.
+int WorkerMode() {
+    int count = 0;
+    LPWSTR* arguments = CommandLineToArgvW(GetCommandLineW(), &count);
+    if (!arguments) return ERROR_INVALID_PARAMETER;
+    const bool worker = count > 1 && std::wcscmp(arguments[1], L"--fsc-worker") == 0;
+    if (!worker) { LocalFree(arguments); return -1; }
+    if (count != 4) { LocalFree(arguments); return ERROR_INVALID_PARAMETER; }
+    wchar_t* end = nullptr;
+    const unsigned long action = std::wcstoul(arguments[2], &end, 10);
+    const bool validAction = *arguments[2] && end && !*end && action < 3;
+    end = nullptr;
+    const unsigned long long number = std::wcstoull(arguments[3], &end, 10);
+    const bool validHandle = *arguments[3] && end && !*end && number != 0;
+    LocalFree(arguments);
+    if (!validAction || !validHandle) return ERROR_INVALID_PARAMETER;
+    Handle pipe(reinterpret_cast<HANDLE>(static_cast<ULONG_PTR>(number)));
+    if (GetFileType(pipe.value) != FILE_TYPE_PIPE) return ERROR_INVALID_HANDLE;
+    SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
+    SetUnhandledExceptionFilter(WorkerException);
+    const HRESULT com = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+    bool sent = false;
+    try {
+        ActionResult result = diagnostics::IsElevated()
+            ? Invoke(static_cast<int>(action), ExecutableDirectory())
+            : ActionResult{false, ERROR_ELEVATION_REQUIRED, L"O auxiliar precisa de elevação administrativa."};
+        sent = WriteResult(pipe.value, result);
+    } catch (...) {
+        ActionResult failed; failed.code = ERROR_UNHANDLED_EXCEPTION;
+        sent = WriteResult(pipe.value, failed);
+    }
+    if (SUCCEEDED(com)) CoUninitialize();
+    return sent ? 0 : ERROR_WRITE_FAULT;
+}
+ActionResult RunIsolated(int action, const std::wstring& executable) {
+    if (action < 0 || action >= 3 || executable.empty())
+        return {false, ERROR_INVALID_PARAMETER, L"Ação ou executável inválido."};
+    auto failure = [](DWORD code) -> ActionResult {
+        return {false, code, L"Não foi possível iniciar a operação — F1: detalhes",
+            L"Erro " + std::to_wstring(code) + L": " + diagnostics::Explain(code)};
+    };
+    SECURITY_ATTRIBUTES security{sizeof(security), nullptr, TRUE};
+    HANDLE read = nullptr, writePipe = nullptr;
+    if (!CreatePipe(&read, &writePipe, &security, 0)) return failure(GetLastError());
+    Handle reader(read), writer(writePipe);
+    if (!SetHandleInformation(reader.value, HANDLE_FLAG_INHERIT, 0)) return failure(GetLastError());
+    SIZE_T bytes = 0;
+    InitializeProcThreadAttributeList(nullptr, 1, 0, &bytes);
+    if (!bytes) return failure(GetLastError());
+    std::vector<BYTE> storage(bytes);
+    auto attributes = reinterpret_cast<LPPROC_THREAD_ATTRIBUTE_LIST>(storage.data());
+    if (!InitializeProcThreadAttributeList(attributes, 1, 0, &bytes)) return failure(GetLastError());
+    struct AttributeGuard {
+        LPPROC_THREAD_ATTRIBUTE_LIST value;
+        ~AttributeGuard() { DeleteProcThreadAttributeList(value); }
+    } guard{attributes};
+    if (!UpdateProcThreadAttribute(attributes, 0, PROC_THREAD_ATTRIBUTE_HANDLE_LIST,
+        &writer.value, sizeof(writer.value), nullptr, nullptr)) return failure(GetLastError());
+    std::wstring command = L"\"" + executable + L"\" --fsc-worker " + std::to_wstring(action) +
+        L" " + std::to_wstring(reinterpret_cast<ULONG_PTR>(writer.value));
+    STARTUPINFOEXW startup{}; startup.StartupInfo.cb = sizeof(startup);
+    startup.StartupInfo.dwFlags = STARTF_USESHOWWINDOW; startup.StartupInfo.wShowWindow = SW_HIDE;
+    startup.lpAttributeList = attributes;
+    PROCESS_INFORMATION process{};
+    if (!CreateProcessW(executable.c_str(), command.data(), nullptr, nullptr, TRUE,
+        EXTENDED_STARTUPINFO_PRESENT | CREATE_NO_WINDOW, nullptr, nullptr,
+        &startup.StartupInfo, &process)) return failure(GetLastError());
+    Handle child(process.hProcess), thread(process.hThread);
+    writer.Reset(); // Somente o auxiliar mantem o lado de escrita aberto.
+    ActionResult result;
+    bool received = false;
+    try { received = ReadResult(reader.value, result); }
+    catch (...) { received = false; }
+    reader.Reset(); // Ler antes de esperar: relatorios grandes podem encher o pipe.
+    if (WaitForSingleObject(child.value, INFINITE) != WAIT_OBJECT_0) return failure(GetLastError());
+    DWORD code = ERROR_GEN_FAILURE;
+    if (!GetExitCodeProcess(child.value, &code)) return failure(GetLastError());
+    if (code != 0) {
+        wchar_t hex[16]{}; swprintf_s(hex, L"0x%08lX", static_cast<unsigned long>(code));
+        return {false, code, L"A DLL foi interrompida — F1: detalhes",
+            std::wstring(L"Processo auxiliar encerrado com código ") + hex + L".\r\nBiblioteca: " +
+            Libraries[action] + L"\r\nA operação pode ter sido executada parcialmente. Não houve nova tentativa automática."
+            L"\r\nA interface permaneceu aberta. Atualize FSC.exe e as três DLLs juntos."};
+    }
+    if (!received) return {false, ERROR_INVALID_DATA, L"Resposta inválida da operação — F1: detalhes",
+        L"O auxiliar não enviou um relatório completo. A operação pode ter sido executada parcialmente."};
+    if (result.message.empty()) result.message = L"Falha na operação — F1: detalhes";
+    return result;
 }
 
 struct ReportView { HWND edit = nullptr; HFONT font = nullptr; };
@@ -385,16 +545,7 @@ public:
         case WM_TIMER:
             if (wparam == AnimationTimer) Tick();
             return 0;
-        case CompleteMessage: {
-            std::unique_ptr<Completion> completion(reinterpret_cast<Completion*>(lparam));
-            if (worker.joinable()) worker.join();
-            running = -1;
-            feedbackCard = completion->card; feedbackSuccess = completion->result.success;
-            feedbackTime = Now();
-            lastDetails = completion->result.message + L"\r\n\r\n" + completion->result.details;
-            SetFooter(completion->result.message, feedbackSuccess ? 5000 : 8000);
-            Animate(); Redraw(); return 0;
-        }
+        case CompleteMessage: AcceptCompletion(); return 0;
         case WM_CLOSE:
             CancelHold();
             if (running >= 0) { SetFooter(L"Aguarde a operação terminar.", 8000); return 0; }
@@ -414,6 +565,8 @@ private:
     float dpi = 96;
     Hold hold;
     std::thread worker;
+    std::mutex completionLock;
+    std::optional<Completion> pending;
     int running = -1, hover = -1, focus = 0, feedbackCard = -1, hoverControl = -1;
     bool feedbackSuccess = false, keyboardFocus = false, trackingMouse = false;
     UINT heldKey = 0;
@@ -478,25 +631,41 @@ private:
         running = card; feedbackCard = -1;
         lastDetails.clear();
         SetFooter(L"Executando…", 0);
-        const auto directory = ExecutableDirectory();
+        const auto executable = ExecutablePath();
         try {
-            worker = std::thread([this, card, directory] {
-                HRESULT com = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
-                auto completion = std::make_unique<Completion>();
-                completion->card = card;
-                try { completion->result = Invoke(card, directory); }
-                catch (...) { completion->result = {false, ERROR_UNHANDLED_EXCEPTION,
-                    L"A operação foi interrompida por um erro."}; }
-                if (SUCCEEDED(com)) CoUninitialize();
-                auto raw = completion.release();
-                if (!PostMessageW(window, CompleteMessage, 0, reinterpret_cast<LPARAM>(raw))) delete raw;
+            worker = std::thread([this, card, executable] {
+                Completion completion; completion.card = card;
+                try { completion.result = RunIsolated(card, executable); }
+                catch (...) { completion.result.code = ERROR_UNHANDLED_EXCEPTION; }
+                {
+                    const std::lock_guard<std::mutex> guard(completionLock);
+                    pending.emplace(std::move(completion));
+                }
+                PostMessageW(window, CompleteMessage, 0, 0);
             });
         } catch (...) {
             running = -1; SetFooter(L"Não foi possível iniciar a operação.", 8000);
         }
         Animate(); Redraw();
     }
+    void AcceptCompletion() {
+        std::optional<Completion> completion;
+        {
+            const std::lock_guard<std::mutex> guard(completionLock);
+            if (!pending) return;
+            completion = std::move(pending); pending.reset();
+        }
+        if (worker.joinable()) worker.join();
+        running = -1;
+        feedbackCard = completion->card; feedbackSuccess = completion->result.success;
+        feedbackTime = Now();
+        if (completion->result.message.empty()) completion->result.message = L"Falha na operação — F1: detalhes";
+        lastDetails = completion->result.message + L"\r\n\r\n" + completion->result.details;
+        SetFooter(completion->result.message, feedbackSuccess ? 5000 : 8000);
+        Animate(); Redraw();
+    }
     void Tick() {
+        AcceptCompletion(); // Tambem conclui se a fila rejeitar a notificacao.
         const double now = Now();
         if (hold.card >= 0) {
             int ready = hold.TakeReady(now);
@@ -671,6 +840,9 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wparam, LPARA
 
 #ifndef FSC_TESTING
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR, int show) {
+    SetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_APPLICATION_DIR | LOAD_LIBRARY_SEARCH_SYSTEM32);
+    const int workerResult = fsc::WorkerMode();
+    if (workerResult >= 0) return workerResult;
     if (!diagnostics::IsElevated()) {
         std::wstring path(32768, L'\0');
         DWORD length = GetModuleFileNameW(nullptr, path.data(), static_cast<DWORD>(path.size()));
@@ -684,7 +856,6 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR, int show) {
         return 0;
     }
     SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
-    SetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_APPLICATION_DIR | LOAD_LIBRARY_SEARCH_SYSTEM32);
     HRESULT com = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
     int result = 1;
     {

@@ -1,93 +1,87 @@
-# FSC 2
+# FSC 3
 
-Interface nativa Windows x64 em C++20 para as três DLLs existentes. O código da interface está inteiro em [`main.cpp`](main.cpp). Usa Win32, Direct2D e DirectWrite, sem navegador, ImGui ou dependências externas de UI.
+Interface nativa Windows x64 em C++20 para `Limpeza.dll`, `Registro.dll` e `arquivos.dll`. Win32, Direct2D e DirectWrite, sem dependências externas de UI.
 
-Prévia capturada no Wine, com fonte substituta:
+## Pacote completo
 
-![FSC em janela larga](preview-desktop.png)
-
-[Ver layout em janela estreita](preview-mobile.png)
-
-## Usar
-
-Baixe e extraia **FSC-Windows-x64-v2.zip**, mantendo os quatro binários na mesma pasta:
+Baixe [FSC-Windows-x64-v3.zip](FSC-Windows-x64-v3.zip), extraia **tudo em uma pasta nova** e abra `FSC.exe`. O ZIP inclui os quatro binários prontos, instruções e os fontes completos em `fontes/ferramentas`.
 
 ```text
 FSC.exe
 Limpeza.dll
 Registro.dll
 arquivos.dll
+LEIA-ME.txt
+fontes/
 ```
 
-Abra `FSC.exe`. O manifesto solicita elevação pelo UAC padrão do Windows para as operações que precisam de acesso administrativo. Use a mesma conta do seu perfil: elevar com outra conta muda as pastas pessoais e `HKEY_CURRENT_USER` usados pelas DLLs.
+O executável solicita administrador pelo UAC padrão. Use a mesma conta do seu perfil: fornecer outra conta muda as pastas pessoais e `HKEY_CURRENT_USER`. Nenhuma permissão protegida é contornada.
 
-Pressione e segure um card por **2000 ms**. Soltar antes, sair do card ou perder o foco cancela o hold e zera a borda. O início da operação ocorre no primeiro evento/frame com tempo acumulado de pelo menos 2000 ms; o Windows não oferece agendamento de tempo real.
+Pressione e segure um card por **2000 ms**. Soltar antes, sair do card ou perder o foco cancela o hold. O início ocorre no primeiro evento/frame com tempo acumulado de pelo menos 2000 ms; o Windows não oferece agendamento de tempo real. Há uma operação por vez.
 
-**O hold dispara a operação real, sem outra confirmação.** A Limpeza e o Registro podem excluir dados permanentemente; Arquivos substitui arquivos de mesmo nome. O aplicativo mantém o comportamento das DLLs publicadas anteriormente, sem ampliar seu escopo.
+**O hold executa a operação real, sem outra confirmação.** Limpeza e Registro podem excluir dados permanentemente; Arquivos substitui arquivos de mesmo nome. Downloads permanece fora da limpeza, conforme a alteração anterior do pedido. O escopo das três DLLs permanece o mesmo da versão 2.
 
-## Design e interação
+## Correção do crash ao executar cards
 
-- Fundo preto puro com pequenos pontos discretos e somente tons de cinza/branco.
-- Título centralizado com espaçamento entre letras. Seleciona Inter, Space Grotesk, Segoe UI Variable Display ou uma fonte sans-serif alternativa instalada.
-- Exatamente três cards quadrados com ícone e nome. Três colunas em janelas largas, empilhados abaixo de 760 DIPs.
-- Contorno vetorial progressivo no perímetro, equivalente visual à borda SVG solicitada; é desenhado nativamente com Direct2D, sem carregar SVG no navegador.
-- Percentual durante o hold. Ao iniciar a DLL, uma animação discreta indica trabalho em andamento.
-- Check/flash e aviso de conclusão somente quando a DLL retorna sucesso. Falhas ou resultados parciais recebem mensagem própria.
-- Estado visual retorna suavemente ao normal. Não há métricas, barra de status ou subtextos decorativos.
-- `Tab`/`Shift+Tab` ou setas mudam o foco; segure `Espaço` ou `Enter` para executar. `Esc`/`Alt+F4` fecham a janela quando não há tarefa em andamento.
-- Controles discretos de minimizar/fechar, arraste pela faixa superior e redimensionamento pelas bordas. Suporte a DPI por monitor.
+A versão anterior descarregava a DLL antes de a thread terminar. As DLLs passaram a usar relatórios em `thread_local std::wstring`, que podem registrar destruidores dentro da própria biblioteca. Descarregá-la antes desses callbacks é inseguro. Um reprodutor que consulta apenas o relatório, sem executar manutenção, ficou bloqueado na saída da thread no Wine com o descarregamento antigo; mantendo a DLL carregada, a thread terminou normalmente. O crash específico do computador do usuário ainda exige validação nele.
 
-## Integração exata
+Na versão 3:
 
-| Card | Arquivo esperado | Funções usadas |
+- Cada card executa em **um processo auxiliar separado**, usando o próprio `FSC.exe`. A interface não carrega as DLLs de manutenção.
+- Os módulos ficam carregados até a saída do auxiliar, preservando os destruidores locais à thread. Relatório e status são consultados na mesma thread da operação.
+- Uma falha nativa no auxiliar é informada no F1 com código hexadecimal, como `0xC0000005`. A janela principal continua aberta. Não há repetição automática de uma ação parcialmente executada.
+- O resultado atravessa um pipe com protocolo e limites de tamanho. Somente o handle de escrita necessário é herdado. A leitura precede a espera do processo, evitando bloqueio com relatórios maiores que o buffer do pipe.
+- As notificações de conclusão não transportam ponteiros; um resultado sincronizado também é consultado pelo timer caso a notificação não entre na fila.
+
+Não substitua apenas o EXE de uma instalação antiga: extraia o pacote inteiro. Se uma DLL falhar, a operação pode ter ocorrido parcialmente; consulte **F1** antes de repeti-la.
+
+O processo auxiliar herda a elevação do executável principal. As três DLLs também verificam `TokenElevation`. O fechamento normal espera a operação terminar; não há cancelamento forçado de cópias ou exclusões. Um auxiliar que ficar bloqueado continuará sendo aguardado; isolamento de crash não equivale a cancelamento seguro.
+
+## Interface
+
+- Fundo preto com pontos discretos, título FSC e três cards quadrados: Limpeza, Registro e Arquivos.
+- Cards em três colunas acima de 760 DIPs; empilhados em janelas estreitas.
+- Borda vetorial progressiva, percentual durante o hold, flash/check somente após sucesso e mensagem discreta no rodapé.
+- Fontes Inter, Space Grotesk, Segoe UI ou alternativa sans-serif instalada.
+- `Tab`/setas mudam de card; segure `Espaço`/`Enter` para executar. `F1` abre os detalhes da última operação. `Esc`/`Alt+F4` fecham quando não há tarefa em andamento.
+- Janela redimensionável e suporte a DPI por monitor.
+
+![FSC em janela larga, captura da interface no Wine](preview-desktop.png)
+
+[Layout estreito](preview-mobile.png). As imagens ilustram a interface; não são capturas de homologação no Windows 11.
+
+## Integração das DLLs
+
+| Card | Biblioteca | Exportações |
 | --- | --- | --- |
-| Limpeza | `Limpeza.dll` | `int LimparPc()` |
-| Registro | `Registro.dll` | `int LimparRegistroSilencioso()` |
-| Arquivos | `arquivos.dll` | `void PerformFilesCopy()` e `DWORD FilesGetLastStatus()` |
+| Limpeza | `Limpeza.dll` | `int LimparPc()`, `CleanerGetLastReport()` |
+| Registro | `Registro.dll` | `int LimparRegistroSilencioso()`, `RegistryGetLastReport()` |
+| Arquivos | `arquivos.dll` | `void PerformFilesCopy()`, `DWORD FilesGetLastStatus()`, `FilesGetLastReport()` |
 
-`arquivos.dll` é a `Files.dll` criada anteriormente, renomeada no pacote. Esses nomes correspondem à imagem enviada.
+`arquivos.dll` é a `Files.dll` renomeada. As funções de relatório retornam `const wchar_t*`. Bibliotecas são carregadas exclusivamente pelo caminho absoluto ao lado do EXE com `LoadLibraryExW`/`GetProcAddress`. Uma exportação ausente gera erro de incompatibilidade. Resultados parciais não são apresentados como sucesso.
 
-As bibliotecas são carregadas pelo caminho absoluto da pasta do executável, usando `LoadLibraryExW`/`GetProcAddress`. A pasta de trabalho atual não é usada para localizar as DLLs. Exportações incompatíveis são rejeitadas sem chamada; não se chama uma função de `rundll32` com uma assinatura diferente.
+F1 mostra contagens e códigos/caminhos de falha retornados pela DLL. Os relatórios ficam em memória; não são enviados ou gravados automaticamente. Administrador não torna removíveis arquivos abertos ou chaves protegidas por ACLs.
 
-As operações rodam em thread separada, uma por vez. O status de Arquivos é consultado nessa mesma thread. A janela continua responsiva; o fechamento espera a operação retornar. Não há interrupção forçada de cópias ou exclusões. Uma DLL defeituosa ainda pode encerrar o processo: não há isolamento de execução de plugins.
+## Compilar
 
-`LimparPc` e `LimparRegistroSilencioso` fornecem apenas sucesso/resultado parcial. A versão 2 também consulta o relatório detalhado de cada DLL e o disponibiliza com F1, incluindo códigos e caminhos das falhas.
-
-## Compilar no Visual Studio 2022
-
-Instale **Desenvolvimento para desktop com C++** e o Windows SDK. Abra `FSC.sln`, selecione **Release / x64** e compile. O projeto copia as DLLs das pastas vizinhas e renomeia `Files.dll` para `arquivos.dll` no diretório de saída.
-
-Ou abra o **x64 Native Tools Command Prompt** nesta pasta e execute:
+Visual Studio 2022 com **Desenvolvimento para desktop com C++** e Windows SDK, plataforma **x64**, C++20. No **x64 Native Tools Command Prompt**, na pasta `fontes/ferramentas/fsc` do ZIP ou `ferramentas/fsc` do repositório:
 
 ```bat
-compilar.bat
+compilar-tudo.bat
 ```
 
-Saída: `bin\x64\Release\FSC.exe`, acompanhado das três DLLs. O script não executa nenhuma ação de manutenção. `main.cpp` também pode ser usado em um projeto Windows C++20, vinculando `d2d1.lib`, `dwrite.lib`, `ole32.lib`, `user32.lib`, `gdi32.lib` e incluindo o recurso/manifesto fornecido. Salve como UTF-8 e compile com `/utf-8`.
+Saída: `bin\x64\Release\FSC.exe` e as três DLLs. O script compila os quatro componentes sem executar manutenção. `compilar.bat` compila somente a interface e copia as DLLs já existentes. Alternativamente, abra `FSC.sln` em Release/x64.
 
+O fonte da interface está em `main.cpp` e inclui `../common/Diagnostics.h`. O recurso `FSC.rc` incorpora o manifesto administrativo. Bibliotecas: `d2d1.lib`, `dwrite.lib`, `ole32.lib`, `user32.lib`, `gdi32.lib`, `shell32.lib`, `advapi32.lib`. Use `/utf-8`.
 
-## FSC 2: checagem de administrador e F1
+## Validação
 
-O executável verifica `TokenElevation` na entrada e solicita a elevação padrão `runas` caso necessário. As três DLLs fazem sua própria verificação antes das operações. O manifesto `requireAdministrator` permanece incorporado. A recusa/cancelamento do UAC não é contornada.
+Build Windows x64 com MinGW-w64 GCC 14.2, runtime estático e `-Wall -Wextra -Werror`. Validação no Wine, usando exclusivamente DLLs simuladas para os cards:
 
-Após qualquer tarefa, pressione **F1** para abrir uma janela de leitura com contagens, estado de elevação e códigos/caminhos das falhas. O relatório permanece apenas em memória e não é enviado ou salvo automaticamente. Um resultado parcial continua parcial; elevação não torna removíveis arquivos abertos e chaves protegidas por ACLs.
+- **44 verificações de integração**: limite de 2000 ms, layouts, DLLs ausentes/incompatíveis, erros parciais, relatórios, saída de threads com TLS, execução isolada dos três cards, relatório grande, pacotes inválidos, violação de acesso em cada auxiliar e execução seguinte após crash.
+- **26 verificações da janela** em `tests/gui.cpp`: hold curto, execução real do fluxo dos três cards com mocks, F1, redimensionamento e três crashes nativos sem encerrar a interface.
+- O reprodutor com DLL real chamou somente o getter do relatório. Nenhuma limpeza real nem alteração do BAM real foi usada para testar o crash.
 
-Baixe o novo **FSC-Windows-x64-v2.zip** e extraia as quatro peças juntas. As exportações adicionais `CleanerGetLastReport`, `RegistryGetLastReport` e `FilesGetLastReport` precisam ser consultadas na mesma thread da operação. O FSC copia os textos antes de descarregar a DLL. DLLs antigas são identificadas como sem suporte ao relatório detalhado.
+Para repetir com MSVC, execute `tests\testar.bat` em um **x64 Native Tools Command Prompt aberto como administrador**. O script prepara uma pasta exclusiva com mocks; não substitua esses mocks pelas DLLs reais.
 
-O fonte inclui `../common/Diagnostics.h` e os projetos vinculam `shell32.lib` e `advapi32.lib` além das bibliotecas gráficas. A compilação MSVC e a validação de UAC/ACLs no Windows 11 Pro real permanecem pendentes.
-
-Validação da versão 2: **71 verificações passaram** (14 limpeza, 15 Registro, 18 cópia, 24 interface/diagnóstico). Duas verificações de reparse points foram puladas por limitação do Wine. A janela F1 foi aberta e seu texto conferido com DLL simulada. Não foram realizados testes destrutivos nas pastas reais ou no BAM real do usuário.
-
-![Relatório F1 com erro simulado](preview-report-v2.png)
-
-Para recompilar o pacote inteiro no Visual Studio 2022, execute `compilar-tudo.bat` no x64 Native Tools Command Prompt.
-
-## Validação e limites
-
-O executável e as DLLs foram compilados para Windows x64 com MinGW-w64 GCC 14.2, runtime C++ estático e avisos tratados como erros. A compilação MSVC ainda não foi executada neste ambiente Linux.
-
-As 71 verificações no Wine usaram arquivos e chaves artificiais. Duas verificações de links/reparse points ficaram sem validação. A versão anterior passou também por seis verificações interativas dos cards e dos layouts; a versão 2 teve sua janela F1 aberta e seu conteúdo conferido com DLL simulada.
-
-Para repetir a integração com DLLs simuladas, use `tests\testar.bat`. Não substitua os mocks pelas DLLs reais. A limpeza, o Registro e a cópia têm seus próprios testes nas pastas vizinhas.
-
-Ainda é necessária validação no Windows 11 Pro real: UAC, ACLs, arquivos bloqueados, nuvem/OneDrive e os dados do usuário não foram homologados por estes testes.
+A compilação MSVC e o funcionamento no **Windows 11 Pro real** ainda não foram validados neste ambiente Linux. UAC, ACLs, OneDrive e dados reais exigem validação nesse sistema. O arquivo `SHA256SUMS.txt` permite conferir os binários e o ZIP publicado.
