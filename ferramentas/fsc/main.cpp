@@ -21,11 +21,16 @@
 #include <memory>
 #include <string>
 #include <thread>
+#include <utility>
+#include <shellapi.h>
+#include "../common/Diagnostics.h"
 
 #ifdef _MSC_VER
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "dwrite.lib")
 #pragma comment(lib, "ole32.lib")
+#pragma comment(lib, "advapi32.lib")
+#pragma comment(lib, "shell32.lib")
 #endif
 
 namespace fsc {
@@ -96,6 +101,10 @@ struct ActionResult {
     bool success = false;
     DWORD code = ERROR_GEN_FAILURE;
     std::wstring message;
+    std::wstring details;
+    ActionResult() = default;
+    ActionResult(bool ok, DWORD error, std::wstring text, std::wstring report = {})
+        : success(ok), code(error), message(std::move(text)), details(std::move(report)) {}
 };
 struct Module {
     HMODULE handle = nullptr;
@@ -129,8 +138,17 @@ ActionResult Invoke(int action, const std::wstring& directory) {
     if (!module.handle) {
         const DWORD code = GetLastError();
         return {false, code, L"Não foi possível carregar " + std::wstring(Libraries[action]) +
-            L" (erro " + std::to_wstring(code) + L")."};
+            L" (erro " + std::to_wstring(code) + L").", L"Biblioteca: " + file + L"\r\n" + diagnostics::Explain(code)};
     }
+    const auto report = [&] {
+        using GetReport = const wchar_t* (*)();
+        constexpr std::array<const char*, 3> exports{
+            "CleanerGetLastReport", "RegistryGetLastReport", "FilesGetLastReport"};
+        auto function = Export<GetReport>(module.handle, exports[action]);
+        if (!function) return std::wstring(L"Esta DLL antiga nao oferece relatorio detalhado. Atualize as tres DLLs junto com FSC.exe.");
+        const wchar_t* text = function();
+        return std::wstring(text ? text : L"Relatorio indisponivel.");
+    };
     if (action < 2) {
         using Run = int (*)();
         Run function = Export<Run>(module.handle,
@@ -138,9 +156,10 @@ ActionResult Invoke(int action, const std::wstring& directory) {
         if (!function) return {false, ERROR_PROC_NOT_FOUND,
             L"DLL incompatível: " + std::wstring(Libraries[action])};
         const int status = function();
+        const auto details = report();
         if (status != 0) return {false, ERROR_PARTIAL_COPY,
-            action == 0 ? L"Limpeza parcial ou bloqueada." : L"Registro parcialmente limpo ou bloqueado."};
-        return {true, ERROR_SUCCESS, action == 0 ? L"Limpeza concluída" : L"Registro limpo"};
+            action == 0 ? L"Limpeza com pendências — F1: detalhes" : L"Registro com pendências — F1: detalhes", details};
+        return {true, ERROR_SUCCESS, action == 0 ? L"Limpeza concluída" : L"Registro limpo", details};
     }
     using Run = void (*)();
     using Status = DWORD (*)();
@@ -149,8 +168,61 @@ ActionResult Invoke(int action, const std::wstring& directory) {
     if (!copy || !status) return {false, ERROR_PROC_NOT_FOUND, L"DLL incompatível: arquivos.dll"};
     copy();
     const DWORD code = status(); // A DLL usa status local à thread: consultar nesta mesma thread.
-    if (code) return {false, code, L"Cópia incompleta (erro " + std::to_wstring(code) + L")."};
-    return {true, ERROR_SUCCESS, L"Arquivos aplicados"};
+    const auto details = report();
+    if (code) return {false, code, L"Cópia incompleta (erro " + std::to_wstring(code) + L") — F1: detalhes", details};
+    return {true, ERROR_SUCCESS, L"Arquivos aplicados", details};
+}
+
+struct ReportView { HWND edit = nullptr; HFONT font = nullptr; };
+LRESULT CALLBACK ReportProcedure(HWND window, UINT message, WPARAM wparam, LPARAM lparam) {
+    auto state = reinterpret_cast<ReportView*>(GetWindowLongPtrW(window, GWLP_USERDATA));
+    if (message == WM_CREATE) {
+        auto creation = reinterpret_cast<CREATESTRUCTW*>(lparam);
+        auto text = static_cast<const std::wstring*>(creation->lpCreateParams);
+        state = new (std::nothrow) ReportView;
+        if (!state) return -1;
+        SetWindowLongPtrW(window, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(state));
+        state->edit = CreateWindowExW(0, L"EDIT", text->c_str(),
+            WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL | ES_MULTILINE | ES_READONLY |
+            ES_AUTOVSCROLL | ES_AUTOHSCROLL, 12, 12, 100, 100, window, nullptr,
+            GetModuleHandleW(nullptr), nullptr);
+        if (!state->edit) return -1;
+        state->font = CreateFontW(-MulDiv(14, static_cast<int>(GetDpiForWindow(window)), 96),
+            0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET,
+            OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, FIXED_PITCH, L"Consolas");
+        if (state->font) SendMessageW(state->edit, WM_SETFONT, reinterpret_cast<WPARAM>(state->font), TRUE);
+        RECT r{}; GetClientRect(window, &r);
+        MoveWindow(state->edit, 12, 12, std::max(1L, r.right - 24), std::max(1L, r.bottom - 24), TRUE);
+        SetFocus(state->edit); return 0;
+    }
+    if (message == WM_SIZE && state && state->edit) {
+        MoveWindow(state->edit, 12, 12, std::max(1, static_cast<int>(LOWORD(lparam)) - 24),
+            std::max(1, static_cast<int>(HIWORD(lparam)) - 24), TRUE); return 0;
+    }
+    if (message == WM_CTLCOLOREDIT || message == WM_CTLCOLORSTATIC) {
+        HDC dc = reinterpret_cast<HDC>(wparam);
+        SetTextColor(dc, RGB(225, 225, 225)); SetBkColor(dc, RGB(0, 0, 0));
+        return reinterpret_cast<LRESULT>(GetStockObject(BLACK_BRUSH));
+    }
+    if (message == WM_NCDESTROY && state) {
+        if (state->font) DeleteObject(state->font);
+        delete state; SetWindowLongPtrW(window, GWLP_USERDATA, 0);
+    }
+    return DefWindowProcW(window, message, wparam, lparam);
+}
+void ShowReport(HWND owner, const std::wstring& text) {
+    static const ATOM type = [] {
+        WNDCLASSEXW c{}; c.cbSize = sizeof(c); c.lpfnWndProc = ReportProcedure;
+        c.hInstance = GetModuleHandleW(nullptr); c.lpszClassName = L"FSC.Report.Window";
+        c.hCursor = LoadCursorW(nullptr, IDC_ARROW);
+        c.hbrBackground = static_cast<HBRUSH>(GetStockObject(BLACK_BRUSH));
+        return RegisterClassExW(&c);
+    }();
+    if (!type) return;
+    HWND report = CreateWindowExW(WS_EX_APPWINDOW, L"FSC.Report.Window", L"FSC — Detalhes da operação",
+        WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 860, 600, owner, nullptr,
+        GetModuleHandleW(nullptr), const_cast<std::wstring*>(&text));
+    if (report) ShowWindow(report, SW_SHOW);
 }
 
 template<class T> void Release(T*& object) { if (object) { object->Release(); object = nullptr; } }
@@ -277,6 +349,12 @@ public:
         case WM_CANCELMODE:
         case WM_KILLFOCUS: CancelHold(); return 0;
         case WM_KEYDOWN:
+            if (wparam == VK_F1) {
+                CancelHold();
+                if (!lastDetails.empty()) ShowReport(window, lastDetails);
+                else SetFooter(L"Execute uma operação para consultar os detalhes.", 4000);
+                return 0;
+            }
             if (wparam == VK_ESCAPE) { SendMessageW(window, WM_CLOSE, 0, 0); return 0; }
             if (wparam == VK_TAB || wparam == VK_LEFT || wparam == VK_RIGHT ||
                 wparam == VK_UP || wparam == VK_DOWN) {
@@ -313,6 +391,7 @@ public:
             running = -1;
             feedbackCard = completion->card; feedbackSuccess = completion->result.success;
             feedbackTime = Now();
+            lastDetails = completion->result.message + L"\r\n\r\n" + completion->result.details;
             SetFooter(completion->result.message, feedbackSuccess ? 5000 : 8000);
             Animate(); Redraw(); return 0;
         }
@@ -340,6 +419,7 @@ private:
     UINT heldKey = 0;
     double feedbackTime = 0, footerTime = 0, footerDuration = 0;
     std::wstring footerMessage;
+    std::wstring lastDetails;
 
     float Scale() const { return dpi / 96; }
     D2D1_SIZE_F Size() const {
@@ -396,6 +476,7 @@ private:
         CancelHold(true);
         if (running >= 0) return;
         running = card; feedbackCard = -1;
+        lastDetails.clear();
         SetFooter(L"Executando…", 0);
         const auto directory = ExecutableDirectory();
         try {
@@ -590,6 +671,18 @@ LRESULT CALLBACK WindowProcedure(HWND window, UINT message, WPARAM wparam, LPARA
 
 #ifndef FSC_TESTING
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR, int show) {
+    if (!diagnostics::IsElevated()) {
+        std::wstring path(32768, L'\0');
+        DWORD length = GetModuleFileNameW(nullptr, path.data(), static_cast<DWORD>(path.size()));
+        if (!length || length >= path.size()) return 1;
+        path.resize(length);
+        SHELLEXECUTEINFOW elevation{}; elevation.cbSize = sizeof(elevation);
+        elevation.lpVerb = L"runas"; elevation.lpFile = path.c_str(); elevation.nShow = show;
+        if (!ShellExecuteExW(&elevation)) MessageBoxW(nullptr,
+            L"FSC precisa da elevacao aprovada no UAC para iniciar. Nenhuma operacao foi executada.",
+            L"FSC", MB_OK | MB_ICONWARNING);
+        return 0;
+    }
     SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
     SetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_APPLICATION_DIR | LOAD_LIBRARY_SEARCH_SYSTEM32);
     HRESULT com = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);

@@ -48,5 +48,11 @@ TestesRegistro.exe "%CD%\Registro.dll"
 SHA-256 do binário:
 
 ```text
-d0d0d765abf0f69b16a30104c6e3c7364319437f53ee9b346a13e888d2a5643b
+0d869982cd1f06c69d32a3eeff1bee02245f3c665e941d45b72c49f5a1ee5c4a
 ```
+
+## Versão 2: administrador e relatório
+
+O início verifica o token elevado e recusa alterações sem elevação. Não há mudança de ACLs ou tentativa de obter SYSTEM. A exportação `const wchar_t* RegistryGetLastReport()` fornece contagens e os caminhos exatos das falhas, com código e mensagem do Windows. Consulte na mesma thread, antes de descarregar a DLL. O FSC 2 mostra esse relatório com F1.
+
+Inclua o arquivo compartilhado `../common/Diagnostics.h` ao compilar. O critério de histórico e a preservação das chaves/metadados continuam os mesmos.

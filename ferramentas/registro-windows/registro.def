@@ -2,3 +2,4 @@ LIBRARY Registro
 EXPORTS
     LimparRegistro
     LimparRegistroSilencioso
+    RegistryGetLastReport

@@ -11,10 +11,16 @@
 #include <shlobj.h>
 #include <string>
 #include <vector>
+#include "../common/Diagnostics.h"
 
 namespace {
+thread_local diagnostics::Report detalhes;
+thread_local std::wstring ultimoRelatorio;
 struct Resultado {
     unsigned long long arquivos = 0, pastas = 0, falhas = 0, links = 0;
+    void erro(DWORD codigo, const std::wstring& caminho) {
+        ++falhas; detalhes.Add(codigo, caminho);
+    }
 };
 bool ausente(DWORD erro) {
     return erro == ERROR_FILE_NOT_FOUND || erro == ERROR_PATH_NOT_FOUND;
@@ -59,7 +65,7 @@ std::wstring windows() {
 }
 // Nao atravessa junctions nem links simbolicos. 0=seguro, 1=ausente, 2=bloqueado.
 int verificar(const std::wstring& caminho) {
-    if (caminho.size() <= 3) return 2;
+    if (caminho.size() <= 3) { SetLastError(ERROR_BAD_PATHNAME); return 2; }
     size_t posicao = 3;
     for (;;) {
         size_t fim = caminho.find(L'\\', posicao);
@@ -67,29 +73,37 @@ int verificar(const std::wstring& caminho) {
         DWORD atributos = GetFileAttributesW(longo(parcial).c_str());
         if (atributos == INVALID_FILE_ATTRIBUTES)
             return ausente(GetLastError()) ? 1 : 2;
-        if (atributos & FILE_ATTRIBUTE_REPARSE_POINT) return 2;
+        if (atributos & FILE_ATTRIBUTE_REPARSE_POINT) {
+            DWORD erro = diagnostics::CheckCloudReparse(longo(parcial));
+            if (erro) { SetLastError(erro); return 2; }
+        }
         if (fim == std::wstring::npos) return 0;
-        if (!(atributos & FILE_ATTRIBUTE_DIRECTORY)) return 2;
+        if (!(atributos & FILE_ATTRIBUTE_DIRECTORY)) { SetLastError(ERROR_DIRECTORY); return 2; }
         posicao = fim + 1;
     }
 }
 void remover(const std::wstring& caminho, bool manterPasta,
              bool preservarGameStorage, Resultado& resultado, unsigned profundidade = 0) {
-    if (profundidade > 128) { ++resultado.falhas; return; }
+    if (profundidade > 128) { resultado.erro(ERROR_STACK_OVERFLOW, caminho); return; }
     auto destino = longo(caminho);
     DWORD atributos = GetFileAttributesW(destino.c_str());
     if (atributos == INVALID_FILE_ATTRIBUTES) {
-        if (!ausente(GetLastError())) ++resultado.falhas;
+        DWORD erro = GetLastError();
+        if (!ausente(erro)) resultado.erro(erro, caminho);
         return;
     }
-    if (atributos & FILE_ATTRIBUTE_REPARSE_POINT) { ++resultado.links; return; }
+    if (atributos & FILE_ATTRIBUTE_REPARSE_POINT) {
+        DWORD erro = diagnostics::CheckCloudReparse(destino);
+        if (erro) { ++resultado.links; detalhes.Add(erro, caminho); return; }
+    }
     bool diretorio = (atributos & FILE_ATTRIBUTE_DIRECTORY) != 0;
-    if (manterPasta && !diretorio) { ++resultado.falhas; return; }
+    if (manterPasta && !diretorio) { resultado.erro(ERROR_DIRECTORY, caminho); return; }
     if (diretorio) {
         WIN32_FIND_DATAW dados{};
         HANDLE busca = FindFirstFileW(unir(destino, L"*").c_str(), &dados);
         if (busca == INVALID_HANDLE_VALUE) {
-            if (GetLastError() != ERROR_FILE_NOT_FOUND) { ++resultado.falhas; return; }
+            DWORD erro = GetLastError();
+            if (erro != ERROR_FILE_NOT_FOUND) { resultado.erro(erro, caminho); return; }
         } else {
             std::vector<std::wstring> filhos;
             do {
@@ -100,32 +114,48 @@ void remover(const std::wstring& caminho, bool manterPasta,
             } while (FindNextFileW(busca, &dados));
             DWORD erroBusca = GetLastError();
             FindClose(busca);
-            if (erroBusca != ERROR_NO_MORE_FILES) { ++resultado.falhas; return; }
+            if (erroBusca != ERROR_NO_MORE_FILES) { resultado.erro(erroBusca, caminho); return; }
             for (const auto& filho : filhos) {
                 auto alvo = unir(caminho, filho);
                 int estado = verificar(alvo);
                 if (estado == 0) remover(alvo, false, false, resultado, profundidade + 1);
-                else if (estado == 2) ++resultado.links;
+                else if (estado == 2) {
+                    DWORD erro = GetLastError();
+                    if (erro == ERROR_NOT_SUPPORTED) { ++resultado.links; detalhes.Add(erro, alvo); }
+                    else resultado.erro(erro, alvo);
+                }
             }
         }
         if (manterPasta) return;
     }
-    // Nao toma posse, nao muda ACLs e nao encerra processos.
+    // Remove apenas o atributo somente leitura no alvo ja autorizado; nao altera ACLs.
+    bool mudouAtributo = false;
+    if (atributos & FILE_ATTRIBUTE_READONLY) {
+        if (!SetFileAttributesW(destino.c_str(), atributos & ~FILE_ATTRIBUTE_READONLY)) {
+            resultado.erro(GetLastError(), caminho); return;
+        }
+        mudouAtributo = true;
+    }
     BOOL apagou = diretorio ? RemoveDirectoryW(destino.c_str())
                            : DeleteFileW(destino.c_str());
     if (!apagou) {
-        if (!ausente(GetLastError())) ++resultado.falhas;
+        DWORD erro = GetLastError();
+        if (mudouAtributo) {
+            DWORD atual = GetFileAttributesW(destino.c_str());
+            if (atual != INVALID_FILE_ATTRIBUTES) SetFileAttributesW(destino.c_str(), atual | FILE_ATTRIBUTE_READONLY);
+        }
+        if (!ausente(erro)) resultado.erro(erro, caminho);
     } else if (diretorio) ++resultado.pastas;
     else ++resultado.arquivos;
 }
 void limpar(const std::wstring& base, const wchar_t* relativo,
             bool manter, bool preservar, Resultado& resultado) {
-    if (base.empty()) { ++resultado.falhas; return; }
+    if (base.empty()) { resultado.erro(ERROR_BAD_PATHNAME, relativo); return; }
     auto alvo = absoluta(unir(base, relativo));
-    if (alvo.empty()) { ++resultado.falhas; return; }
+    if (alvo.empty()) { resultado.erro(ERROR_BAD_PATHNAME, relativo); return; }
     int estado = verificar(alvo);
     if (estado == 0) remover(alvo, manter, preservar, resultado);
-    else if (estado == 2) ++resultado.falhas;
+    else if (estado == 2) resultado.erro(GetLastError(), alvo);
 }
 bool dentro(const std::wstring& caminho, const std::wstring& pasta) {
     if (pasta.empty() || caminho.size() < pasta.size()) return false;
@@ -162,20 +192,33 @@ Resultado executar() {
             if (dentro(temp, tempUsuario) || dentro(temp, tempWindows) || dentro(temp, systemTemp)) {
                 int estado = verificar(temp);
                 if (!estado) remover(temp, true, false, resultado);
-                else if (estado == 2) ++resultado.falhas;
-            } else ++resultado.falhas;
+                else if (estado == 2) resultado.erro(GetLastError(), temp);
+            } else resultado.erro(ERROR_BAD_PATHNAME, temp);
         }
-    } else if (n >= tempBuffer.size()) ++resultado.falhas;
+    } else if (n >= tempBuffer.size()) resultado.erro(ERROR_FILENAME_EXCED_RANGE, L"%TEMP%");
     // Remove itens e seus metadados pela API oficial da Lixeira.
+    SHQUERYRBINFO info{}; info.cbSize = sizeof(info);
+    HRESULT consulta = SHQueryRecycleBinW(nullptr, &info);
+    if (SUCCEEDED(consulta) && info.i64NumItems == 0) return resultado;
     HRESULT hr = SHEmptyRecycleBinW(nullptr, nullptr,
         SHERB_NOCONFIRMATION | SHERB_NOPROGRESSUI | SHERB_NOSOUND);
-    if (FAILED(hr)) ++resultado.falhas;
+    if (FAILED(hr)) resultado.erro(HRESULT_FACILITY(hr) == FACILITY_WIN32 ?
+        HRESULT_CODE(hr) : static_cast<DWORD>(hr), L"Lixeira");
     return resultado;
 }
 int executarComResultado(bool mostrar) noexcept {
+    detalhes.Reset(); ultimoRelatorio.clear();
+    if (!diagnostics::IsElevated()) {
+        detalhes.Add(ERROR_ELEVATION_REQUIRED, L"Execute FSC.exe ou rundll32 como administrador.");
+        ultimoRelatorio = detalhes.Finish(L"Limpeza nao iniciada.");
+        if (mostrar) MessageBoxW(nullptr, ultimoRelatorio.c_str(), L"Limpeza", MB_OK | MB_ICONWARNING);
+        return 1;
+    }
     HRESULT com = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
     bool liberarCom = SUCCEEDED(com);
     if (FAILED(com) && com != RPC_E_CHANGED_MODE) {
+        detalhes.Add(static_cast<DWORD>(com), L"Inicializacao COM");
+        ultimoRelatorio = detalhes.Finish(L"Limpeza nao iniciada.");
         if (mostrar) MessageBoxW(nullptr, L"Falha ao inicializar componentes do Windows.",
             L"Limpeza", MB_OK | MB_ICONERROR);
         return 1;
@@ -184,6 +227,9 @@ int executarComResultado(bool mostrar) noexcept {
     try {
         Resultado r = executar();
         retorno = (r.falhas || r.links) ? 1 : 0;
+        ultimoRelatorio = detalhes.Finish(L"Arquivos removidos: " + std::to_wstring(r.arquivos) +
+            L"\r\nPastas removidas: " + std::to_wstring(r.pastas) +
+            L"\r\ngame-storage preservado. Contagens nao incluem a Lixeira.");
         if (mostrar) {
             std::wstring mensagem = retorno ? L"Limpeza parcial.\n" : L"Limpeza concluida.\n";
             mensagem += L"Arquivos excluidos: " + std::to_wstring(r.arquivos);
@@ -197,6 +243,8 @@ int executarComResultado(bool mostrar) noexcept {
                 MB_OK | (retorno ? MB_ICONWARNING : MB_ICONINFORMATION));
         }
     } catch (...) {
+        detalhes.Add(ERROR_UNHANDLED_EXCEPTION, L"Limpeza interrompida");
+        ultimoRelatorio = detalhes.Finish(L"Resultado parcial.");
         if (mostrar) MessageBoxW(nullptr,
             L"Limpeza interrompida por um erro. Parte dos arquivos pode ter sido removida.",
             L"Limpeza", MB_OK | MB_ICONERROR);
@@ -206,6 +254,7 @@ int executarComResultado(bool mostrar) noexcept {
 }
 }
 extern "C" int LimparPc() { return executarComResultado(false); }
+extern "C" const wchar_t* CleanerGetLastReport() { return ultimoRelatorio.c_str(); }
 // Assinatura correta para rundll32; nao executa limpeza dentro de DllMain.
 extern "C" void CALLBACK Limpar(HWND, HINSTANCE, LPSTR, int) {
     executarComResultado(true);

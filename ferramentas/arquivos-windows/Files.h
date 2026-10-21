@@ -13,3 +13,4 @@
 FILES_API void PerformFilesCopy();
 FILES_API void CALLBACK AplicarArquivos(HWND, HINSTANCE, LPSTR, int);
 FILES_API DWORD FilesGetLastStatus();
+FILES_API const wchar_t* FilesGetLastReport();

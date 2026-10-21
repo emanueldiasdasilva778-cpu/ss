@@ -10,8 +10,11 @@
 #include <windows.h>
 #include <string>
 #include <vector>
+#include "../common/Diagnostics.h"
 
 namespace {
+thread_local diagnostics::Report detalhes;
+thread_local std::wstring ultimoRelatorio;
 struct Chave {
     HKEY valor = nullptr;
     Chave() = default;
@@ -21,9 +24,10 @@ struct Chave {
 };
 struct Resultado {
     unsigned removidos = 0, preservados = 0, chaves = 0, falhas = 0, semAcesso = 0;
-    void erro(LSTATUS codigo) {
+    void erro(LSTATUS codigo, const std::wstring& caminho = L"Registro") {
         ++falhas;
         if (codigo == ERROR_ACCESS_DENIED) ++semAcesso;
+        detalhes.Add(static_cast<DWORD>(codigo), caminho);
     }
 };
 bool ausente(LSTATUS codigo) {
@@ -42,10 +46,11 @@ bool historico(const std::wstring& nome, DWORD tipo, DWORD bytes) {
 void apagarLastKey(HKEY chave, Resultado& resultado) {
     LSTATUS status = RegDeleteValueW(chave, L"LastKey");
     if (status == ERROR_SUCCESS) ++resultado.removidos;
-    else if (!ausente(status)) resultado.erro(status);
+    else if (!ausente(status)) resultado.erro(status,
+        L"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Applets\\Regedit\\LastKey");
 }
 
-void limparValores(HKEY leitura, Resultado& resultado) {
+void limparValores(HKEY leitura, Resultado& resultado, const std::wstring& caminho = L"BAM") {
     std::vector<std::wstring> candidatos;
     std::vector<wchar_t> nome(32768);
     for (DWORD indice = 0;; ++indice) {
@@ -53,7 +58,7 @@ void limparValores(HKEY leitura, Resultado& resultado) {
         LSTATUS status = RegEnumValueW(leitura, indice, nome.data(), &tamanho,
             nullptr, &tipo, nullptr, &bytes);
         if (status == ERROR_NO_MORE_ITEMS) break;
-        if (status != ERROR_SUCCESS) { resultado.erro(status); return; }
+        if (status != ERROR_SUCCESS) { resultado.erro(status, caminho); return; }
         std::wstring valor(nome.data(), tamanho);
         if (historico(valor, tipo, bytes)) candidatos.push_back(valor);
         else ++resultado.preservados;
@@ -62,21 +67,22 @@ void limparValores(HKEY leitura, Resultado& resultado) {
     Chave escrita;
     LSTATUS status = RegOpenKeyExW(leitura, L"", REG_OPTION_OPEN_LINK,
         KEY_QUERY_VALUE | KEY_SET_VALUE | KEY_WOW64_64KEY, &escrita.valor);
-    if (status != ERROR_SUCCESS) { resultado.erro(status); return; }
+    if (status != ERROR_SUCCESS) { resultado.erro(status, caminho); return; }
     for (const auto& valor : candidatos) {
         DWORD tipo = 0, bytes = 0;
         status = RegQueryValueExW(escrita.valor, valor.c_str(), nullptr, &tipo, nullptr, &bytes);
         if (ausente(status)) continue;
-        if (status != ERROR_SUCCESS) { resultado.erro(status); continue; }
+        if (status != ERROR_SUCCESS) { resultado.erro(status, caminho + L"\\" + valor); continue; }
         if (!historico(valor, tipo, bytes)) { ++resultado.preservados; continue; }
         status = RegDeleteValueW(escrita.valor, valor.c_str());
         if (status == ERROR_SUCCESS) ++resultado.removidos;
-        else if (!ausente(status)) resultado.erro(status);
+        else if (!ausente(status)) resultado.erro(status, caminho + L"\\" + valor);
     }
 }
 
-void percorrerBam(HKEY leitura, Resultado& resultado, unsigned profundidade = 0) {
-    if (profundidade > 128) { resultado.erro(ERROR_STACK_OVERFLOW); return; }
+void percorrerBam(HKEY leitura, Resultado& resultado, unsigned profundidade = 0,
+    const std::wstring& caminho = L"HKLM\\SYSTEM\\CurrentControlSet\\Services\\bam\\State\\UserSettings") {
+    if (profundidade > 128) { resultado.erro(ERROR_STACK_OVERFLOW, caminho); return; }
     ++resultado.chaves;
     // Enumera as subchaves antes de qualquer exclusao de valores.
     std::vector<std::wstring> filhos;
@@ -86,16 +92,16 @@ void percorrerBam(HKEY leitura, Resultado& resultado, unsigned profundidade = 0)
         LSTATUS status = RegEnumKeyExW(leitura, indice, nome, &tamanho,
             nullptr, nullptr, nullptr, nullptr);
         if (status == ERROR_NO_MORE_ITEMS) break;
-        if (status != ERROR_SUCCESS) { resultado.erro(status); return; }
+        if (status != ERROR_SUCCESS) { resultado.erro(status, caminho); return; }
         filhos.emplace_back(nome, tamanho);
     }
-    limparValores(leitura, resultado);
+    limparValores(leitura, resultado, caminho);
     for (const auto& nomeFilho : filhos) {
         Chave filho;
         LSTATUS status = RegOpenKeyExW(leitura, nomeFilho.c_str(), REG_OPTION_OPEN_LINK,
             KEY_QUERY_VALUE | KEY_ENUMERATE_SUB_KEYS | KEY_WOW64_64KEY, &filho.valor);
-        if (status == ERROR_SUCCESS) percorrerBam(filho.valor, resultado, profundidade + 1);
-        else if (!ausente(status)) resultado.erro(status);
+        if (status == ERROR_SUCCESS) percorrerBam(filho.valor, resultado, profundidade + 1, caminho + L"\\" + nomeFilho);
+        else if (!ausente(status)) resultado.erro(status, caminho + L"\\" + nomeFilho);
     }
 }
 
@@ -107,7 +113,7 @@ Resultado executar() {
             L"Software\\Microsoft\\Windows\\CurrentVersion\\Applets\\Regedit", 0,
             KEY_SET_VALUE | KEY_WOW64_64KEY, &regedit.valor);
         if (status == ERROR_SUCCESS) apagarLastKey(regedit.valor, resultado);
-        else if (!ausente(status)) resultado.erro(status);
+        else if (!ausente(status)) resultado.erro(status, L"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Applets\\Regedit");
     }
     {
         Chave bam;
@@ -115,13 +121,23 @@ Resultado executar() {
             L"SYSTEM\\CurrentControlSet\\Services\\bam\\State\\UserSettings", REG_OPTION_OPEN_LINK,
             KEY_QUERY_VALUE | KEY_ENUMERATE_SUB_KEYS | KEY_WOW64_64KEY, &bam.valor);
         if (status == ERROR_SUCCESS) percorrerBam(bam.valor, resultado);
-        else if (!ausente(status)) resultado.erro(status);
+        else if (!ausente(status)) resultado.erro(status, L"HKLM\\SYSTEM\\CurrentControlSet\\Services\\bam\\State\\UserSettings");
     }
     return resultado;
 }
 int iniciar(bool mostrar) noexcept {
+    detalhes.Reset(); ultimoRelatorio.clear();
+    if (!diagnostics::IsElevated()) {
+        detalhes.Add(ERROR_ELEVATION_REQUIRED, L"Execute FSC.exe ou rundll32 como administrador.");
+        ultimoRelatorio = detalhes.Finish(L"Registro nao iniciado.");
+        if (mostrar) MessageBoxW(nullptr, ultimoRelatorio.c_str(), L"Registro", MB_OK | MB_ICONWARNING);
+        return 1;
+    }
     try {
         Resultado r = executar();
+        ultimoRelatorio = detalhes.Finish(L"Valores removidos: " + std::to_wstring(r.removidos) +
+            L"\r\nValores preservados: " + std::to_wstring(r.preservados) +
+            L"\r\nChaves examinadas: " + std::to_wstring(r.chaves) + L"\r\nNenhuma chave excluida.");
         if (mostrar) {
             std::wstring texto = r.falhas ? L"Limpeza parcial.\n" : L"Operacao concluida.\n";
             texto += L"Valores removidos: " + std::to_wstring(r.removidos);
@@ -136,6 +152,8 @@ int iniciar(bool mostrar) noexcept {
         }
         return r.falhas ? 1 : 0;
     } catch (...) {
+        detalhes.Add(ERROR_UNHANDLED_EXCEPTION, L"Registro interrompido");
+        ultimoRelatorio = detalhes.Finish(L"Resultado parcial.");
         if (mostrar) MessageBoxW(nullptr,
             L"Erro inesperado. A operacao pode ter sido concluida parcialmente.",
             L"Limpeza do Registro", MB_OK | MB_ICONERROR);
@@ -144,4 +162,5 @@ int iniciar(bool mostrar) noexcept {
 }
 }
 extern "C" int LimparRegistroSilencioso() { return iniciar(false); }
+extern "C" const wchar_t* RegistryGetLastReport() { return ultimoRelatorio.c_str(); }
 extern "C" void CALLBACK LimparRegistro(HWND, HINSTANCE, LPSTR, int) { iniciar(true); }

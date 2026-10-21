@@ -2,3 +2,4 @@ LIBRARY Limpeza
 EXPORTS
     LimparPc
     Limpar
+    CleanerGetLastReport

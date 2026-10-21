@@ -15,7 +15,7 @@ Cada arquivo é copiado para um temporário no destino e só depois substitui o 
 
 ## Executar
 
-Feche FiveM/GTA para evitar bloqueios. Baixe a DLL e abra um Prompt de Comando de 64 bits **com o seu usuário normal**. Ajuste o caminho:
+Feche FiveM/GTA para evitar bloqueios. Baixe a DLL e abra um Prompt de Comando de 64 bits **como administrador do mesmo usuário**. Ajuste o caminho:
 
 ```bat
 rundll32.exe "C:\caminho\Files.dll",AplicarArquivos
@@ -56,7 +56,7 @@ O binário incluído foi compilado com MinGW-w64 GCC 14.2, C++20, runtime C++ es
 Os testes não chamam as exportações de cópia real e não acessam as suas pastas OneDrive/FiveM/CitizenFX. Para testar no Windows:
 
 ```bat
-cl /nologo /std:c++20 /EHsc /W4 /MT tests\testes.cpp /Fe:TestesFiles.exe /link shell32.lib ole32.lib uuid.lib user32.lib
+cl /nologo /std:c++20 /EHsc /W4 /MT tests\testes.cpp /Fe:TestesFiles.exe /link shell32.lib ole32.lib uuid.lib user32.lib advapi32.lib
 TestesFiles.exe "%CD%\Files.dll"
 ```
 
@@ -65,5 +65,11 @@ TestesFiles.exe "%CD%\Files.dll"
 SHA-256 de `Files.dll`:
 
 ```text
-f72be3144a3046af594de8933f0fcb7b69562d7e12d6273afd0537d9b2b0473e
+0806a193f06b2e848fb0acad6b03e65d8984a408d22e5165bd4249cdbb8d9604
 ```
+
+## Versão 2: elevação e detalhes
+
+A DLL agora requer token elevado antes de copiar, conforme solicitado para o pacote completo. Se não estiver elevado, retorna o erro 740 e não inicia cópias. A exportação `const wchar_t* FilesGetLastReport()` disponibiliza todos os erros registrados, além do primeiro erro já retornado por `FilesGetLastStatus`. Consulte ambos na mesma thread. F1 no FSC 2 abre os detalhes.
+
+As regras de cópia permanecem as mesmas. Inclua `../common/Diagnostics.h` e vincule também `advapi32.lib` ao compilar a DLL e os testes.

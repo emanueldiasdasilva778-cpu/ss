@@ -50,11 +50,29 @@ int wmain(int argc, wchar_t** argv) {
         auto failed = fsc::Invoke(2, base);
         Check(!failed.success && failed.code == 32, "erro de copia propagado da DLL");
         SetEnvironmentVariableW(L"FSC_MOCK_RESULT", L"0");
-        Check(fsc::Invoke(0, base + L"\\ausente").code != 0, "DLL ausente gera erro");
+        auto missing = fsc::Invoke(0, base + L"\\ausente");
+        Check(missing.code != 0 && missing.details.find(L"Limpeza.dll") != std::wstring::npos,
+            "DLL ausente gera erro com caminho no relatorio");
         Check(fsc::Invoke(0, base + L"\\incompativel").code == ERROR_PROC_NOT_FOUND,
             "DLL com exportacao errada rejeitada");
         Check(fsc::Invoke(3, base).code == ERROR_INVALID_PARAMETER,
             "acao fora dos tres cards rejeitada");
+        auto report = fsc::Invoke(0, base);
+        Check(report.details.find(L"ocupado.bin [32]") != std::wstring::npos,
+            "relatorio e copiado da DLL antes do descarregamento");
+        Check(fsc::Invoke(1, base).details.find(L"HKLM\\Teste [5]") != std::wstring::npos,
+            "caminho do Registro e preservado no relatorio");
+        Check(fsc::Invoke(2, base).details.find(L"destino.xml [32]") != std::wstring::npos,
+            "relatorio de copia e consultado na mesma thread");
+        diagnostics::Report diagnostic;
+        diagnostic.Add(ERROR_SHARING_VIOLATION, L"C:\\Teste\\ocupado.bin");
+        diagnostic.Add(ERROR_ACCESS_DENIED, L"HKLM\\Teste");
+        auto text = diagnostic.Finish(L"Resumo de teste");
+        Check(diagnostic.total == 2 && diagnostic.occupied == 1 && diagnostic.denied == 1 &&
+            text.find(L"[32]") != std::wstring::npos && text.find(L"[5]") != std::wstring::npos,
+            "diagnostico distingue arquivo em uso e acesso negado");
+        diagnostic.Reset();
+        Check(diagnostic.total == 0 && diagnostic.lines.empty(), "diagnostico nao acumula operacoes anteriores");
         std::cout << "TOTAL: " << passed << " verificacoes passaram\n";
         return 0;
     } catch (const std::exception& error) {

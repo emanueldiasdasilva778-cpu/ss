@@ -3,9 +3,12 @@
 #include <shlobj.h>
 #include <string>
 #include <vector>
+#include "../common/Diagnostics.h"
 
 namespace {
 thread_local DWORD ultimoStatus = ERROR_SUCCESS;
+thread_local diagnostics::Report detalhes;
+thread_local std::wstring ultimoRelatorio;
 volatile LONG sequencia = 0;
 
 struct Relatorio {
@@ -14,6 +17,7 @@ struct Relatorio {
     std::wstring primeiroCaminho;
     void erro(DWORD codigo, const std::wstring& caminho) {
         ++falhas;
+        detalhes.Add(codigo, caminho);
         if (!primeiroErro) {
             primeiroErro = codigo ? codigo : ERROR_GEN_FAILURE;
             primeiroCaminho = caminho;
@@ -205,9 +209,19 @@ Relatorio executar() {
     return r;
 }
 void iniciar(bool mostrar) noexcept {
+    detalhes.Reset(); ultimoRelatorio.clear();
+    if (!diagnostics::IsElevated()) {
+        ultimoStatus = ERROR_ELEVATION_REQUIRED;
+        detalhes.Add(ultimoStatus, L"Execute FSC.exe ou rundll32 como administrador.");
+        ultimoRelatorio = detalhes.Finish(L"Copia nao iniciada.");
+        if (mostrar) MessageBoxW(nullptr, ultimoRelatorio.c_str(), L"Arquivos", MB_OK | MB_ICONWARNING);
+        return;
+    }
     try {
         Relatorio r = executar();
         ultimoStatus = r.primeiroErro;
+        ultimoRelatorio = detalhes.Finish(L"Arquivos copiados: " + std::to_wstring(r.arquivos) +
+            L"\r\nPastas criadas: " + std::to_wstring(r.pastas));
         if (mostrar) {
             std::wstring texto = r.falhas ? L"Copia incompleta.\n" : L"Arquivos aplicados.\n";
             texto += L"Arquivos copiados: " + std::to_wstring(r.arquivos);
@@ -220,6 +234,8 @@ void iniciar(bool mostrar) noexcept {
         }
     } catch (...) {
         ultimoStatus = ERROR_UNHANDLED_EXCEPTION;
+        detalhes.Add(ultimoStatus, L"Copia interrompida");
+        ultimoRelatorio = detalhes.Finish(L"Resultado parcial.");
         if (mostrar) MessageBoxW(nullptr, L"Erro inesperado. A copia pode ter sido parcial.",
             L"Files.dll", MB_OK | MB_ICONERROR);
     }
@@ -229,3 +245,4 @@ void iniciar(bool mostrar) noexcept {
 void PerformFilesCopy() { iniciar(false); }
 void CALLBACK AplicarArquivos(HWND, HINSTANCE, LPSTR, int) { iniciar(true); }
 DWORD FilesGetLastStatus() { return ultimoStatus; }
+const wchar_t* FilesGetLastReport() { return ultimoRelatorio.c_str(); }

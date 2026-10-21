@@ -27,7 +27,7 @@
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>UNICODE;_UNICODE;NOMINMAX;_WIN32_WINNT=0x0A00;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <Link><SubSystem>Windows</SubSystem><GenerateManifest>false</GenerateManifest><AdditionalDependencies>d2d1.lib;dwrite.lib;ole32.lib;user32.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies></Link>
+    <Link><SubSystem>Windows</SubSystem><GenerateManifest>false</GenerateManifest><AdditionalDependencies>d2d1.lib;dwrite.lib;ole32.lib;user32.lib;gdi32.lib;shell32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies></Link>
     <PostBuildEvent><Command>copy /Y "$(ProjectDir)..\limpeza-windows\Limpeza.dll" "$(OutDir)Limpeza.dll"
 copy /Y "$(ProjectDir)..\registro-windows\Registro.dll" "$(OutDir)Registro.dll"
 copy /Y "$(ProjectDir)..\arquivos-windows\Files.dll" "$(OutDir)arquivos.dll"</Command></PostBuildEvent>

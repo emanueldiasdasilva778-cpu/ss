@@ -27,7 +27,7 @@ A janela final informa quantidades excluídas, falhas e caminhos ignorados. Se u
 
 Downloads é preservado. Não há apagamento de eventos do Windows, USN Journal ou outros registros do sistema. Não existe uma operação separada para “logs da Lixeira”. Limpar Prefetch não é necessário para melhorar desempenho.
 
-Arquivos bloqueados, somente leitura ou sem permissão podem permanecer. O código não toma posse, altera ACLs ou encerra processos; recusa links e junctions. Não execute simultaneamente nem altere os alvos durante a limpeza.
+Arquivos bloqueados ou sem permissão podem permanecer. A versão 2 remove o atributo somente leitura apenas nos alvos já autorizados e o restaura se a exclusão falhar. O código não toma posse, altera ACLs ou encerra processos; recusa links e junctions. Não execute simultaneamente nem altere os alvos durante a limpeza.
 
 ## Compilar
 
@@ -48,5 +48,13 @@ A compilação com avisos tratados como erros passou. Em pastas artificiais no W
 SHA-256 do binário incluído:
 
 ```text
-01af3522fe281f9002981965a455fb0bc92bca093eb2ea8c8f87cb8d28004244
+1bdc9ea17b576cedd52e64f8da5e810fd4ce472cbb71ec6ab9ea72fe97d5e37d
 ```
+
+## Versão 2: administrador e diagnóstico
+
+Cada DLL agora verifica o token elevado antes de iniciar. Use FSC.exe ou um Prompt de Comando elevado do mesmo usuário. O manifesto do FSC solicita administrador; isso não fornece direitos SYSTEM nem muda ACLs.
+
+A limpeza verifica se a Lixeira já está vazia antes do esvaziamento, reconhece reparse points CLOUD do OneDrive e mantém links/junctions bloqueados. Os paths e códigos reais de erro são mantidos em memória por operação. A exportação `const wchar_t* CleanerGetLastReport()` retorna esse relatório na mesma thread; copie o texto antes de descarregar a DLL. No FSC 2, pressione F1 após executar para ler os detalhes.
+
+O código-fonte agora inclui `../common/Diagnostics.h`; compile a estrutura completa do repositório. A DLL e os testes também vinculam `advapi32.lib`. Os testes continuam isolados em diretórios artificiais; não comprovam ACLs, arquivos CLOUD ou UAC em Windows 11 real.

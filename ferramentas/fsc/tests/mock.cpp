@@ -23,12 +23,15 @@
 }
 #if FSC_MOCK_KIND == 0
 extern "C" __declspec(dllexport) int LimparPc() { return static_cast<int>(Mock()); }
+extern "C" __declspec(dllexport) const wchar_t* CleanerGetLastReport() { return L"Relatorio simulado: C:\\Teste\\ocupado.bin [32]"; }
 #elif FSC_MOCK_KIND == 1
 extern "C" __declspec(dllexport) int LimparRegistroSilencioso() { return static_cast<int>(Mock()); }
+extern "C" __declspec(dllexport) const wchar_t* RegistryGetLastReport() { return L"Relatorio simulado: HKLM\\Teste [5]"; }
 #elif FSC_MOCK_KIND == 2
 thread_local DWORD status = 0;
 extern "C" __declspec(dllexport) void PerformFilesCopy() { status = Mock(); }
 extern "C" __declspec(dllexport) DWORD FilesGetLastStatus() { return status; }
+extern "C" __declspec(dllexport) const wchar_t* FilesGetLastReport() { return L"Relatorio simulado: C:\\Teste\\destino.xml [32]"; }
 #else
 extern "C" __declspec(dllexport) int ExportacaoIncorreta() { return 0; }
 #endif
