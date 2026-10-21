@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64"><Configuration>Debug</Configuration><Platform>x64</Platform></ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64"><Configuration>Release</Configuration><Platform>x64</Platform></ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion><ProjectGuid>{728727EB-547D-4A3E-8AC7-77E89C74792B}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword><RootNamespace>FSC</RootNamespace><WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType><PlatformToolset>v143</PlatformToolset><CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration"><UseDebugLibraries>true</UseDebugLibraries></PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration"><UseDebugLibraries>false</UseDebugLibraries><WholeProgramOptimization>true</WholeProgramOptimization></PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
+  <PropertyGroup>
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir><TargetName>FSC</TargetName>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard><WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck><ConformanceMode>true</ConformanceMode><ExceptionHandling>Sync</ExceptionHandling>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>UNICODE;_UNICODE;NOMINMAX;_WIN32_WINNT=0x0A00;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link><SubSystem>Windows</SubSystem><GenerateManifest>false</GenerateManifest><AdditionalDependencies>d2d1.lib;dwrite.lib;ole32.lib;user32.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies></Link>
+    <PostBuildEvent><Command>copy /Y "$(ProjectDir)..\limpeza-windows\Limpeza.dll" "$(OutDir)Limpeza.dll"
+copy /Y "$(ProjectDir)..\registro-windows\Registro.dll" "$(OutDir)Registro.dll"
+copy /Y "$(ProjectDir)..\arquivos-windows\Files.dll" "$(OutDir)arquivos.dll"</Command></PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'"><ClCompile><Optimization>Disabled</Optimization><RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary></ClCompile><Link><GenerateDebugInformation>true</GenerateDebugInformation></Link></ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'"><ClCompile><Optimization>MaxSpeed</Optimization><RuntimeLibrary>MultiThreaded</RuntimeLibrary><FunctionLevelLinking>true</FunctionLevelLinking><IntrinsicFunctions>true</IntrinsicFunctions></ClCompile><Link><EnableCOMDATFolding>true</EnableCOMDATFolding><OptimizeReferences>true</OptimizeReferences></Link></ItemDefinitionGroup>
+  <ItemGroup><ClCompile Include="main.cpp"/><ResourceCompile Include="FSC.rc"/><None Include="FSC.manifest"/></ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
+</Project>
