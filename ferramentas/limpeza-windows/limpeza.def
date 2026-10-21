@@ -1,0 +1,4 @@
+LIBRARY Limpeza
+EXPORTS
+    LimparPc
+    Limpar
