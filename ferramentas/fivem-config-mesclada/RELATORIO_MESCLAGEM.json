@@ -1,0 +1,5345 @@
+{
+  "instrucao_aplicada": "Usar os dois segundos arquivos como base e colocar neles os valores dos dois primeiros arquivos.",
+  "regra": "Primeiro envio fornece os valores; segundo envio fornece a base. Entradas exclusivas do segundo preservadas. Repeticoes preexistentes do DAT mantidas, com valores do primeiro por ordem de ocorrencia.",
+  "fontes_sha256": {
+    "valores_visual_primeiro": "14ee94b208fd878ed5310dd8111ab78d6620f9736e1b76623e78361dab2028b7",
+    "base_visual_segundo": "284ca80abd1262205c4931027bc2891e6831c23e814ea1ce3768bf860e0e5452",
+    "valores_meta_primeiro": "fd2ad098f83b14abd2461601108296818e3554d4787a15cc0111dac648afb0d5",
+    "base_meta_segundo": "b2b5a20521878393860fa2edebb3b889e41618aea46ec77697d88b67f14209e0"
+  },
+  "visualsettings": {
+    "chaves_primeiro": 1086,
+    "chaves_base_segundo": 1087,
+    "chaves_resultado": 1087,
+    "linhas_de_parametros_resultado": 1092,
+    "chaves_com_valores_diferentes": 478,
+    "linhas_atualizadas": 478,
+    "exclusivas_segundo_preservadas": [
+      {
+        "pedincar.lod.distance.high.x64": "15"
+      }
+    ],
+    "conflitos_resolvidos_pelo_primeiro": [
+      {
+        "chave": "Adaptation.sun.exposure.tweak",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "-2"
+      },
+      {
+        "chave": "bloom.blurblendmult.large",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "bloom.blurblendmult.med",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "bloom.blurblendmult.small",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "bloom.threshold.min",
+        "segundo_anterior": "0.4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "bloom.threshold.power",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boat.light.fadelength",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boat.light.interiorshutdowndistance",
+        "segundo_anterior": "100",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boat.light.shutdowndistance",
+        "segundo_anterior": "60",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.color.blue",
+        "segundo_anterior": "0.04",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.color.green",
+        "segundo_anterior": "0.04",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.color.red",
+        "segundo_anterior": "0.04",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.length",
+        "segundo_anterior": "100",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.coronaIntensity",
+        "segundo_anterior": "6",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.coronaIntensityFar",
+        "segundo_anterior": "12",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.coronaOffset",
+        "segundo_anterior": "0.235",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.coronaSize",
+        "segundo_anterior": "1.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.coronaSizeFar",
+        "segundo_anterior": "20",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.coronaZBias",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.enable",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.falloffExp",
+        "segundo_anterior": "8",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.falloffScale",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.globalIntensity",
+        "segundo_anterior": "4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.lightFadeDist",
+        "segundo_anterior": "40",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.lightIntensityScale",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.outerAngle",
+        "segundo_anterior": "5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.outerVolumeColor.color.blue",
+        "segundo_anterior": "0.01",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.outerVolumeColor.color.green",
+        "segundo_anterior": "0.01",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.outerVolumeColor.color.red",
+        "segundo_anterior": "0.01",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.outerVolumeFallOffExponent",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.specular",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.volume",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.volumeIntensityScale",
+        "segundo_anterior": "0.125",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.mainLightInfo.volumeSizeScale",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "boatsearchlight.offset",
+        "segundo_anterior": "-0.11",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "cam.aimweapon.blur.damage.attacktime",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0.0"
+      },
+      {
+        "chave": "cam.aimweapon.blur.damage.decaytime",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0.0"
+      },
+      {
+        "chave": "cam.aimweapon.blur.damage.time",
+        "segundo_anterior": "1000",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "cam.aimweapon.blur.damage.w",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0.0"
+      },
+      {
+        "chave": "cam.aimweapon.blur.damage.y",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "cam.aimweapon.blur.interp",
+        "segundo_anterior": "0.05",
+        "primeiro_aplicado": "0.0"
+      },
+      {
+        "chave": "cam.aimweapon.blur.zoom.w",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0.0"
+      },
+      {
+        "chave": "cam.aimweapon.blur.zoom.y",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0.0"
+      },
+      {
+        "chave": "car.brakelight.day.emissive.off",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.brakelight.day.emissive.on",
+        "segundo_anterior": "175",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.brakelight.night.emissive.off",
+        "segundo_anterior": "0.003",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.brakelight.night.emissive.on",
+        "segundo_anterior": "40",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.defaultlight.day.emissive.off",
+        "segundo_anterior": "0.05",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.defaultlight.day.emissive.on",
+        "segundo_anterior": "30",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.defaultlight.night.emissive.off",
+        "segundo_anterior": "0.003",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.defaultlight.night.emissive.on",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.extralight.day.emissive.off",
+        "segundo_anterior": "0.001",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.extralight.day.emissive.on",
+        "segundo_anterior": "60",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.extralight.night.emissive.off",
+        "segundo_anterior": "0.05",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.extralight.night.emissive.on",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlight.day.emissive.off",
+        "segundo_anterior": "0.05",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlight.day.emissive.on",
+        "segundo_anterior": "100",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlight.night.emissive.off",
+        "segundo_anterior": "0.001",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlight.night.emissive.on",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.aim.dippedbeam.mod",
+        "segundo_anterior": "-0.2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.angle",
+        "segundo_anterior": "-0.7",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.fullbeam.CoronaIntensityMult",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.fullbeam.CoronaSizeMult",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0.1"
+      },
+      {
+        "chave": "car.headlights.fullbeam.DistMult",
+        "segundo_anterior": "3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.fullbeam.IntensityMult",
+        "segundo_anterior": "1.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.global.ConeInnerAngleMod",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.global.ConeOuterAngleMod",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.global.Fake2LightsAngleMod",
+        "segundo_anterior": "0.95",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.global.Fake2LightsDisplacementMod",
+        "segundo_anterior": "0.17",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.global.HeadlightDistMult",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.global.HeadlightIntensityMult",
+        "segundo_anterior": "5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.global.OnlyOneLightMod",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.player.distmult",
+        "segundo_anterior": "0.4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.player.exponentmult",
+        "segundo_anterior": "3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.player.intensitymult",
+        "segundo_anterior": "1.2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.submarine.Fake2LightsAngleMod",
+        "segundo_anterior": "0.83",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.volume.intensityscale",
+        "segundo_anterior": "0.005",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.volume.outerexponent",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.headlights.volume.sizescale",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0.1"
+      },
+      {
+        "chave": "car.lod.distance.high",
+        "segundo_anterior": "30",
+        "primeiro_aplicado": "40"
+      },
+      {
+        "chave": "car.lod.distance.low",
+        "segundo_anterior": "130",
+        "primeiro_aplicado": "180"
+      },
+      {
+        "chave": "car.middlebrakelight.day.emissive.off",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.middlebrakelight.day.emissive.on",
+        "segundo_anterior": "175",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.middlebrakelight.night.emissive.off",
+        "segundo_anterior": "0.003",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.middlebrakelight.night.emissive.on",
+        "segundo_anterior": "35",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.reversinglight.day.emissive.off",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.reversinglight.day.emissive.on",
+        "segundo_anterior": "100",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.reversinglight.night.emissive.off",
+        "segundo_anterior": "0.003",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.reversinglight.night.emissive.on",
+        "segundo_anterior": "4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.taillight.day.emissive.off",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.taillight.day.emissive.on",
+        "segundo_anterior": "140",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.taillight.night.emissive.off",
+        "segundo_anterior": "0.003",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "car.taillight.night.emissive.on",
+        "segundo_anterior": "25",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "cloud.speed.edge",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "cloud.speed.hats",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "cloud.speed.large",
+        "segundo_anterior": "20",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "cloud.speed.overall",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "cloud.speed.small",
+        "segundo_anterior": "15",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "cloudgen.edge.detail.scale",
+        "segundo_anterior": "15",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "cloudgen.frequency",
+        "segundo_anterior": "0.2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "cloudgen.overlay.detail.scale",
+        "segundo_anterior": "8",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "cloudgen.scale",
+        "segundo_anterior": "48",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.fpv.light.offset.x",
+        "segundo_anterior": "0.2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.fpv.light.offset.z",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.light.color.blue",
+        "segundo_anterior": "0.6",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.light.color.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.light.color.red",
+        "segundo_anterior": "0.6",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.light.coronaSize",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.light.falloffExp",
+        "segundo_anterior": "128",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.light.intensity",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.light.offset.x",
+        "segundo_anterior": "0.2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.light.offset.z",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.light.outerConeAngle",
+        "segundo_anterior": "40",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.light.radius",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.lightDirBase",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.secLight.color.blue",
+        "segundo_anterior": "0.6",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.secLight.color.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.secLight.color.red",
+        "segundo_anterior": "0.6",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.secLight.coronaHDR",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.secLight.coronaSize",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.secLight.enable",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.secLight.falloffExp",
+        "segundo_anterior": "32",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.secLight.intensity",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.secLight.lightDirBase",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.secLight.outerConeAngle",
+        "segundo_anterior": "90",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.secLight.radius",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "dark.secLight.useSpec",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.color.blue",
+        "segundo_anterior": "0.03",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.color.green",
+        "segundo_anterior": "0.03",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.color.red",
+        "segundo_anterior": "0.03",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.length",
+        "segundo_anterior": "100",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.coronaIntensity",
+        "segundo_anterior": "6",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.coronaIntensityFar",
+        "segundo_anterior": "12",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.coronaOffset",
+        "segundo_anterior": "0.4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.coronaSize",
+        "segundo_anterior": "3.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.coronaSizeFar",
+        "segundo_anterior": "35",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.coronaZBias",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.enable",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.falloffExp",
+        "segundo_anterior": "8",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.falloffScale",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.globalIntensity",
+        "segundo_anterior": "4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.lightFadeDist",
+        "segundo_anterior": "40",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.lightIntensityScale",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.outerAngle",
+        "segundo_anterior": "5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.outerVolumeFallOffExponent",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.specular",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.volume",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.volumeIntensityScale",
+        "segundo_anterior": "0.125",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.mainLightInfo.volumeSizeScale",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "defaultsearchlight.offset",
+        "segundo_anterior": "-0.13",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight1.color.blue",
+        "segundo_anterior": "0.9",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight1.color.green",
+        "segundo_anterior": "0.95",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight1.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight1.spacing.mp",
+        "segundo_anterior": "3.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight1.spacing.sp",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight1.speed.mp",
+        "segundo_anterior": "35",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight1.speed.sp",
+        "segundo_anterior": "40",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight2.color.green",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight2.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight2.spacing.mp",
+        "segundo_anterior": "3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight2.spacing.sp",
+        "segundo_anterior": "3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight2.speed.mp",
+        "segundo_anterior": "20",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlight2.speed.sp",
+        "segundo_anterior": "20",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.carlightZOffset",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.density0Spacing",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.density15Spacing",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.flicker",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.hourEnd",
+        "segundo_anterior": "7",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.hourStart",
+        "segundo_anterior": "19",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.randomizeSpacing.mp",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.randomizeSpacing.sp",
+        "segundo_anterior": "0.25",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.randomizeSpeed.mp",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.randomizeSpeed.sp",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.size",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "1"
+      },
+      {
+        "chave": "distantlights.sizeDist",
+        "segundo_anterior": "0.0001",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.sizeDistStart",
+        "segundo_anterior": "0.0001",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.sizeMin",
+        "segundo_anterior": "8",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.sizeUpscale",
+        "segundo_anterior": "1.2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.speed0",
+        "segundo_anterior": "0.2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.speed0Speed",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.speed1",
+        "segundo_anterior": "0.35",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.speed2",
+        "segundo_anterior": "0.4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.speed3",
+        "segundo_anterior": "0.6",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.speed3Speed",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.twinkleAmount",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "distantlights.twinkleSpeed",
+        "segundo_anterior": "0.05",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "emissive.night.end.time",
+        "segundo_anterior": "7",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "emissive.night.start.time",
+        "segundo_anterior": "19",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.interiorlight.color.blue",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.interiorlight.color.green",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.interiorlight.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.interiorlight.coronaHDR",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.interiorlight.coronaSize",
+        "segundo_anterior": "-0.25",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.interiorlight.intensity",
+        "segundo_anterior": "1.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.interiorlight.outerConeAngle",
+        "segundo_anterior": "90",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.interiorlight.radius",
+        "segundo_anterior": "2.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.poslight.farSize",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.poslight.farStrength",
+        "segundo_anterior": "80",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.poslight.intensity_typeA",
+        "segundo_anterior": "12",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.poslight.intensity_typeB",
+        "segundo_anterior": "6",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.poslight.leftColor.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.poslight.nearSize",
+        "segundo_anterior": "0.25",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.poslight.nearStrength",
+        "segundo_anterior": "20",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.poslight.radius",
+        "segundo_anterior": "2.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.poslight.rightColor.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whiteheadlight.color.blue",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whiteheadlight.color.green",
+        "segundo_anterior": "0.9",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whiteheadlight.color.red",
+        "segundo_anterior": "0.8",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whiteheadlight.farSize",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whiteheadlight.farStrength",
+        "segundo_anterior": "60",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whiteheadlight.intensity",
+        "segundo_anterior": "4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whiteheadlight.nearSize",
+        "segundo_anterior": "0.25",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whiteheadlight.nearStrength",
+        "segundo_anterior": "15",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whiteheadlight.radius",
+        "segundo_anterior": "2.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whitetaillight.color.blue",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whitetaillight.color.green",
+        "segundo_anterior": "0.9",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whitetaillight.color.red",
+        "segundo_anterior": "0.8",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whitetaillight.farSize",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whitetaillight.farStrength",
+        "segundo_anterior": "60",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whitetaillight.intensity",
+        "segundo_anterior": "4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whitetaillight.nearSize",
+        "segundo_anterior": "0.25",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whitetaillight.nearStrength",
+        "segundo_anterior": "15",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "heli.whitetaillight.radius",
+        "segundo_anterior": "2.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.color.blue",
+        "segundo_anterior": "0.04",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.color.green",
+        "segundo_anterior": "0.04",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.color.red",
+        "segundo_anterior": "0.04",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.length",
+        "segundo_anterior": "120",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.coronaIntensity",
+        "segundo_anterior": "100",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.coronaIntensityFar",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.coronaOffset",
+        "segundo_anterior": "0.4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.coronaSize",
+        "segundo_anterior": "2.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.coronaSizeFar",
+        "segundo_anterior": "35",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.coronaZBias",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.enable",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.falloffExp",
+        "segundo_anterior": "8",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.falloffScale",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.globalIntensity",
+        "segundo_anterior": "4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.lightFadeDist",
+        "segundo_anterior": "40",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.lightIntensityScale",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.outerAngle",
+        "segundo_anterior": "5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.outerVolumeColor.color.blue",
+        "segundo_anterior": "0.01",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.outerVolumeColor.color.green",
+        "segundo_anterior": "0.01",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.outerVolumeColor.color.red",
+        "segundo_anterior": "0.01",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.outerVolumeFallOffExponent",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.specular",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.volume",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.volumeIntensityScale",
+        "segundo_anterior": "0.125",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.mainLightInfo.volumeSizeScale",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "helisearchlight.offset",
+        "segundo_anterior": "-0.13",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "imposter.color.blendBias",
+        "segundo_anterior": "64",
+        "primeiro_aplicado": "128"
+      },
+      {
+        "chave": "imposter.color.size1",
+        "segundo_anterior": "64",
+        "primeiro_aplicado": "128"
+      },
+      {
+        "chave": "lights.cutoff.distance",
+        "segundo_anterior": "1000",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lights.cutoff.map.distance",
+        "segundo_anterior": "1004",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lights.cutoff.nonGbuf.distance",
+        "segundo_anterior": "75",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lights.cutoff.specular.distance",
+        "segundo_anterior": "1002",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lights.cutoff.volumetric.distance",
+        "segundo_anterior": "1003",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.corona.size",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.large.corona.range",
+        "segundo_anterior": "1250",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.large.fade",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.large.range",
+        "segundo_anterior": "2500",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.medium.corona.range",
+        "segundo_anterior": "90#127",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.medium.fade",
+        "segundo_anterior": "100",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.medium.range",
+        "segundo_anterior": "800",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.small.corona.range",
+        "segundo_anterior": "400",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.small.fade",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.small.range",
+        "segundo_anterior": "400",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.sphere.expand.end",
+        "segundo_anterior": "500",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.sphere.expand.size.mult",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "lodlight.sphere.expand.start",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.ColorBottom.blue",
+        "segundo_anterior": "0.176",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.ColorBottom.green",
+        "segundo_anterior": "0.129",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.ColorBottom.red",
+        "segundo_anterior": "0.827",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.ColorTop.blue",
+        "segundo_anterior": "0.176",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.ColorTop.green",
+        "segundo_anterior": "0.129",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.ColorTop.red",
+        "segundo_anterior": "0.827",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.ColorBottom.blue",
+        "segundo_anterior": "0.176",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.ColorBottom.green",
+        "segundo_anterior": "0.129",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.ColorBottom.red",
+        "segundo_anterior": "0.827",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.ColorTop.blue",
+        "segundo_anterior": "0.176",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.ColorTop.green",
+        "segundo_anterior": "0.129",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.ColorTop.red",
+        "segundo_anterior": "0.827",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.GlobalAlphaBottom",
+        "segundo_anterior": "0.2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.GlobalAlphaTop",
+        "segundo_anterior": "0.45",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.HoldDuration",
+        "segundo_anterior": "400",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.HorizontalFadeSoftness",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.RampDownDuration",
+        "segundo_anterior": "200",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.RampUpDuration",
+        "segundo_anterior": "75",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.SpriteBaseWidth",
+        "segundo_anterior": "0.27",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.SpriteLength",
+        "segundo_anterior": "0.4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.SpriteTipWidth",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.FP.VerticalFadeOffset",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.GlobalAlphaBottom",
+        "segundo_anterior": "0.2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.GlobalAlphaTop",
+        "segundo_anterior": "0.4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.HoldDuration",
+        "segundo_anterior": "400",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.HorizontalFadeSoftness",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.RampDownDuration",
+        "segundo_anterior": "200",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.RampUpDuration",
+        "segundo_anterior": "75",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.SpriteBaseWidth",
+        "segundo_anterior": "0.2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.SpriteLength",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.SpriteTipWidth",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.DamageOverlay.VerticalFadeOffset",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.Multiplier.nearFogMultiplier",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.brightlight.coronaZBias",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.brightlight.distculled.FadeEnd",
+        "segundo_anterior": "160",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.brightlight.distculled.FadeStart",
+        "segundo_anterior": "120",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.brightlight.globalIntensity",
+        "segundo_anterior": "12",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.brightlight.notdistculled.FadeEnd",
+        "segundo_anterior": "220",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.brightlight.notdistculled.FadeStart",
+        "segundo_anterior": "200",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "misc.brightlight.railwayItensity",
+        "segundo_anterior": "2.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "ped.ambientvolume.baseintensity",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "0.000"
+      },
+      {
+        "chave": "ped.ambientvolume.fadeend",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "20.000"
+      },
+      {
+        "chave": "ped.ambientvolume.fadestart",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "16.000"
+      },
+      {
+        "chave": "ped.ambientvolume.maxstrength",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "ped.incarAmbientScale",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "0.4"
+      },
+      {
+        "chave": "ped.lod.distance.high",
+        "segundo_anterior": "25",
+        "primeiro_aplicado": "25.00"
+      },
+      {
+        "chave": "ped.lod.distance.low",
+        "segundo_anterior": "80",
+        "primeiro_aplicado": "80.00"
+      },
+      {
+        "chave": "ped.lod.distance.medium",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "50.00"
+      },
+      {
+        "chave": "pedFpsLight.color.blue",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedFpsLight.color.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedFpsLight.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedFpsLight.volumeColor.w",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedFpsLight.volumeColor.x",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedFpsLight.volumeColor.y",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedFpsLight.volumeColor.z",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0.500"
+      },
+      {
+        "chave": "pedFpslight.coronaHDR",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedFpslight.coronaSize",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "2.087"
+      },
+      {
+        "chave": "pedFpslight.fade",
+        "segundo_anterior": "20",
+        "primeiro_aplicado": "20.000"
+      },
+      {
+        "chave": "pedFpslight.falloffExp",
+        "segundo_anterior": "128",
+        "primeiro_aplicado": "128.000"
+      },
+      {
+        "chave": "pedFpslight.innerConeAngle",
+        "segundo_anterior": "30",
+        "primeiro_aplicado": "30.000"
+      },
+      {
+        "chave": "pedFpslight.intensity",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "6.000"
+      },
+      {
+        "chave": "pedFpslight.outerConeAngle",
+        "segundo_anterior": "45",
+        "primeiro_aplicado": "45.000"
+      },
+      {
+        "chave": "pedFpslight.radius",
+        "segundo_anterior": "16",
+        "primeiro_aplicado": "16.000"
+      },
+      {
+        "chave": "pedFpslight.shadowFade",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "15.000"
+      },
+      {
+        "chave": "pedFpslight.specularFade",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "10.000"
+      },
+      {
+        "chave": "pedFpslight.volumeExponent",
+        "segundo_anterior": "70",
+        "primeiro_aplicado": "70.000"
+      },
+      {
+        "chave": "pedFpslight.volumeIntensity",
+        "segundo_anterior": "0.05",
+        "primeiro_aplicado": "0.0500"
+      },
+      {
+        "chave": "pedFpslight.volumeSize",
+        "segundo_anterior": "0.4",
+        "primeiro_aplicado": "0.400"
+      },
+      {
+        "chave": "pedLight.color.blue",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedLight.color.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedLight.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedLight.volumeColor.w",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedLight.volumeColor.x",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedLight.volumeColor.y",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedLight.volumeColor.z",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "0.500"
+      },
+      {
+        "chave": "pedincar.lod.distance.high",
+        "segundo_anterior": "7",
+        "primeiro_aplicado": "7.00"
+      },
+      {
+        "chave": "pedlight.coronaHDR",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "1.000"
+      },
+      {
+        "chave": "pedlight.coronaSize",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "2.087"
+      },
+      {
+        "chave": "pedlight.fade",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "20.000"
+      },
+      {
+        "chave": "pedlight.falloffExp",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "32.000"
+      },
+      {
+        "chave": "pedlight.innerConeAngle",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "30.000"
+      },
+      {
+        "chave": "pedlight.intensity",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "6.000"
+      },
+      {
+        "chave": "pedlight.outerConeAngle",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "45.000"
+      },
+      {
+        "chave": "pedlight.radius",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "6.000"
+      },
+      {
+        "chave": "pedlight.shadowFade",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "15.000"
+      },
+      {
+        "chave": "pedlight.specularFade",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "10.000"
+      },
+      {
+        "chave": "pedlight.volumeExponent",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "70.000"
+      },
+      {
+        "chave": "pedlight.volumeIntensity",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "0.300"
+      },
+      {
+        "chave": "pedlight.volumeSize",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "0.400"
+      },
+      {
+        "chave": "plane.controlpanel.light.color.blue",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.controlpanel.light.falloff",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.controlpanel.light.falloff.exponent",
+        "segundo_anterior": "32",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.controlpanel.light.intensity",
+        "segundo_anterior": "3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.left.light.color.green",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.left.light.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.left.light.falloff",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.left.light.falloff.exponent",
+        "segundo_anterior": "32",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.left.light.inner.angle",
+        "segundo_anterior": "60",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.left.light.intensity",
+        "segundo_anterior": "32",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.left.light.outer.angle",
+        "segundo_anterior": "65",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.left.light.rotation",
+        "segundo_anterior": "270.0f",
+        "primeiro_aplicado": "0.0f"
+      },
+      {
+        "chave": "plane.emergency.right.light.color.green",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.right.light.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.right.light.falloff",
+        "segundo_anterior": "8",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.right.light.falloff.exponent",
+        "segundo_anterior": "32",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.right.light.inner.angle",
+        "segundo_anterior": "60",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.right.light.outer.angle",
+        "segundo_anterior": "65",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.emergency.right.light.rotation",
+        "segundo_anterior": "270.0f",
+        "primeiro_aplicado": "0.0f"
+      },
+      {
+        "chave": "plane.insidehull.light.color.blue",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.insidehull.light.color.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.insidehull.light.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.insidehull.light.falloff",
+        "segundo_anterior": "6",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.insidehull.light.falloff.exponent",
+        "segundo_anterior": "4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.insidehull.light.inner.angle",
+        "segundo_anterior": "60",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.insidehull.light.outer.angle",
+        "segundo_anterior": "85",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.poslight.farSize",
+        "segundo_anterior": "15",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.poslight.farStrength",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.poslight.intensity_typeA",
+        "segundo_anterior": "12",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.poslight.intensity_typeB",
+        "segundo_anterior": "12",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.poslight.leftColor.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.poslight.nearSize",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.poslight.nearStrength",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.poslight.radius",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.poslight.rightColor.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whiteheadlight.color.blue",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whiteheadlight.color.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whiteheadlight.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whiteheadlight.farSize",
+        "segundo_anterior": "15",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whiteheadlight.farStrength",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whiteheadlight.intensity",
+        "segundo_anterior": "4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whiteheadlight.nearSize",
+        "segundo_anterior": "1.25",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whiteheadlight.nearStrength",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whiteheadlight.radius",
+        "segundo_anterior": "1.75",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whitetaillight.color.blue",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whitetaillight.color.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whitetaillight.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whitetaillight.farSize",
+        "segundo_anterior": "15",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whitetaillight.farStrength",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whitetaillight.intensity",
+        "segundo_anterior": "6",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whitetaillight.nearSize",
+        "segundo_anterior": "0.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whitetaillight.nearStrength",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "plane.whitetaillight.radius",
+        "segundo_anterior": "1.75",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "procObjects.minRadiusForHeightMap",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "0.4"
+      },
+      {
+        "chave": "rain.gravity.z",
+        "segundo_anterior": "0",
+        "primeiro_aplicado": "-0"
+      },
+      {
+        "chave": "rim.lighting.downmask.angle",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "rim.lighting.main.colour.intensity",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "rim.lighting.offangle.colour.intensity",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "rim.lighting.width.end",
+        "segundo_anterior": "0.9",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "rim.lighting.width.start",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sky.GameCloudSpeed",
+        "segundo_anterior": "5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sky.cloudInscatteringRange",
+        "segundo_anterior": "100",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sky.cloudWarp",
+        "segundo_anterior": "100",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sub.lightOne.color.blue",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sub.lightOne.color.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sub.lightOne.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sub.lightOne.falloffExp",
+        "segundo_anterior": "8",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sub.lightOne.outerConeAngle",
+        "segundo_anterior": "45",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sub.lightOne.radius",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sub.lightTwo.color.blue",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sub.lightTwo.color.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sub.lightTwo.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sub.lightTwo.falloffExp",
+        "segundo_anterior": "8",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sub.lightTwo.outerConeAngle",
+        "segundo_anterior": "45",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "sub.lightTwo.radius",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.amber.color.blue",
+        "segundo_anterior": "0.001",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.amber.color.green",
+        "segundo_anterior": "0.3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.amber.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.dontwalk.color.blue",
+        "segundo_anterior": "0.0001",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.dontwalk.color.green",
+        "segundo_anterior": "0.003",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.dontwalk.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.farFadeEnd",
+        "segundo_anterior": "44",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.farFadeStart",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.green.color.blue",
+        "segundo_anterior": "0.135",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.green.color.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.green.color.red",
+        "segundo_anterior": "0.01",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.near.coronaHDR",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.near.coronaSize",
+        "segundo_anterior": "1.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.near.innerConeAngle",
+        "segundo_anterior": "0.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.near.intensity",
+        "segundo_anterior": "1.75",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.near.na.color.blue",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.near.na.color.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.near.na.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.near.outerConeAngle",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.near.radius",
+        "segundo_anterior": "1.5",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.nearFadeEnd",
+        "segundo_anterior": "75",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.nearFadeStart",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.red.color.blue",
+        "segundo_anterior": "0.0001",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.red.color.green",
+        "segundo_anterior": "0.003",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.red.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.walk.color.blue",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.walk.color.green",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficLight.walk.color.red",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "trafficlight.near.falloffExp",
+        "segundo_anterior": "4",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "train.ambientvolume.intensityscaler",
+        "segundo_anterior": "2",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "train.light.b",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "train.light.fadelength",
+        "segundo_anterior": "50",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "train.light.fadingdistance",
+        "segundo_anterior": "250",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "train.light.falloffmax",
+        "segundo_anterior": "2.1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "train.light.g",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "train.light.intensity",
+        "segundo_anterior": "3",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "train.light.r",
+        "segundo_anterior": "1",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "vehicle.lights.fadeDistance.AO",
+        "segundo_anterior": "150",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "vehicle.lights.fadeDistance.main",
+        "segundo_anterior": "80",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "vehicle.lights.fadeDistance.neon",
+        "segundo_anterior": "80",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "vehicle.lights.fadeDistance.secondary",
+        "segundo_anterior": "40",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "vehicle.lights.fadeDistance.sirens",
+        "segundo_anterior": "150",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "vehicle.lights.fadeLength",
+        "segundo_anterior": "10",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "vehicle.lights.sunset",
+        "segundo_anterior": "25",
+        "primeiro_aplicado": "0"
+      },
+      {
+        "chave": "weather.CycleDuration",
+        "segundo_anterior": "320",
+        "primeiro_aplicado": "240"
+      }
+    ],
+    "repeticoes_originais_preservadas": {
+      "misc.coronas.flareScreenCenterOffsetVerticalSizeMult": [
+        {
+          "linha": 781,
+          "valor": "0"
+        },
+        {
+          "linha": 790,
+          "valor": "0.95"
+        }
+      ],
+      "misc.HiDof.nearBlur": [
+        {
+          "linha": 801,
+          "valor": "1"
+        },
+        {
+          "linha": 805,
+          "valor": "1"
+        }
+      ],
+      "misc.HiDof.midBlur": [
+        {
+          "linha": 802,
+          "valor": "0.2"
+        },
+        {
+          "linha": 806,
+          "valor": "0.2"
+        }
+      ],
+      "misc.HiDof.farBlur": [
+        {
+          "linha": 803,
+          "valor": "1"
+        },
+        {
+          "linha": 807,
+          "valor": "1"
+        }
+      ],
+      "misc.cutscene.nearBlurMin": [
+        {
+          "linha": 804,
+          "valor": "0.2"
+        },
+        {
+          "linha": 808,
+          "valor": "0.2"
+        }
+      ]
+    },
+    "linhas_alteradas": [
+      {
+        "linha_base": 15,
+        "chave": "rain.gravity.z",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "-0"
+      },
+      {
+        "linha_base": 26,
+        "chave": "weather.CycleDuration",
+        "valor_segundo_anterior": "320",
+        "valor_primeiro_aplicado": "240"
+      },
+      {
+        "linha_base": 32,
+        "chave": "sky.cloudWarp",
+        "valor_segundo_anterior": "100",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 33,
+        "chave": "sky.cloudInscatteringRange",
+        "valor_segundo_anterior": "100",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 37,
+        "chave": "sky.GameCloudSpeed",
+        "valor_segundo_anterior": "5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 136,
+        "chave": "car.headlights.angle",
+        "valor_segundo_anterior": "-0.7",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 138,
+        "chave": "car.headlights.global.HeadlightIntensityMult",
+        "valor_segundo_anterior": "5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 139,
+        "chave": "car.headlights.global.HeadlightDistMult",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 140,
+        "chave": "car.headlights.global.ConeInnerAngleMod",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 141,
+        "chave": "car.headlights.global.ConeOuterAngleMod",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 142,
+        "chave": "car.headlights.global.OnlyOneLightMod",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 143,
+        "chave": "car.headlights.global.Fake2LightsAngleMod",
+        "valor_segundo_anterior": "0.95",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 144,
+        "chave": "car.headlights.global.Fake2LightsDisplacementMod",
+        "valor_segundo_anterior": "0.17",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 145,
+        "chave": "car.headlights.submarine.Fake2LightsAngleMod",
+        "valor_segundo_anterior": "0.83",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 147,
+        "chave": "car.headlights.fullbeam.IntensityMult",
+        "valor_segundo_anterior": "1.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 148,
+        "chave": "car.headlights.fullbeam.DistMult",
+        "valor_segundo_anterior": "3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 149,
+        "chave": "car.headlights.fullbeam.CoronaIntensityMult",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 150,
+        "chave": "car.headlights.fullbeam.CoronaSizeMult",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0.1"
+      },
+      {
+        "linha_base": 152,
+        "chave": "car.headlights.aim.dippedbeam.mod",
+        "valor_segundo_anterior": "-0.2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 155,
+        "chave": "car.headlights.player.intensitymult",
+        "valor_segundo_anterior": "1.2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 156,
+        "chave": "car.headlights.player.distmult",
+        "valor_segundo_anterior": "0.4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 157,
+        "chave": "car.headlights.player.exponentmult",
+        "valor_segundo_anterior": "3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 159,
+        "chave": "car.headlights.volume.intensityscale",
+        "valor_segundo_anterior": "0.005",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 160,
+        "chave": "car.headlights.volume.sizescale",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0.1"
+      },
+      {
+        "linha_base": 162,
+        "chave": "car.headlights.volume.outerexponent",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 177,
+        "chave": "heli.poslight.nearStrength",
+        "valor_segundo_anterior": "20",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 178,
+        "chave": "heli.poslight.farStrength",
+        "valor_segundo_anterior": "80",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 179,
+        "chave": "heli.poslight.nearSize",
+        "valor_segundo_anterior": "0.25",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 180,
+        "chave": "heli.poslight.farSize",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 181,
+        "chave": "heli.poslight.intensity_typeA",
+        "valor_segundo_anterior": "12",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 182,
+        "chave": "heli.poslight.intensity_typeB",
+        "valor_segundo_anterior": "6",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 183,
+        "chave": "heli.poslight.radius",
+        "valor_segundo_anterior": "2.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 185,
+        "chave": "heli.poslight.rightColor.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 187,
+        "chave": "heli.poslight.leftColor.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 191,
+        "chave": "heli.whiteheadlight.nearStrength",
+        "valor_segundo_anterior": "15",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 192,
+        "chave": "heli.whiteheadlight.farStrength",
+        "valor_segundo_anterior": "60",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 193,
+        "chave": "heli.whiteheadlight.nearSize",
+        "valor_segundo_anterior": "0.25",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 194,
+        "chave": "heli.whiteheadlight.farSize",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 195,
+        "chave": "heli.whiteheadlight.intensity",
+        "valor_segundo_anterior": "4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 196,
+        "chave": "heli.whiteheadlight.radius",
+        "valor_segundo_anterior": "2.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 198,
+        "chave": "heli.whiteheadlight.color.red",
+        "valor_segundo_anterior": "0.8",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 199,
+        "chave": "heli.whiteheadlight.color.green",
+        "valor_segundo_anterior": "0.9",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 200,
+        "chave": "heli.whiteheadlight.color.blue",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 202,
+        "chave": "heli.whitetaillight.nearStrength",
+        "valor_segundo_anterior": "15",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 203,
+        "chave": "heli.whitetaillight.farStrength",
+        "valor_segundo_anterior": "60",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 204,
+        "chave": "heli.whitetaillight.nearSize",
+        "valor_segundo_anterior": "0.25",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 205,
+        "chave": "heli.whitetaillight.farSize",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 206,
+        "chave": "heli.whitetaillight.intensity",
+        "valor_segundo_anterior": "4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 207,
+        "chave": "heli.whitetaillight.radius",
+        "valor_segundo_anterior": "2.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 208,
+        "chave": "heli.whitetaillight.color.red",
+        "valor_segundo_anterior": "0.8",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 209,
+        "chave": "heli.whitetaillight.color.green",
+        "valor_segundo_anterior": "0.9",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 210,
+        "chave": "heli.whitetaillight.color.blue",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 212,
+        "chave": "heli.interiorlight.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 213,
+        "chave": "heli.interiorlight.color.green",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 214,
+        "chave": "heli.interiorlight.color.blue",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 215,
+        "chave": "heli.interiorlight.intensity",
+        "valor_segundo_anterior": "1.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 216,
+        "chave": "heli.interiorlight.radius",
+        "valor_segundo_anterior": "2.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 218,
+        "chave": "heli.interiorlight.outerConeAngle",
+        "valor_segundo_anterior": "90",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 223,
+        "chave": "heli.interiorlight.coronaHDR",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 224,
+        "chave": "heli.interiorlight.coronaSize",
+        "valor_segundo_anterior": "-0.25",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 226,
+        "chave": "plane.poslight.nearStrength",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 227,
+        "chave": "plane.poslight.farStrength",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 228,
+        "chave": "plane.poslight.nearSize",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 229,
+        "chave": "plane.poslight.farSize",
+        "valor_segundo_anterior": "15",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 230,
+        "chave": "plane.poslight.intensity_typeA",
+        "valor_segundo_anterior": "12",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 231,
+        "chave": "plane.poslight.intensity_typeB",
+        "valor_segundo_anterior": "12",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 232,
+        "chave": "plane.poslight.radius",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 235,
+        "chave": "plane.poslight.rightColor.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 238,
+        "chave": "plane.poslight.leftColor.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 242,
+        "chave": "plane.whiteheadlight.nearStrength",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 243,
+        "chave": "plane.whiteheadlight.farStrength",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 244,
+        "chave": "plane.whiteheadlight.nearSize",
+        "valor_segundo_anterior": "1.25",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 245,
+        "chave": "plane.whiteheadlight.farSize",
+        "valor_segundo_anterior": "15",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 246,
+        "chave": "plane.whiteheadlight.intensity",
+        "valor_segundo_anterior": "4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 247,
+        "chave": "plane.whiteheadlight.radius",
+        "valor_segundo_anterior": "1.75",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 249,
+        "chave": "plane.whiteheadlight.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 250,
+        "chave": "plane.whiteheadlight.color.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 251,
+        "chave": "plane.whiteheadlight.color.blue",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 253,
+        "chave": "plane.whitetaillight.nearStrength",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 254,
+        "chave": "plane.whitetaillight.farStrength",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 255,
+        "chave": "plane.whitetaillight.nearSize",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 256,
+        "chave": "plane.whitetaillight.farSize",
+        "valor_segundo_anterior": "15",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 257,
+        "chave": "plane.whitetaillight.intensity",
+        "valor_segundo_anterior": "6",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 258,
+        "chave": "plane.whitetaillight.radius",
+        "valor_segundo_anterior": "1.75",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 259,
+        "chave": "plane.whitetaillight.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 260,
+        "chave": "plane.whitetaillight.color.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 261,
+        "chave": "plane.whitetaillight.color.blue",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 265,
+        "chave": "plane.controlpanel.light.color.blue",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 266,
+        "chave": "plane.controlpanel.light.intensity",
+        "valor_segundo_anterior": "3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 267,
+        "chave": "plane.controlpanel.light.falloff",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 268,
+        "chave": "plane.controlpanel.light.falloff.exponent",
+        "valor_segundo_anterior": "32",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 270,
+        "chave": "plane.emergency.right.light.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 271,
+        "chave": "plane.emergency.right.light.color.green",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 274,
+        "chave": "plane.emergency.right.light.falloff",
+        "valor_segundo_anterior": "8",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 275,
+        "chave": "plane.emergency.right.light.falloff.exponent",
+        "valor_segundo_anterior": "32",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 276,
+        "chave": "plane.emergency.right.light.inner.angle",
+        "valor_segundo_anterior": "60",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 277,
+        "chave": "plane.emergency.right.light.outer.angle",
+        "valor_segundo_anterior": "65",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 278,
+        "chave": "plane.emergency.right.light.rotation",
+        "valor_segundo_anterior": "270.0f",
+        "valor_primeiro_aplicado": "0.0f"
+      },
+      {
+        "linha_base": 280,
+        "chave": "plane.emergency.left.light.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 281,
+        "chave": "plane.emergency.left.light.color.green",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 283,
+        "chave": "plane.emergency.left.light.intensity",
+        "valor_segundo_anterior": "32",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 284,
+        "chave": "plane.emergency.left.light.falloff",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 285,
+        "chave": "plane.emergency.left.light.falloff.exponent",
+        "valor_segundo_anterior": "32",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 286,
+        "chave": "plane.emergency.left.light.inner.angle",
+        "valor_segundo_anterior": "60",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 287,
+        "chave": "plane.emergency.left.light.outer.angle",
+        "valor_segundo_anterior": "65",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 288,
+        "chave": "plane.emergency.left.light.rotation",
+        "valor_segundo_anterior": "270.0f",
+        "valor_primeiro_aplicado": "0.0f"
+      },
+      {
+        "linha_base": 290,
+        "chave": "plane.insidehull.light.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 291,
+        "chave": "plane.insidehull.light.color.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 292,
+        "chave": "plane.insidehull.light.color.blue",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 294,
+        "chave": "plane.insidehull.light.falloff",
+        "valor_segundo_anterior": "6",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 295,
+        "chave": "plane.insidehull.light.falloff.exponent",
+        "valor_segundo_anterior": "4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 296,
+        "chave": "plane.insidehull.light.inner.angle",
+        "valor_segundo_anterior": "60",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 297,
+        "chave": "plane.insidehull.light.outer.angle",
+        "valor_segundo_anterior": "85",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 356,
+        "chave": "boat.light.interiorshutdowndistance",
+        "valor_segundo_anterior": "100",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 357,
+        "chave": "boat.light.fadelength",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 358,
+        "chave": "boat.light.shutdowndistance",
+        "valor_segundo_anterior": "60",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 364,
+        "chave": "sub.lightOne.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 365,
+        "chave": "sub.lightOne.color.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 366,
+        "chave": "sub.lightOne.color.blue",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 368,
+        "chave": "sub.lightOne.radius",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 369,
+        "chave": "sub.lightOne.falloffExp",
+        "valor_segundo_anterior": "8",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 371,
+        "chave": "sub.lightOne.outerConeAngle",
+        "valor_segundo_anterior": "45",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 375,
+        "chave": "sub.lightTwo.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 376,
+        "chave": "sub.lightTwo.color.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 377,
+        "chave": "sub.lightTwo.color.blue",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 379,
+        "chave": "sub.lightTwo.radius",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 380,
+        "chave": "sub.lightTwo.falloffExp",
+        "valor_segundo_anterior": "8",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 382,
+        "chave": "sub.lightTwo.outerConeAngle",
+        "valor_segundo_anterior": "45",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 386,
+        "chave": "train.light.r",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 387,
+        "chave": "train.light.g",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 388,
+        "chave": "train.light.b",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 389,
+        "chave": "train.light.intensity",
+        "valor_segundo_anterior": "3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 390,
+        "chave": "train.light.falloffmax",
+        "valor_segundo_anterior": "2.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 391,
+        "chave": "train.light.fadingdistance",
+        "valor_segundo_anterior": "250",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 392,
+        "chave": "train.light.fadelength",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 393,
+        "chave": "train.ambientvolume.intensityscaler",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 395,
+        "chave": "car.headlight.day.emissive.on",
+        "valor_segundo_anterior": "100",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 396,
+        "chave": "car.headlight.night.emissive.on",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 397,
+        "chave": "car.headlight.day.emissive.off",
+        "valor_segundo_anterior": "0.05",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 398,
+        "chave": "car.headlight.night.emissive.off",
+        "valor_segundo_anterior": "0.001",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 399,
+        "chave": "car.taillight.day.emissive.on",
+        "valor_segundo_anterior": "140",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 400,
+        "chave": "car.taillight.night.emissive.on",
+        "valor_segundo_anterior": "25",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 401,
+        "chave": "car.taillight.day.emissive.off",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 402,
+        "chave": "car.taillight.night.emissive.off",
+        "valor_segundo_anterior": "0.003",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 407,
+        "chave": "car.reversinglight.day.emissive.on",
+        "valor_segundo_anterior": "100",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 408,
+        "chave": "car.reversinglight.night.emissive.on",
+        "valor_segundo_anterior": "4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 409,
+        "chave": "car.reversinglight.day.emissive.off",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 410,
+        "chave": "car.reversinglight.night.emissive.off",
+        "valor_segundo_anterior": "0.003",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 411,
+        "chave": "car.defaultlight.day.emissive.on",
+        "valor_segundo_anterior": "30",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 412,
+        "chave": "car.defaultlight.night.emissive.on",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 413,
+        "chave": "car.defaultlight.day.emissive.off",
+        "valor_segundo_anterior": "0.05",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 414,
+        "chave": "car.defaultlight.night.emissive.off",
+        "valor_segundo_anterior": "0.003",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 415,
+        "chave": "car.brakelight.day.emissive.on",
+        "valor_segundo_anterior": "175",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 416,
+        "chave": "car.brakelight.night.emissive.on",
+        "valor_segundo_anterior": "40",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 417,
+        "chave": "car.brakelight.day.emissive.off",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 418,
+        "chave": "car.brakelight.night.emissive.off",
+        "valor_segundo_anterior": "0.003",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 419,
+        "chave": "car.middlebrakelight.day.emissive.on",
+        "valor_segundo_anterior": "175",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 420,
+        "chave": "car.middlebrakelight.night.emissive.on",
+        "valor_segundo_anterior": "35",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 421,
+        "chave": "car.middlebrakelight.day.emissive.off",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 422,
+        "chave": "car.middlebrakelight.night.emissive.off",
+        "valor_segundo_anterior": "0.003",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 423,
+        "chave": "car.extralight.day.emissive.on",
+        "valor_segundo_anterior": "60",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 424,
+        "chave": "car.extralight.night.emissive.on",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 425,
+        "chave": "car.extralight.day.emissive.off",
+        "valor_segundo_anterior": "0.001",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 426,
+        "chave": "car.extralight.night.emissive.off",
+        "valor_segundo_anterior": "0.05",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 429,
+        "chave": "car.lod.distance.high",
+        "valor_segundo_anterior": "30",
+        "valor_primeiro_aplicado": "40"
+      },
+      {
+        "linha_base": 430,
+        "chave": "car.lod.distance.low",
+        "valor_segundo_anterior": "130",
+        "valor_primeiro_aplicado": "180"
+      },
+      {
+        "linha_base": 432,
+        "chave": "defaultsearchlight.length",
+        "valor_segundo_anterior": "100",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 433,
+        "chave": "defaultsearchlight.offset",
+        "valor_segundo_anterior": "-0.13",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 434,
+        "chave": "defaultsearchlight.color.red",
+        "valor_segundo_anterior": "0.03",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 435,
+        "chave": "defaultsearchlight.color.green",
+        "valor_segundo_anterior": "0.03",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 436,
+        "chave": "defaultsearchlight.color.blue",
+        "valor_segundo_anterior": "0.03",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 437,
+        "chave": "defaultsearchlight.mainLightInfo.falloffScale",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 438,
+        "chave": "defaultsearchlight.mainLightInfo.falloffExp",
+        "valor_segundo_anterior": "8",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 440,
+        "chave": "defaultsearchlight.mainLightInfo.outerAngle",
+        "valor_segundo_anterior": "5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 441,
+        "chave": "defaultsearchlight.mainLightInfo.globalIntensity",
+        "valor_segundo_anterior": "4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 442,
+        "chave": "defaultsearchlight.mainLightInfo.lightIntensityScale",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 443,
+        "chave": "defaultsearchlight.mainLightInfo.volumeIntensityScale",
+        "valor_segundo_anterior": "0.125",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 444,
+        "chave": "defaultsearchlight.mainLightInfo.volumeSizeScale",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 449,
+        "chave": "defaultsearchlight.mainLightInfo.outerVolumeFallOffExponent",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 450,
+        "chave": "defaultsearchlight.mainLightInfo.enable",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 451,
+        "chave": "defaultsearchlight.mainLightInfo.specular",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 453,
+        "chave": "defaultsearchlight.mainLightInfo.volume",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 454,
+        "chave": "defaultsearchlight.mainLightInfo.coronaIntensity",
+        "valor_segundo_anterior": "6",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 455,
+        "chave": "defaultsearchlight.mainLightInfo.coronaIntensityFar",
+        "valor_segundo_anterior": "12",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 456,
+        "chave": "defaultsearchlight.mainLightInfo.coronaSize",
+        "valor_segundo_anterior": "3.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 457,
+        "chave": "defaultsearchlight.mainLightInfo.coronaSizeFar",
+        "valor_segundo_anterior": "35",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 458,
+        "chave": "defaultsearchlight.mainLightInfo.coronaZBias",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 459,
+        "chave": "defaultsearchlight.mainLightInfo.coronaOffset",
+        "valor_segundo_anterior": "0.4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 460,
+        "chave": "defaultsearchlight.mainLightInfo.lightFadeDist",
+        "valor_segundo_anterior": "40",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 462,
+        "chave": "helisearchlight.length",
+        "valor_segundo_anterior": "120",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 463,
+        "chave": "helisearchlight.offset",
+        "valor_segundo_anterior": "-0.13",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 464,
+        "chave": "helisearchlight.color.red",
+        "valor_segundo_anterior": "0.04",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 465,
+        "chave": "helisearchlight.color.green",
+        "valor_segundo_anterior": "0.04",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 466,
+        "chave": "helisearchlight.color.blue",
+        "valor_segundo_anterior": "0.04",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 467,
+        "chave": "helisearchlight.mainLightInfo.falloffScale",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 468,
+        "chave": "helisearchlight.mainLightInfo.falloffExp",
+        "valor_segundo_anterior": "8",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 470,
+        "chave": "helisearchlight.mainLightInfo.outerAngle",
+        "valor_segundo_anterior": "5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 471,
+        "chave": "helisearchlight.mainLightInfo.globalIntensity",
+        "valor_segundo_anterior": "4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 472,
+        "chave": "helisearchlight.mainLightInfo.lightIntensityScale",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 473,
+        "chave": "helisearchlight.mainLightInfo.volumeIntensityScale",
+        "valor_segundo_anterior": "0.125",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 474,
+        "chave": "helisearchlight.mainLightInfo.volumeSizeScale",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 475,
+        "chave": "helisearchlight.mainLightInfo.outerVolumeColor.color.red",
+        "valor_segundo_anterior": "0.01",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 476,
+        "chave": "helisearchlight.mainLightInfo.outerVolumeColor.color.green",
+        "valor_segundo_anterior": "0.01",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 477,
+        "chave": "helisearchlight.mainLightInfo.outerVolumeColor.color.blue",
+        "valor_segundo_anterior": "0.01",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 479,
+        "chave": "helisearchlight.mainLightInfo.outerVolumeFallOffExponent",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 480,
+        "chave": "helisearchlight.mainLightInfo.enable",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 481,
+        "chave": "helisearchlight.mainLightInfo.specular",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 483,
+        "chave": "helisearchlight.mainLightInfo.volume",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 484,
+        "chave": "helisearchlight.mainLightInfo.coronaIntensity",
+        "valor_segundo_anterior": "100",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 485,
+        "chave": "helisearchlight.mainLightInfo.coronaIntensityFar",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 486,
+        "chave": "helisearchlight.mainLightInfo.coronaSize",
+        "valor_segundo_anterior": "2.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 487,
+        "chave": "helisearchlight.mainLightInfo.coronaSizeFar",
+        "valor_segundo_anterior": "35",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 488,
+        "chave": "helisearchlight.mainLightInfo.coronaZBias",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 489,
+        "chave": "helisearchlight.mainLightInfo.coronaOffset",
+        "valor_segundo_anterior": "0.4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 490,
+        "chave": "helisearchlight.mainLightInfo.lightFadeDist",
+        "valor_segundo_anterior": "40",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 492,
+        "chave": "boatsearchlight.length",
+        "valor_segundo_anterior": "100",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 493,
+        "chave": "boatsearchlight.offset",
+        "valor_segundo_anterior": "-0.11",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 494,
+        "chave": "boatsearchlight.color.red",
+        "valor_segundo_anterior": "0.04",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 495,
+        "chave": "boatsearchlight.color.green",
+        "valor_segundo_anterior": "0.04",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 496,
+        "chave": "boatsearchlight.color.blue",
+        "valor_segundo_anterior": "0.04",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 497,
+        "chave": "boatsearchlight.mainLightInfo.falloffScale",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 498,
+        "chave": "boatsearchlight.mainLightInfo.falloffExp",
+        "valor_segundo_anterior": "8",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 500,
+        "chave": "boatsearchlight.mainLightInfo.outerAngle",
+        "valor_segundo_anterior": "5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 501,
+        "chave": "boatsearchlight.mainLightInfo.globalIntensity",
+        "valor_segundo_anterior": "4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 502,
+        "chave": "boatsearchlight.mainLightInfo.lightIntensityScale",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 503,
+        "chave": "boatsearchlight.mainLightInfo.volumeIntensityScale",
+        "valor_segundo_anterior": "0.125",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 504,
+        "chave": "boatsearchlight.mainLightInfo.volumeSizeScale",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 505,
+        "chave": "boatsearchlight.mainLightInfo.outerVolumeColor.color.red",
+        "valor_segundo_anterior": "0.01",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 506,
+        "chave": "boatsearchlight.mainLightInfo.outerVolumeColor.color.green",
+        "valor_segundo_anterior": "0.01",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 507,
+        "chave": "boatsearchlight.mainLightInfo.outerVolumeColor.color.blue",
+        "valor_segundo_anterior": "0.01",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 509,
+        "chave": "boatsearchlight.mainLightInfo.outerVolumeFallOffExponent",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 510,
+        "chave": "boatsearchlight.mainLightInfo.enable",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 511,
+        "chave": "boatsearchlight.mainLightInfo.specular",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 513,
+        "chave": "boatsearchlight.mainLightInfo.volume",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 514,
+        "chave": "boatsearchlight.mainLightInfo.coronaIntensity",
+        "valor_segundo_anterior": "6",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 515,
+        "chave": "boatsearchlight.mainLightInfo.coronaIntensityFar",
+        "valor_segundo_anterior": "12",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 516,
+        "chave": "boatsearchlight.mainLightInfo.coronaSize",
+        "valor_segundo_anterior": "1.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 517,
+        "chave": "boatsearchlight.mainLightInfo.coronaSizeFar",
+        "valor_segundo_anterior": "20",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 518,
+        "chave": "boatsearchlight.mainLightInfo.coronaZBias",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 519,
+        "chave": "boatsearchlight.mainLightInfo.coronaOffset",
+        "valor_segundo_anterior": "0.235",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 520,
+        "chave": "boatsearchlight.mainLightInfo.lightFadeDist",
+        "valor_segundo_anterior": "40",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 522,
+        "chave": "trafficLight.red.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 523,
+        "chave": "trafficLight.red.color.green",
+        "valor_segundo_anterior": "0.003",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 524,
+        "chave": "trafficLight.red.color.blue",
+        "valor_segundo_anterior": "0.0001",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 525,
+        "chave": "trafficLight.amber.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 526,
+        "chave": "trafficLight.amber.color.green",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 527,
+        "chave": "trafficLight.amber.color.blue",
+        "valor_segundo_anterior": "0.001",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 528,
+        "chave": "trafficLight.green.color.red",
+        "valor_segundo_anterior": "0.01",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 529,
+        "chave": "trafficLight.green.color.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 530,
+        "chave": "trafficLight.green.color.blue",
+        "valor_segundo_anterior": "0.135",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 531,
+        "chave": "trafficLight.walk.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 532,
+        "chave": "trafficLight.walk.color.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 533,
+        "chave": "trafficLight.walk.color.blue",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 534,
+        "chave": "trafficLight.dontwalk.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 535,
+        "chave": "trafficLight.dontwalk.color.green",
+        "valor_segundo_anterior": "0.003",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 536,
+        "chave": "trafficLight.dontwalk.color.blue",
+        "valor_segundo_anterior": "0.0001",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 538,
+        "chave": "trafficLight.near.na.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 539,
+        "chave": "trafficLight.near.na.color.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 540,
+        "chave": "trafficLight.near.na.color.blue",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 541,
+        "chave": "trafficLight.near.intensity",
+        "valor_segundo_anterior": "1.75",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 542,
+        "chave": "trafficLight.near.radius",
+        "valor_segundo_anterior": "1.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 543,
+        "chave": "trafficlight.near.falloffExp",
+        "valor_segundo_anterior": "4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 544,
+        "chave": "trafficLight.near.innerConeAngle",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 545,
+        "chave": "trafficLight.near.outerConeAngle",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 546,
+        "chave": "trafficLight.near.coronaHDR",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 547,
+        "chave": "trafficLight.near.coronaSize",
+        "valor_segundo_anterior": "1.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 549,
+        "chave": "trafficLight.farFadeStart",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 550,
+        "chave": "trafficLight.farFadeEnd",
+        "valor_segundo_anterior": "44",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 551,
+        "chave": "trafficLight.nearFadeStart",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 552,
+        "chave": "trafficLight.nearFadeEnd",
+        "valor_segundo_anterior": "75",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 555,
+        "chave": "imposter.color.blendBias",
+        "valor_segundo_anterior": "64",
+        "valor_primeiro_aplicado": "128"
+      },
+      {
+        "linha_base": 556,
+        "chave": "imposter.color.size1",
+        "valor_segundo_anterior": "64",
+        "valor_primeiro_aplicado": "128"
+      },
+      {
+        "linha_base": 570,
+        "chave": "ped.ambientvolume.maxstrength",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 571,
+        "chave": "ped.ambientvolume.fadestart",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "16.000"
+      },
+      {
+        "linha_base": 572,
+        "chave": "ped.ambientvolume.fadeend",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "20.000"
+      },
+      {
+        "linha_base": 573,
+        "chave": "ped.ambientvolume.baseintensity",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "0.000"
+      },
+      {
+        "linha_base": 574,
+        "chave": "ped.incarAmbientScale",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "0.4"
+      },
+      {
+        "linha_base": 576,
+        "chave": "pedLight.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 577,
+        "chave": "pedLight.color.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 578,
+        "chave": "pedLight.color.blue",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 579,
+        "chave": "pedlight.intensity",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "6.000"
+      },
+      {
+        "linha_base": 580,
+        "chave": "pedlight.radius",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "6.000"
+      },
+      {
+        "linha_base": 581,
+        "chave": "pedlight.innerConeAngle",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "30.000"
+      },
+      {
+        "linha_base": 582,
+        "chave": "pedlight.outerConeAngle",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "45.000"
+      },
+      {
+        "linha_base": 583,
+        "chave": "pedlight.coronaHDR",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 584,
+        "chave": "pedlight.coronaSize",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "2.087"
+      },
+      {
+        "linha_base": 585,
+        "chave": "pedlight.falloffExp",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "32.000"
+      },
+      {
+        "linha_base": 586,
+        "chave": "pedlight.volumeIntensity",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "0.300"
+      },
+      {
+        "linha_base": 587,
+        "chave": "pedlight.volumeSize",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "0.400"
+      },
+      {
+        "linha_base": 588,
+        "chave": "pedlight.volumeExponent",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "70.000"
+      },
+      {
+        "linha_base": 589,
+        "chave": "pedLight.volumeColor.x",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 590,
+        "chave": "pedLight.volumeColor.y",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 591,
+        "chave": "pedLight.volumeColor.z",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "0.500"
+      },
+      {
+        "linha_base": 592,
+        "chave": "pedLight.volumeColor.w",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 593,
+        "chave": "pedlight.fade",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "20.000"
+      },
+      {
+        "linha_base": 594,
+        "chave": "pedlight.shadowFade",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "15.000"
+      },
+      {
+        "linha_base": 595,
+        "chave": "pedlight.specularFade",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "10.000"
+      },
+      {
+        "linha_base": 597,
+        "chave": "pedFpsLight.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 598,
+        "chave": "pedFpsLight.color.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 599,
+        "chave": "pedFpsLight.color.blue",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 600,
+        "chave": "pedFpslight.intensity",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "6.000"
+      },
+      {
+        "linha_base": 601,
+        "chave": "pedFpslight.radius",
+        "valor_segundo_anterior": "16",
+        "valor_primeiro_aplicado": "16.000"
+      },
+      {
+        "linha_base": 602,
+        "chave": "pedFpslight.innerConeAngle",
+        "valor_segundo_anterior": "30",
+        "valor_primeiro_aplicado": "30.000"
+      },
+      {
+        "linha_base": 603,
+        "chave": "pedFpslight.outerConeAngle",
+        "valor_segundo_anterior": "45",
+        "valor_primeiro_aplicado": "45.000"
+      },
+      {
+        "linha_base": 604,
+        "chave": "pedFpslight.coronaHDR",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 605,
+        "chave": "pedFpslight.coronaSize",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "2.087"
+      },
+      {
+        "linha_base": 606,
+        "chave": "pedFpslight.falloffExp",
+        "valor_segundo_anterior": "128",
+        "valor_primeiro_aplicado": "128.000"
+      },
+      {
+        "linha_base": 607,
+        "chave": "pedFpslight.volumeIntensity",
+        "valor_segundo_anterior": "0.05",
+        "valor_primeiro_aplicado": "0.0500"
+      },
+      {
+        "linha_base": 608,
+        "chave": "pedFpslight.volumeSize",
+        "valor_segundo_anterior": "0.4",
+        "valor_primeiro_aplicado": "0.400"
+      },
+      {
+        "linha_base": 609,
+        "chave": "pedFpslight.volumeExponent",
+        "valor_segundo_anterior": "70",
+        "valor_primeiro_aplicado": "70.000"
+      },
+      {
+        "linha_base": 610,
+        "chave": "pedFpsLight.volumeColor.x",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 611,
+        "chave": "pedFpsLight.volumeColor.y",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 612,
+        "chave": "pedFpsLight.volumeColor.z",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0.500"
+      },
+      {
+        "linha_base": 613,
+        "chave": "pedFpsLight.volumeColor.w",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "1.000"
+      },
+      {
+        "linha_base": 614,
+        "chave": "pedFpslight.fade",
+        "valor_segundo_anterior": "20",
+        "valor_primeiro_aplicado": "20.000"
+      },
+      {
+        "linha_base": 615,
+        "chave": "pedFpslight.shadowFade",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "15.000"
+      },
+      {
+        "linha_base": 616,
+        "chave": "pedFpslight.specularFade",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "10.000"
+      },
+      {
+        "linha_base": 618,
+        "chave": "ped.lod.distance.high",
+        "valor_segundo_anterior": "25",
+        "valor_primeiro_aplicado": "25.00"
+      },
+      {
+        "linha_base": 619,
+        "chave": "ped.lod.distance.medium",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "50.00"
+      },
+      {
+        "linha_base": 620,
+        "chave": "ped.lod.distance.low",
+        "valor_segundo_anterior": "80",
+        "valor_primeiro_aplicado": "80.00"
+      },
+      {
+        "linha_base": 621,
+        "chave": "pedincar.lod.distance.high",
+        "valor_segundo_anterior": "7",
+        "valor_primeiro_aplicado": "7.00"
+      },
+      {
+        "linha_base": 645,
+        "chave": "cam.aimweapon.blur.zoom.y",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0.0"
+      },
+      {
+        "linha_base": 647,
+        "chave": "cam.aimweapon.blur.zoom.w",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0.0"
+      },
+      {
+        "linha_base": 649,
+        "chave": "cam.aimweapon.blur.damage.y",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 651,
+        "chave": "cam.aimweapon.blur.damage.w",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0.0"
+      },
+      {
+        "linha_base": 652,
+        "chave": "cam.aimweapon.blur.damage.time",
+        "valor_segundo_anterior": "1000",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 653,
+        "chave": "cam.aimweapon.blur.interp",
+        "valor_segundo_anterior": "0.05",
+        "valor_primeiro_aplicado": "0.0"
+      },
+      {
+        "linha_base": 654,
+        "chave": "cam.aimweapon.blur.damage.attacktime",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0.0"
+      },
+      {
+        "linha_base": 655,
+        "chave": "cam.aimweapon.blur.damage.decaytime",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0.0"
+      },
+      {
+        "linha_base": 684,
+        "chave": "distantlights.size",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "1"
+      },
+      {
+        "linha_base": 686,
+        "chave": "distantlights.sizeMin",
+        "valor_segundo_anterior": "8",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 687,
+        "chave": "distantlights.sizeUpscale",
+        "valor_segundo_anterior": "1.2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 689,
+        "chave": "distantlights.flicker",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 690,
+        "chave": "distantlights.twinkleAmount",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 691,
+        "chave": "distantlights.twinkleSpeed",
+        "valor_segundo_anterior": "0.05",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 692,
+        "chave": "distantlights.carlightZOffset",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 693,
+        "chave": "distantlights.hourStart",
+        "valor_segundo_anterior": "19",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 694,
+        "chave": "distantlights.hourEnd",
+        "valor_segundo_anterior": "7",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 697,
+        "chave": "distantlights.sizeDistStart",
+        "valor_segundo_anterior": "0.0001",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 698,
+        "chave": "distantlights.sizeDist",
+        "valor_segundo_anterior": "0.0001",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 700,
+        "chave": "distantlights.speed0",
+        "valor_segundo_anterior": "0.2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 701,
+        "chave": "distantlights.speed1",
+        "valor_segundo_anterior": "0.35",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 702,
+        "chave": "distantlights.speed2",
+        "valor_segundo_anterior": "0.4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 703,
+        "chave": "distantlights.speed3",
+        "valor_segundo_anterior": "0.6",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 705,
+        "chave": "distantlights.density0Spacing",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 706,
+        "chave": "distantlights.density15Spacing",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 707,
+        "chave": "distantlights.speed0Speed",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 708,
+        "chave": "distantlights.speed3Speed",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 709,
+        "chave": "distantlights.randomizeSpeed.sp",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 710,
+        "chave": "distantlights.randomizeSpacing.sp",
+        "valor_segundo_anterior": "0.25",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 711,
+        "chave": "distantlights.randomizeSpeed.mp",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 712,
+        "chave": "distantlights.randomizeSpacing.mp",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 717,
+        "chave": "distantlights.carlight1.spacing.sp",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 718,
+        "chave": "distantlights.carlight1.speed.sp",
+        "valor_segundo_anterior": "40",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 719,
+        "chave": "distantlights.carlight1.spacing.mp",
+        "valor_segundo_anterior": "3.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 720,
+        "chave": "distantlights.carlight1.speed.mp",
+        "valor_segundo_anterior": "35",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 721,
+        "chave": "distantlights.carlight1.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 722,
+        "chave": "distantlights.carlight1.color.green",
+        "valor_segundo_anterior": "0.95",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 723,
+        "chave": "distantlights.carlight1.color.blue",
+        "valor_segundo_anterior": "0.9",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 725,
+        "chave": "distantlights.carlight2.spacing.sp",
+        "valor_segundo_anterior": "3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 726,
+        "chave": "distantlights.carlight2.speed.sp",
+        "valor_segundo_anterior": "20",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 727,
+        "chave": "distantlights.carlight2.spacing.mp",
+        "valor_segundo_anterior": "3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 728,
+        "chave": "distantlights.carlight2.speed.mp",
+        "valor_segundo_anterior": "20",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 729,
+        "chave": "distantlights.carlight2.color.red",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 730,
+        "chave": "distantlights.carlight2.color.green",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 740,
+        "chave": "emissive.night.start.time",
+        "valor_segundo_anterior": "19",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 741,
+        "chave": "emissive.night.end.time",
+        "valor_segundo_anterior": "7",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 748,
+        "chave": "misc.Multiplier.nearFogMultiplier",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 811,
+        "chave": "misc.DamageOverlay.RampUpDuration",
+        "valor_segundo_anterior": "75",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 812,
+        "chave": "misc.DamageOverlay.HoldDuration",
+        "valor_segundo_anterior": "400",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 813,
+        "chave": "misc.DamageOverlay.RampDownDuration",
+        "valor_segundo_anterior": "200",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 814,
+        "chave": "misc.DamageOverlay.ColorBottom.red",
+        "valor_segundo_anterior": "0.827",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 815,
+        "chave": "misc.DamageOverlay.ColorBottom.green",
+        "valor_segundo_anterior": "0.129",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 816,
+        "chave": "misc.DamageOverlay.ColorBottom.blue",
+        "valor_segundo_anterior": "0.176",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 817,
+        "chave": "misc.DamageOverlay.ColorTop.red",
+        "valor_segundo_anterior": "0.827",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 818,
+        "chave": "misc.DamageOverlay.ColorTop.green",
+        "valor_segundo_anterior": "0.129",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 819,
+        "chave": "misc.DamageOverlay.ColorTop.blue",
+        "valor_segundo_anterior": "0.176",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 820,
+        "chave": "misc.DamageOverlay.GlobalAlphaBottom",
+        "valor_segundo_anterior": "0.2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 821,
+        "chave": "misc.DamageOverlay.GlobalAlphaTop",
+        "valor_segundo_anterior": "0.4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 822,
+        "chave": "misc.DamageOverlay.SpriteLength",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 823,
+        "chave": "misc.DamageOverlay.SpriteBaseWidth",
+        "valor_segundo_anterior": "0.2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 824,
+        "chave": "misc.DamageOverlay.SpriteTipWidth",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 825,
+        "chave": "misc.DamageOverlay.HorizontalFadeSoftness",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 826,
+        "chave": "misc.DamageOverlay.VerticalFadeOffset",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 829,
+        "chave": "misc.DamageOverlay.FP.RampUpDuration",
+        "valor_segundo_anterior": "75",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 830,
+        "chave": "misc.DamageOverlay.FP.HoldDuration",
+        "valor_segundo_anterior": "400",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 831,
+        "chave": "misc.DamageOverlay.FP.RampDownDuration",
+        "valor_segundo_anterior": "200",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 832,
+        "chave": "misc.DamageOverlay.FP.ColorBottom.red",
+        "valor_segundo_anterior": "0.827",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 833,
+        "chave": "misc.DamageOverlay.FP.ColorBottom.green",
+        "valor_segundo_anterior": "0.129",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 834,
+        "chave": "misc.DamageOverlay.FP.ColorBottom.blue",
+        "valor_segundo_anterior": "0.176",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 835,
+        "chave": "misc.DamageOverlay.FP.ColorTop.red",
+        "valor_segundo_anterior": "0.827",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 836,
+        "chave": "misc.DamageOverlay.FP.ColorTop.green",
+        "valor_segundo_anterior": "0.129",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 837,
+        "chave": "misc.DamageOverlay.FP.ColorTop.blue",
+        "valor_segundo_anterior": "0.176",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 838,
+        "chave": "misc.DamageOverlay.FP.GlobalAlphaBottom",
+        "valor_segundo_anterior": "0.2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 839,
+        "chave": "misc.DamageOverlay.FP.GlobalAlphaTop",
+        "valor_segundo_anterior": "0.45",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 840,
+        "chave": "misc.DamageOverlay.FP.SpriteLength",
+        "valor_segundo_anterior": "0.4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 841,
+        "chave": "misc.DamageOverlay.FP.SpriteBaseWidth",
+        "valor_segundo_anterior": "0.27",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 842,
+        "chave": "misc.DamageOverlay.FP.SpriteTipWidth",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 843,
+        "chave": "misc.DamageOverlay.FP.HorizontalFadeSoftness",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 844,
+        "chave": "misc.DamageOverlay.FP.VerticalFadeOffset",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 911,
+        "chave": "Adaptation.sun.exposure.tweak",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "-2"
+      },
+      {
+        "linha_base": 913,
+        "chave": "cloudgen.frequency",
+        "valor_segundo_anterior": "0.2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 914,
+        "chave": "cloudgen.scale",
+        "valor_segundo_anterior": "48",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 915,
+        "chave": "cloudgen.edge.detail.scale",
+        "valor_segundo_anterior": "15",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 916,
+        "chave": "cloudgen.overlay.detail.scale",
+        "valor_segundo_anterior": "8",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 918,
+        "chave": "cloud.speed.large",
+        "valor_segundo_anterior": "20",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 919,
+        "chave": "cloud.speed.small",
+        "valor_segundo_anterior": "15",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 920,
+        "chave": "cloud.speed.overall",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 921,
+        "chave": "cloud.speed.edge",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 922,
+        "chave": "cloud.speed.hats",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 936,
+        "chave": "rim.lighting.width.start",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 937,
+        "chave": "rim.lighting.width.end",
+        "valor_segundo_anterior": "0.9",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 939,
+        "chave": "rim.lighting.downmask.angle",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 940,
+        "chave": "rim.lighting.main.colour.intensity",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 941,
+        "chave": "rim.lighting.offangle.colour.intensity",
+        "valor_segundo_anterior": "0.3",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 947,
+        "chave": "lights.cutoff.distance",
+        "valor_segundo_anterior": "1000",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 949,
+        "chave": "lights.cutoff.specular.distance",
+        "valor_segundo_anterior": "1002",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 950,
+        "chave": "lights.cutoff.volumetric.distance",
+        "valor_segundo_anterior": "1003",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 951,
+        "chave": "lights.cutoff.nonGbuf.distance",
+        "valor_segundo_anterior": "75",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 952,
+        "chave": "lights.cutoff.map.distance",
+        "valor_segundo_anterior": "1004",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 954,
+        "chave": "bloom.threshold.min",
+        "valor_segundo_anterior": "0.4",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 957,
+        "chave": "bloom.threshold.power",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 959,
+        "chave": "bloom.blurblendmult.large",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 960,
+        "chave": "bloom.blurblendmult.med",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 961,
+        "chave": "bloom.blurblendmult.small",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 989,
+        "chave": "lodlight.small.range",
+        "valor_segundo_anterior": "400",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 990,
+        "chave": "lodlight.medium.range",
+        "valor_segundo_anterior": "800",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 991,
+        "chave": "lodlight.large.range",
+        "valor_segundo_anterior": "2500",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 993,
+        "chave": "lodlight.small.fade",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 994,
+        "chave": "lodlight.medium.fade",
+        "valor_segundo_anterior": "100",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 995,
+        "chave": "lodlight.large.fade",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 997,
+        "chave": "lodlight.small.corona.range",
+        "valor_segundo_anterior": "400",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 998,
+        "chave": "lodlight.medium.corona.range",
+        "valor_segundo_anterior": "90#127",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 999,
+        "chave": "lodlight.large.corona.range",
+        "valor_segundo_anterior": "1250",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1001,
+        "chave": "lodlight.corona.size",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1003,
+        "chave": "lodlight.sphere.expand.size.mult",
+        "valor_segundo_anterior": "2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1004,
+        "chave": "lodlight.sphere.expand.start",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1005,
+        "chave": "lodlight.sphere.expand.end",
+        "valor_segundo_anterior": "500",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1007,
+        "chave": "misc.brightlight.distculled.FadeStart",
+        "valor_segundo_anterior": "120",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1008,
+        "chave": "misc.brightlight.distculled.FadeEnd",
+        "valor_segundo_anterior": "160",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1009,
+        "chave": "misc.brightlight.notdistculled.FadeStart",
+        "valor_segundo_anterior": "200",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1010,
+        "chave": "misc.brightlight.notdistculled.FadeEnd",
+        "valor_segundo_anterior": "220",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1011,
+        "chave": "misc.brightlight.globalIntensity",
+        "valor_segundo_anterior": "12",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1012,
+        "chave": "misc.brightlight.railwayItensity",
+        "valor_segundo_anterior": "2.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1013,
+        "chave": "misc.brightlight.coronaZBias",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1016,
+        "chave": "vehicle.lights.sunset",
+        "valor_segundo_anterior": "25",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1018,
+        "chave": "vehicle.lights.fadeDistance.main",
+        "valor_segundo_anterior": "80",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1019,
+        "chave": "vehicle.lights.fadeDistance.secondary",
+        "valor_segundo_anterior": "40",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1020,
+        "chave": "vehicle.lights.fadeDistance.sirens",
+        "valor_segundo_anterior": "150",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1021,
+        "chave": "vehicle.lights.fadeDistance.AO",
+        "valor_segundo_anterior": "150",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1022,
+        "chave": "vehicle.lights.fadeDistance.neon",
+        "valor_segundo_anterior": "80",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1023,
+        "chave": "vehicle.lights.fadeLength",
+        "valor_segundo_anterior": "10",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1027,
+        "chave": "dark.light.color.red",
+        "valor_segundo_anterior": "0.6",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1028,
+        "chave": "dark.light.color.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1029,
+        "chave": "dark.light.color.blue",
+        "valor_segundo_anterior": "0.6",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1030,
+        "chave": "dark.light.intensity",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1031,
+        "chave": "dark.light.radius",
+        "valor_segundo_anterior": "50",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1032,
+        "chave": "dark.light.falloffExp",
+        "valor_segundo_anterior": "128",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1034,
+        "chave": "dark.light.outerConeAngle",
+        "valor_segundo_anterior": "40",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1036,
+        "chave": "dark.light.coronaSize",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1037,
+        "chave": "dark.light.offset.x",
+        "valor_segundo_anterior": "0.2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1039,
+        "chave": "dark.light.offset.z",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1040,
+        "chave": "dark.fpv.light.offset.x",
+        "valor_segundo_anterior": "0.2",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1042,
+        "chave": "dark.fpv.light.offset.z",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1055,
+        "chave": "dark.lightDirBase",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1057,
+        "chave": "dark.secLight.enable",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1058,
+        "chave": "dark.secLight.color.red",
+        "valor_segundo_anterior": "0.6",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1059,
+        "chave": "dark.secLight.color.green",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1060,
+        "chave": "dark.secLight.color.blue",
+        "valor_segundo_anterior": "0.6",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1061,
+        "chave": "dark.secLight.intensity",
+        "valor_segundo_anterior": "0.1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1062,
+        "chave": "dark.secLight.radius",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1063,
+        "chave": "dark.secLight.falloffExp",
+        "valor_segundo_anterior": "32",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1065,
+        "chave": "dark.secLight.outerConeAngle",
+        "valor_segundo_anterior": "90",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1066,
+        "chave": "dark.secLight.coronaHDR",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1067,
+        "chave": "dark.secLight.coronaSize",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1071,
+        "chave": "dark.secLight.useSpec",
+        "valor_segundo_anterior": "1",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1072,
+        "chave": "dark.secLight.lightDirBase",
+        "valor_segundo_anterior": "0.5",
+        "valor_primeiro_aplicado": "0"
+      },
+      {
+        "linha_base": 1205,
+        "chave": "procObjects.minRadiusForHeightMap",
+        "valor_segundo_anterior": "0",
+        "valor_primeiro_aplicado": "0.4"
+      }
+    ]
+  },
+  "tcinstbox_types": {
+    "registros_resultado": 28,
+    "registros_atualizados": 28,
+    "ids_duplicados": 0,
+    "percentage_e_range": "Valores do primeiro: todos zero, inclusive no ID 1609496462.",
+    "aabb": "Limites do primeiro aplicados aos registros da base."
+  },
+  "validacao": "Todas as ocorrencias do DAT comparadas com o primeiro ou com as exclusivas do segundo. Todos os campos XML comparados por ID com a sobreposicao primeiro->segundo. ZIP verificado. Sem teste em jogo."
+}
