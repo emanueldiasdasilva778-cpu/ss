@@ -1,0 +1,5305 @@
+{
+  "tipo": "Ajuste conservador para teste de renderizacao; sem validacao dentro do FiveM.",
+  "fontes": {
+    "timecycle_zip_sha256": "dd6610c78df04e8120f26e04aee047775996b7c5e6e04c4635b7e07a00248891",
+    "settings_sha256": "ddb079419cfeaf5a64eac8bef4f196e64c47ce42b5427ee614c07e95354f2412"
+  },
+  "arquivos": {
+    "gta5_settings.xml": {
+      "mudancas": [
+        {
+          "campo": "LodScale",
+          "antes": "0.000000",
+          "depois": "0.500000"
+        },
+        {
+          "campo": "PedLodBias",
+          "antes": "-0.150000",
+          "depois": "1.000000"
+        },
+        {
+          "campo": "VehicleLodBias",
+          "antes": "0.000000",
+          "depois": "1.000000"
+        }
+      ],
+      "observacao": "GrassQuality=0 e MaxLodScale=0 preservados. LodScale=0.5 pode aumentar tambem o detalhe de objetos/vegetacao. Maior LOD pode custar FPS."
+    },
+    "visualsettings.dat": {
+      "mudancas": 0,
+      "sha256": "593af80d12f16950b3f1f19bf520dd4552cabfde87b19ffd61b70bf2d1c4c5fd",
+      "observacao": "Mesclagem anterior preservada integralmente."
+    },
+    "tcinstbox_types.meta": {
+      "mudancas": 0,
+      "sha256": "3e94e7552ccac715b36507827c148cd6ef44a16e63cbae0a722c5f3677cb06f4",
+      "observacao": "Mesclagem anterior preservada integralmente."
+    },
+    "timecycle/TASVY.xml": {
+      "raiz": "timecycle_keyframe_data",
+      "correcoes": [
+        {
+          "regiao": "GLOBAL",
+          "renomeacoes": [
+            {
+              "de": "water_reflection_lod_range_slod2_start",
+              "para": "water_reflection_lod_range_slod3_start",
+              "ocorrencia": 2
+            },
+            {
+              "de": "water_reflection_lod_range_slod2_end",
+              "para": "water_reflection_lod_range_slod3_end",
+              "ocorrencia": 2
+            },
+            {
+              "de": "lod_mult_slod2",
+              "para": "lod_mult_slod3",
+              "ocorrencia": 2
+            }
+          ],
+          "duplicatas_removidas": [
+            "postfx_exposure",
+            "postfx_exposure_min",
+            "postfx_exposure_max",
+            "postfx_bright_pass_thresh_width",
+            "postfx_bright_pass_thresh",
+            "postfx_intensity_bloom",
+            "postfx_correct_col_r",
+            "postfx_correct_col_g",
+            "postfx_correct_col_b",
+            "postfx_correct_cutoff",
+            "postfx_shift_col_r",
+            "postfx_shift_col_g",
+            "postfx_shift_col_b",
+            "postfx_shift_cutoff",
+            "postfx_desaturation",
+            "postfx_noise",
+            "postfx_noise_size",
+            "postfx_tonemap_filmic_override_dark",
+            "postfx_tonemap_filmic_exposure_dark",
+            "postfx_tonemap_filmic_a",
+            "postfx_tonemap_filmic_b",
+            "postfx_tonemap_filmic_c",
+            "postfx_tonemap_filmic_d",
+            "postfx_tonemap_filmic_e",
+            "postfx_tonemap_filmic_f",
+            "postfx_tonemap_filmic_w",
+            "postfx_tonemap_filmic_override_bright",
+            "postfx_tonemap_filmic_exposure_bright",
+            "postfx_tonemap_filmic_a_bright",
+            "postfx_tonemap_filmic_b_bright",
+            "postfx_tonemap_filmic_c_bright",
+            "postfx_tonemap_filmic_d_bright",
+            "postfx_tonemap_filmic_e_bright",
+            "postfx_tonemap_filmic_f_bright",
+            "postfx_tonemap_filmic_w_bright",
+            "postfx_vignetting_intensity",
+            "postfx_vignetting_radius",
+            "postfx_vignetting_contrast",
+            "postfx_vignetting_col_r",
+            "postfx_vignetting_col_g",
+            "postfx_vignetting_col_b",
+            "postfx_grad_top_col_r",
+            "postfx_grad_top_col_g",
+            "postfx_grad_top_col_b",
+            "postfx_grad_middle_col_r",
+            "postfx_grad_middle_col_g",
+            "postfx_grad_middle_col_b",
+            "postfx_grad_bottom_col_r",
+            "postfx_grad_bottom_col_g",
+            "postfx_grad_bottom_col_b",
+            "postfx_grad_midpoint",
+            "postfx_grad_top_middle_midpoint",
+            "postfx_grad_middle_bottom_midpoint",
+            "postfx_scanlineintensity",
+            "postfx_scanline_frequency_0",
+            "postfx_scanline_frequency_1",
+            "postfx_scanline_speed",
+            "nv_light_dir_mult",
+            "nv_light_amb_down_mult",
+            "nv_light_amb_up_mult",
+            "nv_lowLum",
+            "nv_highLum",
+            "nv_topLum",
+            "nv_scalerLum",
+            "nv_offsetLum",
+            "nv_offsetLowLum",
+            "nv_offsetHighLum",
+            "nv_noiseLum",
+            "nv_noiseLowLum",
+            "nv_noiseHighLum",
+            "nv_bloomLum",
+            "nv_colorLum_r",
+            "nv_colorLum_g",
+            "nv_colorLum_b",
+            "nv_colorLowLum_r",
+            "nv_colorLowLum_g",
+            "nv_colorLowLum_b",
+            "nv_colorHighLum_r",
+            "nv_colorHighLum_g",
+            "nv_colorHighLum_b",
+            "hh_startRange",
+            "hh_farRange",
+            "hh_minIntensity",
+            "hh_maxIntensity",
+            "hh_displacementU",
+            "hh_displacementV",
+            "hh_tex1UScale",
+            "hh_tex1VScale",
+            "hh_tex1UOffset",
+            "hh_tex1VOffset",
+            "hh_tex2UScale",
+            "hh_tex2VScale",
+            "hh_tex2UOffset",
+            "hh_tex2VOffset",
+            "hh_tex1UFrequencyOffset",
+            "hh_tex1UFrequency",
+            "hh_tex1UAmplitude",
+            "hh_tex1VScrollingSpeed",
+            "hh_tex2UFrequencyOffset",
+            "hh_tex2UFrequency",
+            "hh_tex2UAmplitude",
+            "hh_tex2VScrollingSpeed"
+          ],
+          "curvas_substituidas": [
+            {
+              "campo": "sky_azimuth_east_col_b",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.2588",
+                "0.4607",
+                "0.5225",
+                "0.6934",
+                "0.6919",
+                "0.9395",
+                "0.7095",
+                "0.5020",
+                "0.6104",
+                "0.3821",
+                "0.4019",
+                "0.1509",
+                "0.2588"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_east_col_g",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.1487",
+                "0.2566",
+                "0.8311",
+                "0.9229",
+                "0.9429",
+                "0.5215",
+                "0.3135",
+                "0.2859",
+                "0.4507",
+                "0.3313",
+                "0.2959",
+                "0.1000",
+                "0.1487"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_east_col_r",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0823",
+                "0.1078",
+                "1.0020",
+                "0.9507",
+                "0.9688",
+                "0.3289",
+                "0.0862",
+                "0.1097",
+                "0.3057",
+                "0.2725",
+                "0.2450",
+                "0.0764",
+                "0.0823"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_transition_col_b",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.2588",
+                "0.3411",
+                "0.7095",
+                "0.5313",
+                "0.6919",
+                "0.9395",
+                "0.5684",
+                "0.7627",
+                "0.6509",
+                "0.7227",
+                "0.4253",
+                "0.1880",
+                "0.2588"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_transition_col_g",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.1487",
+                "0.2234",
+                "0.5723",
+                "0.4878",
+                "0.6294",
+                "0.5215",
+                "0.3921",
+                "0.6436",
+                "0.5352",
+                "0.5938",
+                "0.5059",
+                "0.1725",
+                "0.1487"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_transition_col_r",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0823",
+                "0.1371",
+                "0.5435",
+                "0.4368",
+                "0.5728",
+                "0.3289",
+                "0.2273",
+                "0.5547",
+                "0.4351",
+                "0.4253",
+                "0.6519",
+                "0.1526",
+                "0.0823"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_west_col_b",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.2588",
+                "0.2742",
+                "0.2725",
+                "0.3506",
+                "0.3704",
+                "0.9395",
+                "0.7095",
+                "0.6436",
+                "0.4214",
+                "0.3235",
+                "0.0020",
+                "0.0020",
+                "0.0764"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_west_col_g",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.1487",
+                "0.1332",
+                "0.2018",
+                "0.2996",
+                "0.3350",
+                "0.5215",
+                "0.5059",
+                "0.8135",
+                "0.7017",
+                "0.7852",
+                "0.4019",
+                "0.1078",
+                "0.1742"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_west_col_r",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0823",
+                "0.0510",
+                "0.1470",
+                "0.2255",
+                "0.2996",
+                "0.3289",
+                "0.3252",
+                "0.9600",
+                "1.0020",
+                "1.0020",
+                "1.0020",
+                "0.3704",
+                "0.2527"
+              ]
+            },
+            {
+              "campo": "sky_hdr",
+              "antes": [
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2"
+              ],
+              "depois": [
+                "0.2000",
+                "1.5000",
+                "5.2969",
+                "13.0000",
+                "24.0000",
+                "38.0000",
+                "32.0000",
+                "32.0000",
+                "20.0000",
+                "8.0000",
+                "3.0000",
+                "2.0000",
+                "0.2000"
+              ]
+            },
+            {
+              "campo": "sky_zenith_col_b",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0569",
+                "0.1509",
+                "0.2195",
+                "0.2018",
+                "0.3411",
+                "0.3821",
+                "0.7212",
+                "1.0020",
+                "0.1803",
+                "0.1509",
+                "0.1880",
+                "0.4917",
+                "0.0569"
+              ]
+            },
+            {
+              "campo": "sky_zenith_col_g",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0294",
+                "0.0804",
+                "0.1371",
+                "0.1353",
+                "0.1919",
+                "0.2057",
+                "0.2389",
+                "0.4529",
+                "0.1215",
+                "0.0843",
+                "0.0706",
+                "0.2057",
+                "0.0294"
+              ]
+            },
+            {
+              "campo": "sky_zenith_col_r",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0176",
+                "0.0412",
+                "0.0862",
+                "0.0882",
+                "0.1255",
+                "0.0412",
+                "0.0039",
+                "0.0020",
+                "0.0627",
+                "0.0647",
+                "0.0039",
+                "0.0020",
+                "0.0176"
+              ]
+            },
+            {
+              "campo": "sky_zenith_transition_col_b",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0569",
+                "0.2216",
+                "0.5000",
+                "0.6309",
+                "0.6919",
+                "0.6724",
+                "0.7803",
+                "1.0020",
+                "0.4390",
+                "0.6016",
+                "0.4412",
+                "0.3113",
+                "0.1509"
+              ]
+            },
+            {
+              "campo": "sky_zenith_transition_col_g",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0294",
+                "0.1118",
+                "0.3428",
+                "0.3860",
+                "0.4490",
+                "0.3313",
+                "0.2859",
+                "0.4839",
+                "0.2466",
+                "0.4761",
+                "0.3035",
+                "0.2096",
+                "0.0529"
+              ]
+            },
+            {
+              "campo": "sky_zenith_transition_col_r",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0176",
+                "0.0685",
+                "0.2333",
+                "0.2096",
+                "0.2216",
+                "0.1509",
+                "0.0000",
+                "0.0020",
+                "0.1880",
+                "0.3274",
+                "0.1664",
+                "0.0020",
+                "0.0098"
+              ]
+            }
+          ],
+          "campos_zerados": [
+            {
+              "campo": "fog_alpha",
+              "antes": [
+                "1.0000",
+                "1.00000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000"
+              ]
+            },
+            {
+              "campo": "fog_density",
+              "antes": [
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000"
+              ]
+            },
+            {
+              "campo": "fog_haze_alpha",
+              "antes": [
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000"
+              ]
+            },
+            {
+              "campo": "fog_haze_density",
+              "antes": [
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000"
+              ]
+            },
+            {
+              "campo": "fogray_intensity",
+              "antes": [
+                "0.0000",
+                "0.0000",
+                "0.6000",
+                "0.6500",
+                "0.7000",
+                "0.7000",
+                "0.7000",
+                "0.7000",
+                "0.7000",
+                "0.6500",
+                "0.6000",
+                "0.0000",
+                "0.0000"
+              ]
+            },
+            {
+              "campo": "fogvolume_density_scalar",
+              "antes": [
+                "0.1100",
+                "0.1000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.1000",
+                "0.1100"
+              ]
+            },
+            {
+              "campo": "fogvolume_density_scalar_interior",
+              "antes": [
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000"
+              ]
+            },
+            {
+              "campo": "fogvolume_fog_scaler",
+              "antes": [
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800"
+              ]
+            },
+            {
+              "campo": "postfx_intensity_bloom",
+              "antes": [
+                "1.0217",
+                "0.0217",
+                "0.0522",
+                "0.0217",
+                "0.0282",
+                "0.0217",
+                "0.0217",
+                "0.0217",
+                "0.0282",
+                "0.0217",
+                "0.0217",
+                "0.0217",
+                "0.0217"
+              ]
+            }
+          ]
+        },
+        {
+          "regiao": "URBAN",
+          "renomeacoes": [
+            {
+              "de": "water_reflection_lod_range_slod2_start",
+              "para": "water_reflection_lod_range_slod3_start",
+              "ocorrencia": 2
+            },
+            {
+              "de": "water_reflection_lod_range_slod2_end",
+              "para": "water_reflection_lod_range_slod3_end",
+              "ocorrencia": 2
+            },
+            {
+              "de": "lod_mult_slod2",
+              "para": "lod_mult_slod3",
+              "ocorrencia": 2
+            }
+          ],
+          "duplicatas_removidas": [
+            "postfx_exposure",
+            "postfx_exposure_min",
+            "postfx_exposure_max",
+            "postfx_bright_pass_thresh_width",
+            "postfx_bright_pass_thresh",
+            "postfx_intensity_bloom",
+            "postfx_correct_col_r",
+            "postfx_correct_col_g",
+            "postfx_correct_col_b",
+            "postfx_correct_cutoff",
+            "postfx_shift_col_r",
+            "postfx_shift_col_g",
+            "postfx_shift_col_b",
+            "postfx_shift_cutoff",
+            "postfx_desaturation",
+            "postfx_noise",
+            "postfx_noise_size",
+            "postfx_tonemap_filmic_override_dark",
+            "postfx_tonemap_filmic_exposure_dark",
+            "postfx_tonemap_filmic_a",
+            "postfx_tonemap_filmic_b",
+            "postfx_tonemap_filmic_c",
+            "postfx_tonemap_filmic_d",
+            "postfx_tonemap_filmic_e",
+            "postfx_tonemap_filmic_f",
+            "postfx_tonemap_filmic_w",
+            "postfx_tonemap_filmic_override_bright",
+            "postfx_tonemap_filmic_exposure_bright",
+            "postfx_tonemap_filmic_a_bright",
+            "postfx_tonemap_filmic_b_bright",
+            "postfx_tonemap_filmic_c_bright",
+            "postfx_tonemap_filmic_d_bright",
+            "postfx_tonemap_filmic_e_bright",
+            "postfx_tonemap_filmic_f_bright",
+            "postfx_tonemap_filmic_w_bright",
+            "postfx_vignetting_intensity",
+            "postfx_vignetting_radius",
+            "postfx_vignetting_contrast",
+            "postfx_vignetting_col_r",
+            "postfx_vignetting_col_g",
+            "postfx_vignetting_col_b",
+            "postfx_grad_top_col_r",
+            "postfx_grad_top_col_g",
+            "postfx_grad_top_col_b",
+            "postfx_grad_middle_col_r",
+            "postfx_grad_middle_col_g",
+            "postfx_grad_middle_col_b",
+            "postfx_grad_bottom_col_r",
+            "postfx_grad_bottom_col_g",
+            "postfx_grad_bottom_col_b",
+            "postfx_grad_midpoint",
+            "postfx_grad_top_middle_midpoint",
+            "postfx_grad_middle_bottom_midpoint",
+            "postfx_scanlineintensity",
+            "postfx_scanline_frequency_0",
+            "postfx_scanline_frequency_1",
+            "postfx_scanline_speed",
+            "nv_light_dir_mult",
+            "nv_light_amb_down_mult",
+            "nv_light_amb_up_mult",
+            "nv_lowLum",
+            "nv_highLum",
+            "nv_topLum",
+            "nv_scalerLum",
+            "nv_offsetLum",
+            "nv_offsetLowLum",
+            "nv_offsetHighLum",
+            "nv_noiseLum",
+            "nv_noiseLowLum",
+            "nv_noiseHighLum",
+            "nv_bloomLum",
+            "nv_colorLum_r",
+            "nv_colorLum_g",
+            "nv_colorLum_b",
+            "nv_colorLowLum_r",
+            "nv_colorLowLum_g",
+            "nv_colorLowLum_b",
+            "nv_colorHighLum_r",
+            "nv_colorHighLum_g",
+            "nv_colorHighLum_b",
+            "hh_startRange",
+            "hh_farRange",
+            "hh_minIntensity",
+            "hh_maxIntensity",
+            "hh_displacementU",
+            "hh_displacementV",
+            "hh_tex1UScale",
+            "hh_tex1VScale",
+            "hh_tex1UOffset",
+            "hh_tex1VOffset",
+            "hh_tex2UScale",
+            "hh_tex2VScale",
+            "hh_tex2UOffset",
+            "hh_tex2VOffset",
+            "hh_tex1UFrequencyOffset",
+            "hh_tex1UFrequency",
+            "hh_tex1UAmplitude",
+            "hh_tex1VScrollingSpeed",
+            "hh_tex2UFrequencyOffset",
+            "hh_tex2UFrequency",
+            "hh_tex2UAmplitude",
+            "hh_tex2VScrollingSpeed"
+          ],
+          "curvas_substituidas": [
+            {
+              "campo": "sky_azimuth_east_col_b",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.2588",
+                "0.6978",
+                "0.4529",
+                "0.7476",
+                "1.0020",
+                "1.0020",
+                "0.5811",
+                "0.7813",
+                "1.0020",
+                "0.4529",
+                "0.2411",
+                "0.1902",
+                "0.1902"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_east_col_g",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.1487",
+                "0.3035",
+                "0.8096",
+                "0.8643",
+                "0.8960",
+                "0.5586",
+                "0.3743",
+                "0.3545",
+                "0.6094",
+                "0.3860",
+                "0.1235",
+                "0.1078",
+                "0.1078"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_east_col_r",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0823",
+                "0.0020",
+                "1.0020",
+                "0.9600",
+                "0.8311",
+                "0.3506",
+                "0.1823",
+                "0.0020",
+                "0.1310",
+                "0.3113",
+                "0.0685",
+                "0.0412",
+                "0.0412"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_transition_col_b",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.2588",
+                "0.3621",
+                "0.6016",
+                "0.7979",
+                "0.8604",
+                "1.0020",
+                "0.7310",
+                "0.8213",
+                "0.6802",
+                "0.7227",
+                "0.4019",
+                "0.1980",
+                "0.1980"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_transition_col_g",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.1487",
+                "0.1509",
+                "0.5430",
+                "0.7476",
+                "0.8135",
+                "0.5103",
+                "0.5142",
+                "0.5352",
+                "0.5645",
+                "0.5586",
+                "0.5225",
+                "0.2605",
+                "0.1353"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_transition_col_r",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0823",
+                "0.0020",
+                "0.4646",
+                "0.6685",
+                "0.8018",
+                "0.3035",
+                "0.3584",
+                "0.3467",
+                "0.4490",
+                "0.4917",
+                "0.7310",
+                "0.3621",
+                "0.2920"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_west_col_b",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.2588",
+                "0.2803",
+                "0.4329",
+                "0.5801",
+                "0.6519",
+                "1.0020",
+                "0.6133",
+                "0.9810",
+                "0.3428",
+                "0.2411",
+                "0.0020",
+                "0.2742",
+                "0.0216"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_west_col_g",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.1487",
+                "0.0961",
+                "0.2920",
+                "0.5684",
+                "0.4761",
+                "0.5728",
+                "0.5508",
+                "0.9185",
+                "0.5313",
+                "0.5645",
+                "0.4839",
+                "0.0275",
+                "0.2057"
+              ]
+            },
+            {
+              "campo": "sky_azimuth_west_col_r",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0823",
+                "0.0020",
+                "0.2057",
+                "0.5518",
+                "0.3975",
+                "0.3428",
+                "0.4839",
+                "0.7935",
+                "0.8311",
+                "1.0020",
+                "1.0020",
+                "0.5601",
+                "0.4019"
+              ]
+            },
+            {
+              "campo": "sky_hdr",
+              "antes": [
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2",
+                "0.2"
+              ],
+              "depois": [
+                "0.2000",
+                "1.0000",
+                "5.3125",
+                "13.0547",
+                "23.5625",
+                "45.0000",
+                "32.0000",
+                "26.0000",
+                "20.5938",
+                "14.0000",
+                "5.3086",
+                "2.0000",
+                "0.1000"
+              ]
+            },
+            {
+              "campo": "sky_zenith_col_b",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0216",
+                "0.6602",
+                "0.3213",
+                "0.5103",
+                "0.4019",
+                "0.7227",
+                "0.4019",
+                "0.4529",
+                "0.4529",
+                "0.3704",
+                "0.5811",
+                "0.1823",
+                "0.1823"
+              ]
+            },
+            {
+              "campo": "sky_zenith_col_g",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0216",
+                "0.2333",
+                "0.1647",
+                "0.2566",
+                "0.1392",
+                "0.3506",
+                "0.2018",
+                "0.1902",
+                "0.2333",
+                "0.2134",
+                "0.2134",
+                "0.0804",
+                "0.0804"
+              ]
+            },
+            {
+              "campo": "sky_zenith_col_r",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0216",
+                "0.0020",
+                "0.0745",
+                "0.0724",
+                "0.0176",
+                "0.0020",
+                "0.0372",
+                "0.0020",
+                "0.0020",
+                "0.0412",
+                "0.0020",
+                "0.0020",
+                "0.0020"
+              ]
+            },
+            {
+              "campo": "sky_zenith_transition_col_b",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0216",
+                "0.5313",
+                "0.6519",
+                "0.6919",
+                "0.6768",
+                "0.5811",
+                "0.4917",
+                "0.6802",
+                "0.4529",
+                "0.3428",
+                "0.6133",
+                "0.4214",
+                "0.4214"
+              ]
+            },
+            {
+              "campo": "sky_zenith_transition_col_g",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0216",
+                "0.1703",
+                "0.5313",
+                "0.3821",
+                "0.4114",
+                "0.3584",
+                "0.2450",
+                "0.2842",
+                "0.2372",
+                "0.1392",
+                "0.4175",
+                "0.2333",
+                "0.2333"
+              ]
+            },
+            {
+              "campo": "sky_zenith_transition_col_r",
+              "antes": [
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030",
+                "0.030"
+              ],
+              "depois": [
+                "0.0216",
+                "0.0372",
+                "0.3665",
+                "0.0724",
+                "0.2156",
+                "0.1626",
+                "0.0569",
+                "0.0020",
+                "0.0098",
+                "0.0020",
+                "0.2450",
+                "0.0020",
+                "0.0020"
+              ]
+            }
+          ],
+          "campos_zerados": [
+            {
+              "campo": "fog_alpha",
+              "antes": [
+                "1.0000",
+                "1.00000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000"
+              ]
+            },
+            {
+              "campo": "fog_density",
+              "antes": [
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000"
+              ]
+            },
+            {
+              "campo": "fog_haze_alpha",
+              "antes": [
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000",
+                "15.0000"
+              ]
+            },
+            {
+              "campo": "fog_haze_density",
+              "antes": [
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000"
+              ]
+            },
+            {
+              "campo": "fogray_intensity",
+              "antes": [
+                "0.0000",
+                "0.0000",
+                "0.6000",
+                "0.6500",
+                "0.7000",
+                "0.7000",
+                "0.7000",
+                "0.7000",
+                "0.7000",
+                "0.6500",
+                "0.6000",
+                "0.0000",
+                "0.0000"
+              ]
+            },
+            {
+              "campo": "fogvolume_density_scalar",
+              "antes": [
+                "0.1100",
+                "0.1000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.0000",
+                "0.1000",
+                "0.1100"
+              ]
+            },
+            {
+              "campo": "fogvolume_density_scalar_interior",
+              "antes": [
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000",
+                "1.0000"
+              ]
+            },
+            {
+              "campo": "fogvolume_fog_scaler",
+              "antes": [
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800",
+                "0.9800"
+              ]
+            },
+            {
+              "campo": "postfx_intensity_bloom",
+              "antes": [
+                "1.0217",
+                "0.0217",
+                "0.0522",
+                "0.0217",
+                "0.0282",
+                "0.0217",
+                "0.0217",
+                "0.0217",
+                "0.0282",
+                "0.0217",
+                "0.0217",
+                "0.0217",
+                "0.0217"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "timecycle/timecycle_mods_1.xml": {
+      "raiz": "timecycle_modifier_data",
+      "correcoes": [
+        {
+          "contagens_corrigidas": [
+            {
+              "modifier": "nextgen",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "NG_first",
+              "antes": "3",
+              "depois": 0
+            },
+            {
+              "modifier": "whitenightlighting",
+              "antes": "6",
+              "depois": 0
+            },
+            {
+              "modifier": "motionblur",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "cloudzone",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "NoAmbientmult_interior",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "FullAmbientmult_interior",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "StreetLightingJunction",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "StreetLightingtraffic",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_NoAmbientmult",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_NoAmbientmult_art",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_FullAmbientmult",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_FULLAmbientmult_art",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_FULLAmbientmult_both",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_NoAmbientmult_both",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "underwater_deep_clear",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "underwater",
+              "antes": "97",
+              "depois": 0
+            },
+            {
+              "modifier": "underwater_deep",
+              "antes": "72",
+              "depois": 0
+            },
+            {
+              "modifier": "li",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "NoAmbientmult",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "superDARK",
+              "antes": "3",
+              "depois": 0
+            },
+            {
+              "modifier": "CAMERA_BW",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "Forest",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "micheal",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "TREVOR",
+              "antes": "7",
+              "depois": 0
+            },
+            {
+              "modifier": "FRANKLIN",
+              "antes": "13",
+              "depois": 0
+            },
+            {
+              "modifier": "Tunnel",
+              "antes": "13",
+              "depois": 0
+            },
+            {
+              "modifier": "carpark",
+              "antes": "18",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_abattoir",
+              "antes": "67",
+              "depois": 0
+            },
+            {
+              "modifier": "Vagos",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "cops",
+              "antes": "18",
+              "depois": 0
+            },
+            {
+              "modifier": "Bikers",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "BikersSPLASH",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "VagosSPLASH",
+              "antes": "21",
+              "depois": 0
+            },
+            {
+              "modifier": "CopsSPLASH",
+              "antes": "22",
+              "depois": 0
+            },
+            {
+              "modifier": "VAGOS_new_garage",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "VAGOS_new_hangout",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_jewel",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "frankilnsAUNTS_new",
+              "antes": "37",
+              "depois": 0
+            },
+            {
+              "modifier": "frankilnsAUNTS_SUNdir",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "StreetLighting",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_tunnels",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_yellowtunnels",
+              "antes": "55",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_tunnels_hole",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_tunnels_ditch",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "Paleto",
+              "antes": "5",
+              "depois": 0
+            },
+            {
+              "modifier": "new_bank",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_lesters",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "reducewaterREF",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "garage",
+              "antes": "12",
+              "depois": 0
+            },
+            {
+              "modifier": "NewMicheal",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "NewMichealupstairs",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "NewMichealstoilet",
+              "antes": "18",
+              "depois": 0
+            },
+            {
+              "modifier": "NewMichealgirly",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_port",
+              "antes": "51",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_salton",
+              "antes": "68",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_salton_bottom",
+              "antes": "37",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_river",
+              "antes": "57",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_resevoir",
+              "antes": "65",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_muddy",
+              "antes": "61",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_hills",
+              "antes": "61",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_silverlake",
+              "antes": "51",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_silty",
+              "antes": "60",
+              "depois": 0
+            },
+            {
+              "modifier": "FIB_interview",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_station_unfinished",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "cashdepot",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "cashdepotEMERGENCY",
+              "antes": "36",
+              "depois": 0
+            },
+            {
+              "modifier": "FrankilinsHOUSEhills",
+              "antes": "19",
+              "depois": 0
+            },
+            {
+              "modifier": "HicksbarNEW",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "SALTONSEA",
+              "antes": "59",
+              "depois": 0
+            },
+            {
+              "modifier": "TUNNEL_green",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "NewMicheal_night",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_shore",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "damage",
+              "antes": "11",
+              "depois": 0
+            },
+            {
+              "modifier": "hitped",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "dying",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "overwater",
+              "antes": "6",
+              "depois": 0
+            },
+            {
+              "modifier": "TUNNEL_yellow",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "buildingTOP",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_lab",
+              "antes": "89",
+              "depois": 0
+            },
+            {
+              "modifier": "cinema",
+              "antes": "36",
+              "depois": 0
+            },
+            {
+              "modifier": "fireDEPT",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "ranch",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "TUNNEL_white",
+              "antes": "36",
+              "depois": 0
+            },
+            {
+              "modifier": "mb",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "V_recycle_mainroom",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "V_recycle_dark",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "V_recycle_light",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "lightning_weak",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "lightning_strong",
+              "antes": "13",
+              "depois": 0
+            },
+            {
+              "modifier": "lightning_cloud",
+              "antes": "5",
+              "depois": 0
+            },
+            {
+              "modifier": "gunclubrange",
+              "antes": "36",
+              "depois": 0
+            },
+            {
+              "modifier": "Multipayer_spectatorCam",
+              "antes": "18",
+              "depois": 0
+            },
+            {
+              "modifier": "Sniper",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "scope_zoom_in",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "scope_zoom_out",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "crane_cam",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "Trevors_room",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "Hint_cam",
+              "antes": "16",
+              "depois": 0
+            },
+            {
+              "modifier": "venice_canal_tunnel",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "blackNwhite",
+              "antes": "22",
+              "depois": 0
+            },
+            {
+              "modifier": "projector",
+              "antes": "12",
+              "depois": 0
+            },
+            {
+              "modifier": "paleto_opt",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "warehouse",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "sleeping",
+              "antes": "10",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_garage",
+              "antes": "19",
+              "depois": 0
+            },
+            {
+              "modifier": "crane_cam_cinematic",
+              "antes": "7",
+              "depois": 0
+            },
+            {
+              "modifier": "TUNNEL_orange",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "traffic_skycam",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "powerstation",
+              "antes": "7",
+              "depois": 0
+            },
+            {
+              "modifier": "SAWMILL",
+              "antes": "9",
+              "depois": 0
+            },
+            {
+              "modifier": "LODmult_global_reduce",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "LODmult_HD_orphan_reduce",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "LODmult_HD_orphan_LOD_reduce",
+              "antes": "3",
+              "depois": 0
+            },
+            {
+              "modifier": "LODmult_LOD_reduce",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "LODmult_SLOD1_reduce",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "LODmult_SLOD2_reduce",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "LODmult_SLOD3_reduce",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "NewMicheal_upstairs",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "micheals_lightsOFF",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "telescope",
+              "antes": "15",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER _lab_cooling",
+              "antes": "95",
+              "depois": 0
+            },
+            {
+              "modifier": "baseTONEMAPPING",
+              "antes": "16",
+              "depois": 0
+            },
+            {
+              "modifier": "new_stripper_changing",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "prologue_ending_fog",
+              "antes": "25",
+              "depois": 0
+            },
+            {
+              "modifier": "graveyard_shootout",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_posh_hairdresser",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "V_strip_office",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "sunglasses",
+              "antes": "13",
+              "depois": 0
+            },
+            {
+              "modifier": "vespucci_garage",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "carpark_dt1_03",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "tunnel_id1_11",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "reducelightingcost",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "NOrain",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "downtown_polluted",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "morgue_dark",
+              "antes": "44",
+              "depois": 0
+            },
+            {
+              "modifier": "CS3_rail_tunnel",
+              "antes": "19",
+              "depois": 0
+            },
+            {
+              "modifier": "new_tunnels_entrance",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "spectator1",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "spectator2",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "spectator3",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "spectator4",
+              "antes": "36",
+              "depois": 0
+            },
+            {
+              "modifier": "spectator5",
+              "antes": "63",
+              "depois": 0
+            },
+            {
+              "modifier": "spectator6",
+              "antes": "43",
+              "depois": 0
+            },
+            {
+              "modifier": "spectator7",
+              "antes": "48",
+              "depois": 0
+            },
+            {
+              "modifier": "spectator8",
+              "antes": "37",
+              "depois": 0
+            },
+            {
+              "modifier": "spectator9",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "spectator10",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_NOdirectLight",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_militaryPOOP",
+              "antes": "62",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_ornate_bank",
+              "antes": "43",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_ornate_bank_safe",
+              "antes": "46",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_ornate_bank_entrance",
+              "antes": "38",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_ornate_bank_office",
+              "antes": "46",
+              "depois": 0
+            },
+            {
+              "modifier": "LODmult_global_reduce_NOHD",
+              "antes": "6",
+              "depois": 0
+            },
+            {
+              "modifier": "interior_WATER_lighting",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "eyeINtheSKY",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "resvoire_reflection",
+              "antes": "6",
+              "depois": 0
+            },
+            {
+              "modifier": "NO_weather",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "prologue_ext_art_amb",
+              "antes": "12",
+              "depois": 0
+            },
+            {
+              "modifier": "prologue_shootout",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "heathaze",
+              "antes": "22",
+              "depois": 0
+            },
+            {
+              "modifier": "KT_underpass",
+              "antes": "25",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_nowaterREF",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "carMOD_underpass",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "refit",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "NO_streetAmbient",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "NO_coronas",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "epsilion",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_refmap_poolside",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "FORdoron_delete",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "NO_fog_alpha",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "V_strip_nofog",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "METRO_Tunnels",
+              "antes": "59",
+              "depois": 0
+            },
+            {
+              "modifier": "METRO_Tunnels_entrance",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "METRO_platform",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "STRIP_stage",
+              "antes": "55",
+              "depois": 0
+            },
+            {
+              "modifier": "STRIP_office",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "STRIP_changing",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_NO_fogALPHA",
+              "antes": "3",
+              "depois": 0
+            },
+            {
+              "modifier": "STRIP_nofog",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_streetlighting",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "ch2_tunnel_whitelight",
+              "antes": "6",
+              "depois": 0
+            },
+            {
+              "modifier": "AmbientPUSH",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "SANDY_desert",
+              "antes": "13",
+              "depois": 0
+            },
+            {
+              "modifier": "ship_lighting",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "powerplant_nightlight",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "paleto_nightlight",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "militarybase_nightlight",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "sandyshore_nightlight",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_refmap_off",
+              "antes": "13",
+              "depois": 0
+            },
+            {
+              "modifier": "trailer_explosion_optimise",
+              "antes": "19",
+              "depois": 0
+            },
+            {
+              "modifier": "nervousRON_fog",
+              "antes": "7",
+              "depois": 0
+            },
+            {
+              "modifier": "DONT_overide_sunpos",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "gallery_refmod",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "multiplayer_ped_fight",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "ship_explosion_underwater",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "EXTRA_bouncelight",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "secret_camera",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "canyon_mission",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "gorge_reflection_gpu",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "subBASE_water_ref",
+              "antes": "13",
+              "depois": 0
+            },
+            {
+              "modifier": "poolsidewaterreflection2",
+              "antes": "13",
+              "depois": 0
+            },
+            {
+              "modifier": "CUSTOM_streetlight",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "ufo",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "ship_explosion_underwater",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "lab_none_exit",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "FinaleBankexit",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "prologue_reflection_opt",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "tunnel_entrance",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "tunnel_entrance_INT",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "id1_11_tunnel",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "reflection_correct_ambient",
+              "antes": "3",
+              "depois": 0
+            },
+            {
+              "modifier": "scanline_cam_cheap",
+              "antes": "12",
+              "depois": 0
+            },
+            {
+              "modifier": "scanline_cam",
+              "antes": "16",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_REF_malibu",
+              "antes": "13",
+              "depois": 0
+            },
+            {
+              "modifier": "carpark_dt1_02",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "FIB_interview_optimise",
+              "antes": "21",
+              "depois": 0
+            },
+            {
+              "modifier": "Prologue_shootout_opt",
+              "antes": "5",
+              "depois": 0
+            },
+            {
+              "modifier": "hangar_lightsmod",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "plane_inside_mode",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "eatra_bouncelight_beach",
+              "antes": "5",
+              "depois": 0
+            },
+            {
+              "modifier": "downtown_FIB_cascades_opt",
+              "antes": "3",
+              "depois": 0
+            },
+            {
+              "modifier": "jewel_optim",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "ufo_deathray",
+              "antes": "59",
+              "depois": 0
+            },
+            {
+              "modifier": "PORT_heist_underwater",
+              "antes": "5",
+              "depois": 0
+            },
+            {
+              "modifier": "TUNNEL_orange_exterior",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "hillstunnel",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "jewelry_entrance_INT",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "jewelry_entrance",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "jewelry_entrance_INT_fog",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "TUNNEL_yellow_ext",
+              "antes": "12",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_jewel_EXIT",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "services_nightlight",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "CS1_railwayB_tunnel",
+              "antes": "21",
+              "depois": 0
+            },
+            {
+              "modifier": "TUNNEL_green_ext",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "CAMERA_secuirity",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "CAMERA_secuirity_FUZZ",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "int_hospital_small",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "int_hospital_dark",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "plaza_carpark",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "gen_bank",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "nightvision",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_cove",
+              "antes": "110",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_Darkblue",
+              "antes": "15",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_VISOR",
+              "antes": "18",
+              "depois": 0
+            },
+            {
+              "modifier": "heist_boat",
+              "antes": "15",
+              "depois": 0
+            },
+            {
+              "modifier": "heist_boat_norain",
+              "antes": "16",
+              "depois": 0
+            },
+            {
+              "modifier": "heist_boat_engineRoom",
+              "antes": "15",
+              "depois": 0
+            },
+            {
+              "modifier": "buggy_shack",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "mineshaft",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_Scuba",
+              "antes": "9",
+              "depois": 0
+            },
+            {
+              "modifier": "mugShot",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "mugShot_lineup",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "Glasses_BlackOut",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "winning_room",
+              "antes": "44",
+              "depois": 0
+            },
+            {
+              "modifier": "MPApartHigh_palnning",
+              "antes": "56",
+              "depois": 0
+            },
+            {
+              "modifier": "v_dark",
+              "antes": "67",
+              "depois": 0
+            },
+            {
+              "modifier": "vehicle_subint",
+              "antes": "10",
+              "depois": 0
+            },
+            {
+              "modifier": "Carpark_MP_exit",
+              "antes": "13",
+              "depois": 0
+            },
+            {
+              "modifier": "EXT_FULLAmbientmult_art",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "new_MP_Garage_L",
+              "antes": "45",
+              "depois": 0
+            },
+            {
+              "modifier": "fp_vig_black",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "fp_vig_brown",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "fp_vig_gray",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "fp_vig_blue",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "fp_vig_red",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "fp_vig_green",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_trailer_cinema",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "heliGunCam",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_smshop",
+              "antes": "38",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_mall",
+              "antes": "48",
+              "depois": 0
+            },
+            {
+              "modifier": "Mp_Stilts",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "Mp_Stilts_gym",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "Mp_Stilts2",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "Mp_Stilts_gym2",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "MPApart_H_01",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "MPApart_H_01_gym",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_H_01_Study",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_H_01_Bedroom",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_H_01_Bathroom",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_H_01_New",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_H_01_New_Bedroom",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_H_01_New_Bathroom",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_H_01_New_Study",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_smshop_inMOD",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "NoPedLight",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "morgue_dark_ovr",
+              "antes": "45",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_smshop_outdoor_bloom",
+              "antes": "3",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_smshop_indoor_bloom",
+              "antes": "3",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_H_02",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_H_04",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "Mp_Stilts2_bath",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_h_05",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_h_07",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_H_06",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_h_08",
+              "antes": "53",
+              "depois": 0
+            },
+            {
+              "modifier": "yacht_DLC",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_exec_office_01",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_exec_warehouse_01",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_exec_office_02",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_exec_office_03",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_exec_office_04",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_exec_office_05",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_exec_office_06",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_exec_office_03_blue",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_int01_garage",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_int01_transition",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_int01_small_rooms",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_int02_garage",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_int02_hangout",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_int02_small_rooms",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_ware01",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_ware02_standard",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_ware02_upgrade",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_ware02_dry",
+              "antes": "22",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_ware03_basic",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_ware03_upgrade",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_ware04",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_bkr_ware05",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_lad_night",
+              "antes": "7",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_lad_day",
+              "antes": "7",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_lad_judgment",
+              "antes": "7",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_imx_intwaremed",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_imx_intwaremed_office",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_imx_mod_int_01",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "IMpExt_Interior_02",
+              "antes": "57",
+              "depois": 0
+            },
+            {
+              "modifier": "ImpExp_Interior_01",
+              "antes": "55",
+              "depois": 0
+            },
+            {
+              "modifier": "impexp_interior_01_lift",
+              "antes": "56",
+              "depois": 0
+            },
+            {
+              "modifier": "IMpExt_Interior_02_stair_cage",
+              "antes": "57",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_gr_int01_white",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_gr_int01_grey",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_gr_int01_black",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "grdlc_int_02",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_nightshark_shield_fp",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "grdlc_int_02_trailer_cave",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_smg_int01_han",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_smg_int01_han_red",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_smg_int01_han_blue",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_smg_int01_han_yellow",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_in_sub",
+              "antes": "37",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_in_sub_no_reflection",
+              "antes": "36",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_base",
+              "antes": "37",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_base_dark",
+              "antes": "37",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_base_darkest",
+              "antes": "37",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_lab",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_lab_loading_bay",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_facility",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_facility_conference",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_01",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_01_tint1",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_01_tint2",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_01_tint3",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_01_tint4",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_01_tint5",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_01_tint6",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_01_tint7",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_01_tint8",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_01_tint9",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_facility2",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_02",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_02_tint1",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_02_tint2",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_02_tint3",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_02_tint4",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_02_tint5",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_02_tint6",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_02_tint7",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_02_tint8",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_02_tint9",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_02_hangar",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_silo",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_x17dlc_int_silo_escape",
+              "antes": "48",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int01",
+              "antes": "42",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int01_entry",
+              "antes": "42",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int01_office",
+              "antes": "40",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int01_dancefloor",
+              "antes": "43",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int01_dancefloor_OFF",
+              "antes": "44",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int01_garage",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int02",
+              "antes": "42",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int03",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int03_tint1",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int03_tint2",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int03_tint3",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int03_tint4",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int03_tint5",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int03_tint6",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int03_tint7",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int03_tint8",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_battle_int03_tint9",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "Drone_FishEye_Lens",
+              "antes": "5",
+              "depois": 0
+            },
+            {
+              "modifier": "int_arena_Mod",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "int_arena_01",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "int_arena_VIP",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arena_VIP",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "int_arena_Mod_garage",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arena_theme_midday",
+              "antes": "13",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arena_theme_morning",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arena_theme_evening",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arena_theme_night",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arena_theme_atlantis",
+              "antes": "93",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arena_theme_toxic",
+              "antes": "70",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arena_theme_storm",
+              "antes": "76",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arena_theme_sandstorm",
+              "antes": "74",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arena_theme_saccharine",
+              "antes": "72",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arena_theme_hell",
+              "antes": "73",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arena_theme_scifi_night",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "dlc_casino_carpark",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "casino_mainfloor",
+              "antes": "77",
+              "depois": 0
+            },
+            {
+              "modifier": "casino_brightroom",
+              "antes": "73",
+              "depois": 0
+            },
+            {
+              "modifier": "DLC_Casino_Garage",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_MBed",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_Bath",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_lobby",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_office",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_cinema",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_bar",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_spa",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_lounge",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_exec",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_changing",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "casino_managersoffice",
+              "antes": "75",
+              "depois": 0
+            },
+            {
+              "modifier": "casino_managementOff",
+              "antes": "81",
+              "depois": 0
+            },
+            {
+              "modifier": "casino_mainWhiteFloor",
+              "antes": "77",
+              "depois": 0
+            },
+            {
+              "modifier": "CasinoBathrooms",
+              "antes": "77",
+              "depois": 0
+            },
+            {
+              "modifier": "casino_managementlobby",
+              "antes": "81",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_barPARTY",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_colour1",
+              "antes": "10",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_colour0",
+              "antes": "9",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_colour2",
+              "antes": "9",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_barPARTY_0",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_barPARTY_2",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_apartment_barPARTY_01",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "Casino_Lightsoff",
+              "antes": "38",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arcade_Retro",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_BACK_office",
+              "antes": "42",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_BACK_Lobby",
+              "antes": "41",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_BACK_coridor",
+              "antes": "36",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_BACK_Security",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_BACK_BakSideRMs",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_BACK_Waste",
+              "antes": "48",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_BACK_Laundry",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_casino_BACK_Changing",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "Mp_Heist3_Loading_MainRoom",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "Mp_Heist3_Loading_SecurityRoom",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "Mp_Heist3_Loading_Stairs",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "Mp_Heist3_Loading_Tunnel",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "Mp_Heist3_Utility_Room",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arcade_Hipster",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arcade_Derelict",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arcade_Tunnel",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arcade_Planning_Room",
+              "antes": "74",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_heist3_lift_shaft",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Arcade_Planning_Pre",
+              "antes": "63",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_casino_back_vault_rm",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_arc_planning_entity_ambient",
+              "antes": "9",
+              "depois": 0
+            },
+            {
+              "modifier": "casino_main_floor_heist",
+              "antes": "77",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_casino_back_staff_entrance",
+              "antes": "77",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_casino_vault_vault",
+              "antes": "85",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_casino_vault_corridor",
+              "antes": "86",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_casino_vault_main",
+              "antes": "85",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_casino_vault_storage",
+              "antes": "86",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Casino_Tunnel",
+              "antes": "56",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Casino_Tunnel_Transition",
+              "antes": "51",
+              "depois": 0
+            },
+            {
+              "modifier": "bokeh_removebuzz",
+              "antes": "4",
+              "depois": 0
+            },
+            {
+              "modifier": "int_01_blackbox",
+              "antes": "80",
+              "depois": 0
+            },
+            {
+              "modifier": "Yacht_Mission_ThunderRain",
+              "antes": "21",
+              "depois": 0
+            },
+            {
+              "modifier": "Yacht_Mission_NoLig",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "h4_beachparty",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "h4_beachparty_day",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "DLC_Island_Office",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "dlc_island_vault",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "h4_sub_vehiclebay",
+              "antes": "38",
+              "depois": 0
+            },
+            {
+              "modifier": "h4_sub_main",
+              "antes": "38",
+              "depois": 0
+            },
+            {
+              "modifier": "h4_sub_commandroom",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "h4_sub_commandroom_BloomRedux",
+              "antes": "36",
+              "depois": 0
+            },
+            {
+              "modifier": "DLC_Island_Storerooms",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "DLC_Island_vault_01",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "Mpheist4_Mansion_exterior",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist4_Island_Mansion_Ext",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist4_Docks_Ext",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist4_Artificial_Amb_Mul",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "DLC_Island_Storerooms2",
+              "antes": "19",
+              "depois": 0
+            },
+            {
+              "modifier": "DLC_Island_main_hanger",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "DLC_Island_main_hanger_office",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "DLC_Island_main_hanger_door",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "mp_heist4_office_door",
+              "antes": "21",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist4_Storeroom_Door",
+              "antes": "19",
+              "depois": 0
+            },
+            {
+              "modifier": "DLC_Island_vault_01_Door",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "H4_Hanger_for_CU",
+              "antes": "18",
+              "depois": 0
+            },
+            {
+              "modifier": "underwater_PC_FPS_Heistfix",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_SmShop_Light",
+              "antes": "45",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_SmShop_Dark",
+              "antes": "44",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_Sandbox",
+              "antes": "132",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_Meet",
+              "antes": "132",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_SmShop_Default",
+              "antes": "44",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_MethLab",
+              "antes": "40",
+              "depois": 0
+            },
+            {
+              "modifier": "INT_smshop",
+              "antes": "38",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_SmShop_WildStyle",
+              "antes": "45",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_SmShop_Gamer",
+              "antes": "44",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_SmShop_Grey",
+              "antes": "44",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_SmShop_Nostalgia",
+              "antes": "44",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_SmShop_Americana",
+              "antes": "45",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_SmShop_JapTunner",
+              "antes": "44",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_Meet_High_Ref",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_Meet_Low_Ref",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Heist_Tuner_Sandbox_Low_Ref",
+              "antes": "1",
+              "depois": 0
+            }
+          ],
+          "definicoes_vazias_duplicadas_removidas": [
+            "ship_explosion_underwater",
+            "INT_smshop"
+          ],
+          "restricoes_distancia_removidas": []
+        }
+      ]
+    },
+    "timecycle/timecycle_mods_2.xml": {
+      "raiz": "timecycle_modifier_data",
+      "correcoes": [
+        {
+          "tipo": "XML",
+          "descricao": "Removido fechamento </modifier> solto apos polluted autocontido."
+        },
+        {
+          "contagens_corrigidas": [
+            {
+              "modifier": "nextgen",
+              "antes": "3",
+              "depois": 0
+            },
+            {
+              "modifier": "lightning",
+              "antes": "15",
+              "depois": 0
+            },
+            {
+              "modifier": "torpedo",
+              "antes": "12",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_shrinksOffice",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "Facebook_NEW",
+              "antes": "22",
+              "depois": 0
+            },
+            {
+              "modifier": "NEW_trevorstrailer",
+              "antes": "25",
+              "depois": 0
+            },
+            {
+              "modifier": "New_sewers",
+              "antes": "55",
+              "depois": 0
+            },
+            {
+              "modifier": "facebook_serveroom",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "V_Office_smoke_Fire",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "V_FIB_IT3_alt5",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "int_Hospital_DM",
+              "antes": "22",
+              "depois": 0
+            },
+            {
+              "modifier": "int_Hospital2_DM",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "int_Barber1",
+              "antes": "18",
+              "depois": 0
+            },
+            {
+              "modifier": "int_tattoo_B",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_black",
+              "antes": "15",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_brown",
+              "antes": "12",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_blue",
+              "antes": "15",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_red",
+              "antes": "15",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_green",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_yellow",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_purple",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_indigo",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_pink",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "glasses_orange",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_ID2_21",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_RichmanStuntJump",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "CH3_06_water",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_refmap_hollywoodlake",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_CH2_06_01_03",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_CH2_06_02",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "WATER_CH2_06_04",
+              "antes": "2",
+              "depois": 0
+            }
+          ],
+          "definicoes_vazias_duplicadas_removidas": [],
+          "restricoes_distancia_removidas": []
+        }
+      ]
+    },
+    "timecycle/timecycle_mods_3.xml": {
+      "raiz": "timecycle_modifier_data",
+      "correcoes": [
+        {
+          "contagens_corrigidas": [
+            {
+              "modifier": "RemoteSniper",
+              "antes": "37",
+              "depois": 0
+            },
+            {
+              "modifier": "V_Office_smoke",
+              "antes": "22",
+              "depois": 0
+            },
+            {
+              "modifier": "V_Office_smoke_ext",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "V_FIB_IT3",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "V_FIB_IT3_alt",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "V_FIB_stairs",
+              "antes": "25",
+              "depois": 0
+            },
+            {
+              "modifier": "v_abattoir",
+              "antes": "25",
+              "depois": 0
+            },
+            {
+              "modifier": "V_Abattoir_Cold",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "v_recycle",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "v_strip3",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "v_strpchangerm",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "v_jewel2",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "v_foundry",
+              "antes": "63",
+              "depois": 0
+            },
+            {
+              "modifier": "V_Metro_station",
+              "antes": "15",
+              "depois": 0
+            },
+            {
+              "modifier": "v_metro",
+              "antes": "19",
+              "depois": 0
+            },
+            {
+              "modifier": "V_Metro2",
+              "antes": "15",
+              "depois": 0
+            },
+            {
+              "modifier": "v_torture",
+              "antes": "63",
+              "depois": 0
+            },
+            {
+              "modifier": "v_sweat",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "v_sweat_entrance",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "v_sweat_NoDirLight",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "Barry1_Stoned",
+              "antes": "21",
+              "depois": 0
+            },
+            {
+              "modifier": "v_rockclub",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "v_armybase",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "v_michael",
+              "antes": "21",
+              "depois": 0
+            },
+            {
+              "modifier": "v_michael_lounge",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "v_janitor",
+              "antes": "21",
+              "depois": 0
+            },
+            {
+              "modifier": "int_amb_mult_large",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "int_extlight_large",
+              "antes": "16",
+              "depois": 0
+            },
+            {
+              "modifier": "ext_int_extlight_large",
+              "antes": "13",
+              "depois": 0
+            },
+            {
+              "modifier": "int_extlight_small",
+              "antes": "8",
+              "depois": 0
+            },
+            {
+              "modifier": "int_extlight_small_clipped",
+              "antes": "6",
+              "depois": 0
+            },
+            {
+              "modifier": "int_extlight_large_fog",
+              "antes": "22",
+              "depois": 0
+            },
+            {
+              "modifier": "int_extlight_small_fog",
+              "antes": "9",
+              "depois": 0
+            },
+            {
+              "modifier": "int_extlight_none",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "int_extlight_none_dark",
+              "antes": "18",
+              "depois": 0
+            },
+            {
+              "modifier": "int_extlight_none_dark_fog",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "int_extlight_none_fog",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "int_clean_extlight_large",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "int_clean_extlight_small",
+              "antes": "19",
+              "depois": 0
+            },
+            {
+              "modifier": "int_clean_extlight_none",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "prologue",
+              "antes": "10",
+              "depois": 0
+            },
+            {
+              "modifier": "vagos_extlight_small",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "FinaleBank",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "FinaleBankMid",
+              "antes": "28",
+              "depois": 0
+            },
+            {
+              "modifier": "v_cashdepot",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "V_Solomons",
+              "antes": "19",
+              "depois": 0
+            },
+            {
+              "modifier": "int_methlab_small_day",
+              "antes": "7",
+              "depois": 0
+            },
+            {
+              "modifier": "int_methlab_small",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "int_Lost_small",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "int_Lost_none",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "int_ControlTower_small",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "int_ControlTower_none",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "int_dockcontrol_small",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "int_hanger_small",
+              "antes": "18",
+              "depois": 0
+            },
+            {
+              "modifier": "int_hanger_none",
+              "antes": "18",
+              "depois": 0
+            },
+            {
+              "modifier": "int_cluckinfactory_small",
+              "antes": "30",
+              "depois": 0
+            },
+            {
+              "modifier": "int_cluckinfactory_none",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "int_FranklinAunt_small",
+              "antes": "21",
+              "depois": 0
+            },
+            {
+              "modifier": "stc_franklinsHouse",
+              "antes": "12",
+              "depois": 0
+            },
+            {
+              "modifier": "stc_coroners",
+              "antes": "16",
+              "depois": 0
+            },
+            {
+              "modifier": "stc_trevors",
+              "antes": "40",
+              "depois": 0
+            },
+            {
+              "modifier": "stc_deviant_lounge",
+              "antes": "10",
+              "depois": 0
+            },
+            {
+              "modifier": "stc_deviant_bedroom",
+              "antes": "11",
+              "depois": 0
+            },
+            {
+              "modifier": "int_carshowroom",
+              "antes": "36",
+              "depois": 0
+            },
+            {
+              "modifier": "int_Farmhouse_small",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "int_Farmhouse_none",
+              "antes": "26",
+              "depois": 0
+            },
+            {
+              "modifier": "int_carmod_small",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "SP1_03_drawDistance",
+              "antes": "5",
+              "depois": 0
+            },
+            {
+              "modifier": "SP2_03_drawDistance",
+              "antes": "5",
+              "depois": 0
+            },
+            {
+              "modifier": "int_clotheslow_large",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "v_bahama",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "gunclub",
+              "antes": "40",
+              "depois": 0
+            },
+            {
+              "modifier": "int_GasStation",
+              "antes": "37",
+              "depois": 0
+            },
+            {
+              "modifier": "int_GasStation_lighting",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "int_GasStation_night_lighting",
+              "antes": "17",
+              "depois": 0
+            },
+            {
+              "modifier": "int_GasStation_exterior_lighting",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "Shop247",
+              "antes": "38",
+              "depois": 0
+            },
+            {
+              "modifier": "Shop247_none",
+              "antes": "37",
+              "depois": 0
+            },
+            {
+              "modifier": "gabz_tuners",
+              "antes": "45",
+              "depois": 0
+            },
+            {
+              "modifier": "gabz_tuners_night",
+              "antes": "44",
+              "depois": 0
+            },
+            {
+              "modifier": "PoliceStation",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "PoliceStationLighting",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "PoliceStationDark",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "Hicksbar",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "cBank_back",
+              "antes": "25",
+              "depois": 0
+            },
+            {
+              "modifier": "cBank_front",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "int_office_Lobby",
+              "antes": "23",
+              "depois": 0
+            },
+            {
+              "modifier": "int_office_LobbyHall",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "SheriffStation",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "LifeInvaderLOD",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "int_motelroom",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "metro",
+              "antes": "19",
+              "depois": 0
+            },
+            {
+              "modifier": "int_ClothesHi",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "FIB_5",
+              "antes": "22",
+              "depois": 0
+            },
+            {
+              "modifier": "int_chopshop",
+              "antes": "27",
+              "depois": 0
+            },
+            {
+              "modifier": "int_tattoo",
+              "antes": "33",
+              "depois": 0
+            },
+            {
+              "modifier": "gunstore",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "int_Hospital_Blue",
+              "antes": "47",
+              "depois": 0
+            },
+            {
+              "modifier": "FIB_6",
+              "antes": "45",
+              "depois": 0
+            },
+            {
+              "modifier": "FIB_B",
+              "antes": "20",
+              "depois": 0
+            },
+            {
+              "modifier": "FIB_A",
+              "antes": "32",
+              "depois": 0
+            },
+            {
+              "modifier": "lab_none",
+              "antes": "19",
+              "depois": 0
+            },
+            {
+              "modifier": "lab_none_dark",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "lab_none_dark_fog",
+              "antes": "25",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Garage_L",
+              "antes": "42",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_Studio_Lo",
+              "antes": "36",
+              "depois": 0
+            },
+            {
+              "modifier": "StadLobby",
+              "antes": "35",
+              "depois": 0
+            },
+            {
+              "modifier": "Hanger_INTmods",
+              "antes": "29",
+              "depois": 0
+            },
+            {
+              "modifier": "MPApartHigh",
+              "antes": "49",
+              "depois": 0
+            },
+            {
+              "modifier": "int_Hospital_BlueB",
+              "antes": "46",
+              "depois": 0
+            },
+            {
+              "modifier": "int_tunnel_none_dark",
+              "antes": "34",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_lowgarage",
+              "antes": "36",
+              "depois": 0
+            },
+            {
+              "modifier": "MP_MedGarage",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "shades_yellow",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "shades_pink",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "Mp_apart_mid",
+              "antes": "37",
+              "depois": 0
+            },
+            {
+              "modifier": "yell_tunnel_nodirect",
+              "antes": "31",
+              "depois": 0
+            },
+            {
+              "modifier": "int_carrier_hanger",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "int_carrier_stair",
+              "antes": "25",
+              "depois": 0
+            },
+            {
+              "modifier": "int_carrier_rear",
+              "antes": "25",
+              "depois": 0
+            },
+            {
+              "modifier": "int_carrier_control",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "int_carrier_control_2",
+              "antes": "24",
+              "depois": 0
+            },
+            {
+              "modifier": "AP1_01_C_NoFog",
+              "antes": "3",
+              "depois": 0
+            },
+            {
+              "modifier": "AP1_01_B_IntRefRange",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "rply_saturation",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "rply_saturation_neg",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "rply_vignette",
+              "antes": "6",
+              "depois": 0
+            },
+            {
+              "modifier": "rply_vignette_neg",
+              "antes": "6",
+              "depois": 0
+            },
+            {
+              "modifier": "rply_contrast",
+              "antes": "12",
+              "depois": 0
+            },
+            {
+              "modifier": "rply_contrast_neg",
+              "antes": "12",
+              "depois": 0
+            },
+            {
+              "modifier": "rply_brightness",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "rply_brightness_neg",
+              "antes": "2",
+              "depois": 0
+            },
+            {
+              "modifier": "rply_motionblur",
+              "antes": "1",
+              "depois": 0
+            },
+            {
+              "modifier": "V_CIA_Facility",
+              "antes": "56",
+              "depois": 0
+            }
+          ],
+          "definicoes_vazias_duplicadas_removidas": [],
+          "restricoes_distancia_removidas": []
+        }
+      ]
+    },
+    "timecycle/timecycle_mods_4 (1).xml": {
+      "raiz": "timecycle_modifier_data",
+      "correcoes": [
+        {
+          "contagens_corrigidas": [
+            {
+              "modifier": "hud_def_desat_cold_kill",
+              "antes": "30",
+              "depois": 52
+            },
+            {
+              "modifier": "gunshop",
+              "antes": "17",
+              "depois": 16
+            },
+            {
+              "modifier": "MichaelsDirectional",
+              "antes": "17",
+              "depois": 16
+            },
+            {
+              "modifier": "MichaelsNODirectional",
+              "antes": "17",
+              "depois": 16
+            },
+            {
+              "modifier": "MichaelsDarkroom",
+              "antes": "25",
+              "depois": 24
+            },
+            {
+              "modifier": "Tunnel_green1",
+              "antes": "18",
+              "depois": 17
+            },
+            {
+              "modifier": "cinema_001",
+              "antes": "27",
+              "depois": 23
+            },
+            {
+              "modifier": "exile1_plane",
+              "antes": "45",
+              "depois": 44
+            },
+            {
+              "modifier": "RaceTurboLight",
+              "antes": "25",
+              "depois": 20
+            },
+            {
+              "modifier": "RaceTurboDark",
+              "antes": "25",
+              "depois": 20
+            },
+            {
+              "modifier": "michealspliff",
+              "antes": "54",
+              "depois": 53
+            },
+            {
+              "modifier": "trevorspliff",
+              "antes": "52",
+              "depois": 51
+            },
+            {
+              "modifier": "NG_filmic25",
+              "antes": "60",
+              "depois": 59
+            },
+            {
+              "modifier": "lodscaler",
+              "antes": "7",
+              "depois": 2
+            }
+          ],
+          "definicoes_vazias_duplicadas_removidas": [],
+          "restricoes_distancia_removidas": [
+            {
+              "modifier": "gunshop",
+              "campo": "far_clip",
+              "antes": [
+                "0.000",
+                "200.000"
+              ]
+            },
+            {
+              "modifier": "MichaelsDirectional",
+              "campo": "far_clip",
+              "antes": [
+                "0.000",
+                "200.000"
+              ]
+            },
+            {
+              "modifier": "MichaelsNODirectional",
+              "campo": "far_clip",
+              "antes": [
+                "0.000",
+                "200.000"
+              ]
+            },
+            {
+              "modifier": "MichaelsDarkroom",
+              "campo": "far_clip",
+              "antes": [
+                "0.000",
+                "200.000"
+              ]
+            },
+            {
+              "modifier": "Tunnel_green1",
+              "campo": "far_clip",
+              "antes": [
+                "0.000",
+                "500.000"
+              ]
+            },
+            {
+              "modifier": "cinema_001",
+              "campo": "far_clip",
+              "antes": [
+                "500.000",
+                "500.000"
+              ]
+            },
+            {
+              "modifier": "cinema_001",
+              "campo": "lod_mult_hd",
+              "antes": [
+                "0.200",
+                "0.000"
+              ]
+            },
+            {
+              "modifier": "cinema_001",
+              "campo": "lod_mult_orphanhd",
+              "antes": [
+                "0.400",
+                "0.000"
+              ]
+            },
+            {
+              "modifier": "cinema_001",
+              "campo": "lod_mult_lod",
+              "antes": [
+                "0.500",
+                "0.000"
+              ]
+            },
+            {
+              "modifier": "exile1_plane",
+              "campo": "far_clip",
+              "antes": [
+                "200.000",
+                "200.000"
+              ]
+            },
+            {
+              "modifier": "michealspliff",
+              "campo": "far_clip",
+              "antes": [
+                "500.000",
+                "500.000"
+              ]
+            },
+            {
+              "modifier": "trevorspliff",
+              "campo": "far_clip",
+              "antes": [
+                "500.000",
+                "500.000"
+              ]
+            },
+            {
+              "modifier": "NG_filmic25",
+              "campo": "far_clip",
+              "antes": [
+                "500.000",
+                "500.000"
+              ]
+            },
+            {
+              "modifier": "lodscaler",
+              "campo": "lod_mult_hd",
+              "antes": [
+                "0.950",
+                "0.000"
+              ]
+            },
+            {
+              "modifier": "lodscaler",
+              "campo": "lod_mult_orphanhd",
+              "antes": [
+                "0.900",
+                "0.000"
+              ]
+            },
+            {
+              "modifier": "lodscaler",
+              "campo": "lod_mult_lod",
+              "antes": [
+                "0.950",
+                "0.000"
+              ]
+            },
+            {
+              "modifier": "lodscaler",
+              "campo": "lod_mult_slod1",
+              "antes": [
+                "0.900",
+                "0.000"
+              ]
+            },
+            {
+              "modifier": "lodscaler",
+              "campo": "lod_mult_slod2",
+              "antes": [
+                "0.700",
+                "0.000"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "limites": [
+    "Manifesto assembly.xml e clima/modificador realmente ativos nao foram fornecidos.",
+    "Alteracoes de LOD nao aumentam o alcance de entidades transmitidas pelo servidor.",
+    "Nao foi comprovado que os arquivos enviados sejam os que o FiveM esta carregando."
+  ],
+  "referencia_ceu": {
+    "repositorio": "https://github.com/robi29/VisualV",
+    "commit": "5807891caadc0b3054d276918b9621580c5902a9",
+    "arquivo": "original files/update.rpf/common/data/timecycle/w_extrasunny.xml",
+    "uso": "Somente 15 curvas RGB de ceu e sky_hdr; nao substitui o timecycle inteiro."
+  },
+  "nomes_e_carregamento": {
+    "preservados": [
+      "TASVY.xml",
+      "timecycle_mods_4 (1).xml"
+    ],
+    "aliases_opcionais": [
+      "aliases_padrao/w_extrasunny.xml",
+      "aliases_padrao/timecycle_mods_4.xml"
+    ],
+    "aviso": "TASVY.xml e o nome com (1) nao sao os nomes padrao desses arquivos. Podem funcionar se mapeados pelo manifesto. Nao foi fornecido assembly.xml/weather.xml para confirmar esse mapeamento. Os aliases so devem ser usados se o destino realmente exigir os nomes padrao."
+  },
+  "validacao": {
+    "xml": "Todos os XMLs finais foram reabertos e comparados com as alteracoes selecionadas.",
+    "curvas": "Todas as curvas de GLOBAL/URBAN possuem 13 amostras finitas e chaves unicas.",
+    "modificadores": "numMods coincide com a quantidade real de campos. Nomes duplicados vazios foram consolidados.",
+    "preservacao": "video/audio/system e graficos nao listados preservados; DAT e META anteriores identicos por SHA256.",
+    "jogo": "Nao executado. A causa exclusiva do screenshot e a eficacia no cliente continuam sem confirmacao."
+  }
+}
